@@ -10,12 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MiControlador{
-	
-	
 	@RequestMapping(path="/saludar", method = RequestMethod.GET)
 	public ModelAndView saludar(@RequestParam("nombre")String nombre) {
 		ModelMap model = new ModelMap();
 		model.put("nombre",nombre.toUpperCase());
+
 		return new ModelAndView( "saludo", model);
 	}
 }

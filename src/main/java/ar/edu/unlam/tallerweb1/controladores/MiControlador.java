@@ -14,7 +14,6 @@ public class MiControlador{
 	public ModelAndView saludar(@RequestParam("nombre")String nombre) {
 		ModelMap model = new ModelMap();
 		model.put("nombre",nombre.toUpperCase());
-
 		return new ModelAndView( "saludo", model);
 	}
 }

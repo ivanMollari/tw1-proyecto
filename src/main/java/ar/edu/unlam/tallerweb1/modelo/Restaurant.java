@@ -49,6 +49,10 @@ public class Restaurant{
 	public void setCantMesas(Integer cantMesas) {
 		this.cantMesas = cantMesas;
 	}
+
+	public Integer modificarCantMesas(Integer cantMesasMod) {
+		return cantMesas= cantMesasMod;
+	}
 	
 	
 	

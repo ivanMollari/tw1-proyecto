@@ -1,10 +1,7 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 //@Table("Restaurant")
@@ -18,12 +15,23 @@ public class Restaurant{
 	
 	private Integer cantMesas;
 
+	@OneToMany
+	private List<Menu> menu;
+
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public List<Menu> getMenu() {
+		return menu;
+	}
+
+	public void setMenu(List<Menu> menu) {
+		this.menu = menu;
 	}
 
 	public String getNombre() {
@@ -41,7 +49,7 @@ public class Restaurant{
 	public void setCantMesas(Integer cantMesas) {
 		this.cantMesas = cantMesas;
 	}
-	
+
 	public Integer modificarCantMesas(Integer cantMesasMod) {
 		return cantMesas= cantMesasMod;
 	}

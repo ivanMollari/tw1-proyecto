@@ -2,11 +2,15 @@ package ar.edu.unlam.tallerweb1.persistencia;
 
 
 import ar.edu.unlam.tallerweb1.SpringTest;
+import ar.edu.unlam.tallerweb1.modelo.Menu;
 import ar.edu.unlam.tallerweb1.modelo.Restaurant;
 import org.hibernate.Session;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 
@@ -65,6 +69,27 @@ public class RestaurantTest extends SpringTest {
     	Restaurant buscado = session.get(Restaurant.class, LaFarola.getId());
     	assertThat(buscado).isNull();
    	
+    }
+    @Test
+    @Transactional @Rollback
+    public void obtenerMenues() {
+
+        Restaurant LaFarola = new Restaurant();
+        List<Menu> menues=new ArrayList<>();
+        Menu menu1=new Menu();
+        Menu menu2=new Menu();
+        menues.add(menu1);
+        menues.add(menu1);
+        LaFarola.setMenu(menues);
+        LaFarola.setNombre("La Farola");
+        LaFarola.setCantMesas(19);
+
+        final Session session = session();
+        session.save(LaFarola);
+
+        List<Menu> menuesObtenidos= session.get(Restaurant.class, LaFarola.getId()).getMenu();
+        assertThat(menuesObtenidos.size()).isEqualTo(2);
+
     }
 }
 

@@ -1,0 +1,27 @@
+header {
+    width: 100%;
+    background: #142850;
+    color: white;
+}
+
+.header-menu {
+    display: flex;
+}
+
+.header-menu div{
+    padding: 10px;
+}
+
+.header-menu-section:hover {
+    background: #27496d;
+}
+
+.buscar-input {
+    background: rgba(255, 255, 255, 0);
+    border: 0px;
+    border-bottom: 1px solid white;
+}
+
+.buscar-input::placeholder {
+    color: #bdbdbd;
+}

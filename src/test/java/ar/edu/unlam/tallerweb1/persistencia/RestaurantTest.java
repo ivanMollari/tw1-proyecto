@@ -79,7 +79,7 @@ public class RestaurantTest extends SpringTest {
         Menu menu1=new Menu();
         Menu menu2=new Menu();
         menues.add(menu1);
-        menues.add(menu1);
+        menues.add(menu2);
         LaFarola.setMenu(menues);
         LaFarola.setNombre("La Farola");
         LaFarola.setCantMesas(19);

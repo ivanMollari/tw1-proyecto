@@ -20,9 +20,11 @@ public class RestaurantTest extends SpringTest {
     @Transactional @Rollback
     public void insertarUnResto(){
         // preparacion
+        Menu menu=new Menu();
         Restaurant laParolacchia = new Restaurant();
         laParolacchia.setNombre("La Parolacchia de Mare");
         laParolacchia.setCantMesas(42);
+        laParolacchia.setMenu(menu);
        // laParolacchia.setEstrellaMichelin(1);
         // ejecucion
         final Session session = session();
@@ -37,7 +39,8 @@ public class RestaurantTest extends SpringTest {
     public void modificarResto() {
     	
     	Restaurant LaFarola = new Restaurant();
-    	
+        Menu menu=new Menu();
+        LaFarola.setMenu(menu);
     	LaFarola.setNombre("La Farola");
     	LaFarola.setCantMesas(19);
     	
@@ -55,9 +58,9 @@ public class RestaurantTest extends SpringTest {
     @Test
     @Transactional @Rollback
     public void eliminarResto() {
-    	
+        Menu menu=new Menu();
     	Restaurant LaFarola = new Restaurant();
-    	
+    	LaFarola.setMenu(menu);
     	LaFarola.setNombre("La Farola");
     	LaFarola.setCantMesas(19);
     	
@@ -75,20 +78,16 @@ public class RestaurantTest extends SpringTest {
     public void obtenerMenues() {
 
         Restaurant LaFarola = new Restaurant();
-        List<Menu> menues=new ArrayList<>();
-        Menu menu1=new Menu();
-        Menu menu2=new Menu();
-        menues.add(menu1);
-        menues.add(menu1);
-       // LaFarola.setMenu(menues);
+
+        Menu menu=new Menu();
+        LaFarola.setMenu(menu);
         LaFarola.setNombre("La Farola");
         LaFarola.setCantMesas(19);
 
         final Session session = session();
         session.save(LaFarola);
 
-        //List<Menu> menuesObtenidos= session.get(Restaurant.class, LaFarola.getId()).getMenu();
-       // assertThat(menuesObtenidos.size()).isEqualTo(2);
+       assertThat(LaFarola.getMenu()).isNotNull();
 
     }
 }

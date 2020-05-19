@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRestaurant;
 
+import java.util.List;
+
 @Service("servicioRestaurant")
 @Transactional
 public class ServicioRestaurantImpl implements ServicioRestaurant{

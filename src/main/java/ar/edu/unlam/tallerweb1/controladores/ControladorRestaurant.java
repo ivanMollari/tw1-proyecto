@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 
 
 @Controller
@@ -23,7 +24,7 @@ public class ControladorRestaurant {
     }
 
     @RequestMapping(path = "/restaurant/menu/{id}",method = RequestMethod.GET)
-    public ModelAndView mostrarMenu(@PathVariable Long id) {
+    public ModelAndView mostrarMenues(@PathVariable (value="id") Long id) {
         ModelMap modelo = new ModelMap();
         Menu menuBuscado = servicioRestaurant.consultarMenu(id);
         modelo.put("menu",menuBuscado);

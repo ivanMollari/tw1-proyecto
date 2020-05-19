@@ -13,7 +13,7 @@ import javax.inject.Inject;
 // ser manejado por el framework, debe indicarse en applicationContext que busque en el paquete ar.edu.unlam.tallerweb1.dao
 // para encontrar esta clase.
 @Repository("repositorioUsuario")
-public class RepositorioUsuarioImpl implements RepositorioUsuario {
+public class RepositorioUsuarioImpl implements RepositorioUsuario{
 
 	// Como todo repositorio maneja acciones de persistencia, normalmente estará inyectado el session factory de hibernate
 	// el mismo está difinido en el archivo hibernateContext.xml

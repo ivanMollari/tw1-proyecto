@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import ar.edu.unlam.tallerweb1.modelo.Comida;
 import ar.edu.unlam.tallerweb1.modelo.Restaurant;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,12 +11,18 @@ import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Menu;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository("repositorioRestaurant")
 public class RepositorioRestaurantImpl implements RepositorioRestaurant{
 
     private SessionFactory sessionFactory;
+    @PersistenceUnit
+    private EntityManagerFactory entityManagerFactory;
 
     @Autowired
     public RepositorioRestaurantImpl(SessionFactory sessionFactory){
@@ -25,10 +32,13 @@ public class RepositorioRestaurantImpl implements RepositorioRestaurant{
     @Override
     public Menu consultarMenu(Long id){
         final Session session = sessionFactory.getCurrentSession();
-        Query q= session.createSQLQuery("SELECT m.id,m.descripcion,m.nombre,m.precioDeLista FROM Menu m JOIN Restaurant r on m.id=r.menu_id Where rm.Restaurant_id=?");
-        Menu result=(Menu) q.setParameter(1,id).uniqueResult();
-        return result;
+        Query q=session.createQuery("select m from Menu m join Restaurant r on m=r.menu where r.id=:id");
+       List<Menu> menues=( List<Menu>) q.setParameter("id",id).list();
+        Menu menu=menues.get(0);
+        return menu;
 
     }
+
+
 
 }

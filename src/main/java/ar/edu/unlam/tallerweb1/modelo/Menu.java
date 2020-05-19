@@ -1,5 +1,8 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import org.hibernate.mapping.PrimaryKey;
+import org.springframework.context.annotation.Primary;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -8,11 +11,7 @@ public class Menu {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-
-    private Long precioDeLista;
-    private String nombre;
     private String descripcion;
-
 
 
     @ManyToMany
@@ -23,13 +22,7 @@ public class Menu {
         return Id;
     }
 
-    public Long getPrecioDeLista() {
-        return precioDeLista;
-    }
 
-    public void setPrecioDeLista(Long precioDeLista) {
-        this.precioDeLista = precioDeLista;
-    }
 
     public void setMenuId(Long id) {
         this.Id = id;
@@ -44,19 +37,11 @@ public class Menu {
         this.comidas = comidas;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Long getId() {
+        return Id;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setId(Long id) {
+        Id = id;
     }
 }

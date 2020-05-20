@@ -15,16 +15,14 @@
             <h1>Menu</h1>
             <div class="menu-box">
                 <div class="col-lg-7">
-                    <h3>
-                        ${menu.nombre}
 
-                    </h3>
                     <p class="menu-descripcion">
-                        Descripcion: ${menu.descripcion}
+                        Descripcion: ${menuBuscado.getDescripcion()}
+                        Comidas: ${menuBuscado.getComidas().get(0).getNombre()}
                     </p>
                 </div>
                 <div class="col-lg-2">
-                    <h3 id="precio">${menu.precioDeLista} $</h3>
+
                 </div>
                 <div class="col-lg-3 menu-agregar">
                     <div class="row">

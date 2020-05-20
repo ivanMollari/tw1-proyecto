@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.controladores;
 
 import ar.edu.unlam.tallerweb1.modelo.Menu;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRestaurant;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,8 +27,8 @@ public class ControladorRestaurant {
     @RequestMapping(path = "/restaurant/menu/{id}",method = RequestMethod.GET)
     public ModelAndView mostrarMenues(@PathVariable (value="id") Long id) {
         ModelMap modelo = new ModelMap();
-        Menu menuBuscado = servicioRestaurant.consultarMenu(id);
-        modelo.put("menu",menuBuscado);
+        Menu menu = servicioRestaurant.consultarMenu(id);
+        modelo.put("menuBuscado",menu);
         return new ModelAndView("menu", modelo);
     }
 }

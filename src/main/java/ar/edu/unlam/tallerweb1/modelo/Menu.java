@@ -14,7 +14,7 @@ public class Menu {
     private String descripcion;
 
 
-    @ManyToMany
+    @ManyToMany(fetch =FetchType.EAGER)
     List<Comida> comidas;
 
 
@@ -22,7 +22,13 @@ public class Menu {
         return Id;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
 
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
     public void setMenuId(Long id) {
         this.Id = id;

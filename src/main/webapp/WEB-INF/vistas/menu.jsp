@@ -1,7 +1,9 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html>
 <head>
+
     <title>Menu</title>
     <link rel="stylesheet" type="text/css" href="../../css/main.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/menu.css"/>
@@ -15,16 +17,18 @@
             <h1>Menu</h1>
             <div class="menu-box">
                 <div class="col-lg-7">
-                    <h3>
-                        ${menu.nombre}
 
-                    </h3>
                     <p class="menu-descripcion">
-                        Descripcion: ${menu.descripcion}
+                        Descripcion: ${menuBuscado.getDescripcion()}
+                        Comidas:
+                        <c:forEach var="comida" items="${menuBuscado.getComidas()}" >
+                            Nombre : ${comida.getNombre()}
+                        </c:forEach>
                     </p>
+
                 </div>
                 <div class="col-lg-2">
-                    <h3 id="precio">${menu.precioDeLista} $</h3>
+
                 </div>
                 <div class="col-lg-3 menu-agregar">
                     <div class="row">

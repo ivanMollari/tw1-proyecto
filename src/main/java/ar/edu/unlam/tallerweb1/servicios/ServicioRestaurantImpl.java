@@ -21,6 +21,7 @@ public class ServicioRestaurantImpl implements ServicioRestaurant{
 
     @Override
     public Menu consultarMenu (Long id) {
-        return servicioRestaurantDao.consultarMenu(id);
+        Menu menu=servicioRestaurantDao.consultarMenu(id);
+        return menu;
     }
 }

@@ -1,47 +1,47 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import org.hibernate.mapping.PrimaryKey;
+import org.springframework.context.annotation.Primary;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-//@Table("Menu")
 public class Menu {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long menuId;
-
-    private Long precioDeLista;
-    private String nombre;
+    private Long Id;
     private String descripcion;
 
-    @OneToMany
-    private List<Comida>menu;
+
+    @ManyToMany
+    List<Comida> comidas;
+
 
     public Long getMenuId() {
-        return menuId;
+        return Id;
     }
 
-    public Long getPrecioDeLista() {
-        return precioDeLista;
+
+
+    public void setMenuId(Long id) {
+        this.Id = id;
     }
 
-    public void setPrecioDeLista(Long precioDeLista) {
-        this.precioDeLista = precioDeLista;
+
+    public List<Comida> getComidas() {
+        return comidas;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setComidas(List<Comida> comidas) {
+        this.comidas = comidas;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public Long getId() {
+        return Id;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setId(Long id) {
+        Id = id;
     }
 }

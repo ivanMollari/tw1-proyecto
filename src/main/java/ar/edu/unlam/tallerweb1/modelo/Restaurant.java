@@ -15,8 +15,19 @@ public class Restaurant{
 	
 	private Integer cantMesas;
 
-	@OneToMany
-	private List<Menu> menu;
+	public Menu getMenu() {
+		return menu;
+	}
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
+	}
+
+	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="menu_id", referencedColumnName="id")
+    private Menu menu;
+
+
 
 	public Long getId() {
 		return id;
@@ -26,13 +37,7 @@ public class Restaurant{
 		this.id = id;
 	}
 
-	public List<Menu> getMenu() {
-		return menu;
-	}
 
-	public void setMenu(List<Menu> menu) {
-		this.menu = menu;
-	}
 
 	public String getNombre() {
 		return nombre;

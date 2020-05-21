@@ -15,6 +15,10 @@ public class Comida {
     private String nombre;
     private Long precio;
 
+    public Long getId() {
+        return id;
+    }
+
     public String getNombre() {
         return nombre;
     }

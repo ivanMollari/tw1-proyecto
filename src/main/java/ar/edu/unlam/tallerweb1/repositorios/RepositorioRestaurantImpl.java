@@ -35,10 +35,18 @@ public class RepositorioRestaurantImpl implements RepositorioRestaurant{
         Query q=session.createQuery("select m from Menu m join Restaurant r on m=r.menu where r.id=:id");
         List<Menu> menues=( List<Menu>) q.setParameter("id",id).list();
         Menu menu=menues.get(0);
-        return menu;
 
+        return menu;
     }
 
+    @Override
+    public Restaurant consultarRestaurant(Long id){
+        final Session session = sessionFactory.getCurrentSession();
+        Query q=session.createQuery("select r from Restaurant r where r.id=:id");
 
+        Restaurant restaurant=( Restaurant) q.setParameter("id",id).getSingleResult();
+
+        return restaurant;
+    }
 
 }

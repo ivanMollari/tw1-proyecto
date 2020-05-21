@@ -25,19 +25,21 @@ public class Usuario {
 	private Mapa mapa;
 	private Double latitud;
 	private Double longitud;
-	
+
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -48,28 +50,30 @@ public class Usuario {
 	public String getRol() {
 		return rol;
 	}
-
 	public void setRol(String rol) {
 		this.rol = rol;
 	}
+
 	public Mapa getMapa() {
 		return mapa;
 	}
 	public void setMapa(Mapa mapa) {
 		this.mapa = mapa;
 	}
+
 	public Double getLatitud() {
 		return latitud;
 	}
 	public void setLatitud(Double latitud) {
 		this.latitud = latitud;
 	}
+
 	public Double getLongitud() {
 		return longitud;
 	}
 	public void setLongitud(Double longitud) {
 		this.longitud = longitud;
 	}
-	
-	
+
+
 }

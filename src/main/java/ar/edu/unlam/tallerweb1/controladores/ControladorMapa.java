@@ -21,26 +21,26 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioMapa;
 
 @Controller
 public class ControladorMapa{
-	
+
     private ServicioMapa servicioMapa;
 
     @Autowired
     public ControladorMapa(ServicioMapa servicioMapa){
         this.servicioMapa = servicioMapa;
     }
-	
+
 	@RequestMapping(path= "/mapa/restos_cercanos/{idUsuario}", method = RequestMethod.GET)
 	public ModelAndView mostrarLista(@PathVariable (value="idUsuario") Long idUsuario) {
-		
+
 		Usuario usuarioBuscado = servicioMapa.consultarUsuario(idUsuario);
 		List<Restaurant> listaRestosCercanos = servicioMapa.mostrarRestosMasCercanos(usuarioBuscado);
-		
-		
+
 		ModelMap model = new ModelMap();
-		model.put("listado",listaRestosCercanos );
-		
+		model.put("listado", listaRestosCercanos);
+		model.put("usuario", usuarioBuscado);
+
 		return new ModelAndView("distancia",model);
-		
-		
+
+
 	}
 }

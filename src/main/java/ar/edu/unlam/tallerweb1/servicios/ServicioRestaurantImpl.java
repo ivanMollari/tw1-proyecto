@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.modelo.Menu;
+import ar.edu.unlam.tallerweb1.modelo.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,15 @@ public class ServicioRestaurantImpl implements ServicioRestaurant{
     @Override
     public Menu consultarMenu (Long id) {
         Menu menu=servicioRestaurantDao.consultarMenu(id);
+
         return menu;
     }
+
+    @Override
+    public Restaurant consultarRestaurant (Long id) {
+        Restaurant restaurant= servicioRestaurantDao.consultarRestaurant(id);
+
+        return restaurant;
+    }
+
 }

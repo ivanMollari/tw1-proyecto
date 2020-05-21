@@ -13,13 +13,17 @@ public class Restaurant{
 	@Column (nullable = false)
 	private String nombre;
 	
-	@ManyToOne()
+	@ManyToOne
 	@JoinColumn(name= "id_mapa", referencedColumnName= "id")
 	private Mapa mapa;
 	private  Double latitudResto;
 	private Double longitudResto;
 	
 	private Integer cantMesas;
+
+	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="menu_id", referencedColumnName="id")
+	private Menu menu;
 
 	public Menu getMenu() {
 		return menu;
@@ -29,9 +33,7 @@ public class Restaurant{
 		this.menu = menu;
 	}
 
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="menu_id", referencedColumnName="id")
-    private Menu menu;
+
 
 
 

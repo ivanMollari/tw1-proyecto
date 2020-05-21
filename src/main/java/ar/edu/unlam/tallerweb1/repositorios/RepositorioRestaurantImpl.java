@@ -35,7 +35,6 @@ public class RepositorioRestaurantImpl implements RepositorioRestaurant{
         Query q=session.createQuery("select m from Menu m join Restaurant r on m=r.menu where r.id=:id");
         List<Menu> menues=( List<Menu>) q.setParameter("id",id).list();
         Menu menu=menues.get(0);
-
         return menu;
     }
 

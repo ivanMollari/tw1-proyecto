@@ -21,8 +21,6 @@ public class Usuario {
 	private String email;
 	private String password;
 	private String rol;
-	@OneToOne()
-	private Mapa mapa;
 	private Double latitud;
 	private Double longitud;
 
@@ -54,12 +52,7 @@ public class Usuario {
 		this.rol = rol;
 	}
 
-	public Mapa getMapa() {
-		return mapa;
-	}
-	public void setMapa(Mapa mapa) {
-		this.mapa = mapa;
-	}
+
 
 	public Double getLatitud() {
 		return latitud;

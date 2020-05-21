@@ -4,16 +4,32 @@
 <html>
 <head>
 	<title>Restaurantes Cercanos</title>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu9ULYND69swbtjAbJttbsRKiGFvHDtzU&callback=initMap"
+			async defer></script>
+
+	<script type="application/javascript" src="../../js/jquery-1.11.3.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="../../css/main.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/distancia.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
-	<script type="application/javascript" src="../../js/jquery-1.11.3.min.js"></script>
-	<script type="application/javascript" src="../../js/menu.js"></script>
 	<script>
 			var map;
 			function initMap() {
-				var myLatLng = {lat: '${usuario.getEmail()}', lng: '${usuario.getLongitud()}'};
-				console.log(myLatLng);
+				var restaurants = [];
+				<c:forEach var="restaurant" items="${listado}">
+					restaurants.push({
+						nombre: '${restaurant.getNombre()}',
+						ubicacion: {
+							lat :${restaurant.getLatitudResto()},
+							lng :${restaurant.getLongitudResto()},
+						}
+					});
+				</c:forEach>
+
+				var myLatLng = {
+					lat: ${usuario.getLatitud()},
+					lng: ${usuario.getLongitud()}
+				};
+
 				map = new google.maps.Map(document.getElementById('map'), {
 					center: myLatLng,
 					zoom: 16
@@ -22,12 +38,18 @@
 				var marker = new google.maps.Marker({
 					position: myLatLng,
 					map: map,
-					title: 'ACA'
+					title: 'Tu ubicacion',
+				});
+
+				restaurants.forEach(restaurant => {
+					new google.maps.Marker({
+						position: restaurant.ubicacion,
+						map: map,
+						title: restaurant.nombre
+					});
 				});
 			}
 	</script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu9ULYND69swbtjAbJttbsRKiGFvHDtzU&callback=initMap"
-			async defer></script>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -38,7 +60,11 @@
 		</div>
 		<div class="col-lg-4">
 			<c:forEach var="restaurant" items="${listado}">
-				${restaurant.getNombre()} - ${restaurant.getLatitudResto()} - ${usuario.getEmail()}</br>
+				${restaurant.getNombre()}</br>
+				<div class="restaurant">
+					<input type="hidden" id="latitud_${restaurant.getId()}" value=${restaurant.getLatitudResto()}>
+					<input type="hidden" id="longitud_${restaurant.getId()}" value=${restaurant.getLongitudResto()}>
+				</div>
 			</c:forEach>
 		</div>
 	</div>

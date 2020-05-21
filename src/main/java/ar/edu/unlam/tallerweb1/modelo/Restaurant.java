@@ -13,6 +13,12 @@ public class Restaurant{
 	@Column (nullable = false)
 	private String nombre;
 	
+	@ManyToOne()
+	@JoinColumn(name= "id_mapa", referencedColumnName= "id")
+	private Mapa mapa;
+	private  Double latitudResto;
+	private Double longitudResto;
+	
 	private Integer cantMesas;
 
 	public Menu getMenu() {
@@ -57,6 +63,30 @@ public class Restaurant{
 
 	public Integer modificarCantMesas(Integer cantMesasMod) {
 		return cantMesas= cantMesasMod;
+	}
+
+	public Mapa getMapa() {
+		return mapa;
+	}
+
+	public void setMapa(Mapa mapa) {
+		this.mapa = mapa;
+	}
+
+	public Double getLatitudResto() {
+		return latitudResto;
+	}
+
+	public void setLatitudResto(Double latitudResto) {
+		this.latitudResto = latitudResto;
+	}
+
+	public Double getLongitudResto() {
+		return longitudResto;
+	}
+
+	public void setLongitudResto(Double longitudResto) {
+		this.longitudResto = longitudResto;
 	}
 	
 	

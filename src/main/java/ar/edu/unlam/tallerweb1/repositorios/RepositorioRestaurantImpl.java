@@ -41,11 +41,8 @@ public class RepositorioRestaurantImpl implements RepositorioRestaurant{
     @Override
     public Restaurant consultarRestaurant(Long id){
         final Session session = sessionFactory.getCurrentSession();
-        Query q=session.createQuery("select r from Restaurant r where r.id=:id");
 
-        Restaurant restaurant=( Restaurant) q.setParameter("id",id).getSingleResult();
-
-        return restaurant;
+        return session.get(Restaurant.class, id);
     }
 
 }

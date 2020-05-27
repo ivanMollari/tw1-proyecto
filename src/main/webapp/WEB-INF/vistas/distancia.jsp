@@ -4,9 +4,7 @@
 <html>
 <head>
 	<title>Restaurantes Cercanos</title>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu9ULYND69swbtjAbJttbsRKiGFvHDtzU&callback=initMap"
-			async defer></script>
-
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu9ULYND69swbtjAbJttbsRKiGFvHDtzU&callback=initMap" async defer></script>
 	<script type="application/javascript" src="../../js/jquery-1.11.3.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="../../css/main.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/distancia.css"/>
@@ -61,14 +59,9 @@
 		<div class="col-lg-4">
 			<c:forEach var="restaurant" items="${listado}">
 				${restaurant.getNombre()}</br>
-				<div class="restaurant">
-					<input type="hidden" id="latitud_${restaurant.getId()}" value=${restaurant.getLatitudResto()}>
-					<input type="hidden" id="longitud_${restaurant.getId()}" value=${restaurant.getLongitudResto()}>
-				</div>
 			</c:forEach>
 		</div>
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
-

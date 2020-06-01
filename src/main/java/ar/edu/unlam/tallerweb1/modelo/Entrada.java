@@ -1,10 +1,13 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-//@Table("Comida")
-public class Comida {
+//@Table("Entrada")
+public class Entrada {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,7 +31,5 @@ public class Comida {
         this.precio = precio;
     }
 
-    @ManyToOne
-    @JoinColumn(name="menu_id", nullable =false)
-    Menu menu;
+
 }

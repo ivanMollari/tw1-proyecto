@@ -14,8 +14,17 @@ public class Menu {
     private String descripcion;
 
 
-    @ManyToMany(fetch =FetchType.EAGER)
+    @OneToMany(fetch =FetchType.EAGER)
     List<Comida> comidas;
+
+    @OneToMany(fetch =FetchType.EAGER)
+    List<Bebida> bebidas;
+
+    @OneToMany(fetch =FetchType.EAGER)
+    List<Postre> postres;
+
+    @OneToMany(fetch =FetchType.EAGER)
+    List<Entrada> entradas;
 
 
     public Long getMenuId() {
@@ -38,9 +47,29 @@ public class Menu {
     public List<Comida> getComidas() {
         return comidas;
     }
-
     public void setComidas(List<Comida> comidas) {
         this.comidas = comidas;
+    }
+
+    public List<Bebida> getBebidas() {
+        return bebidas;
+    }
+    public void setBebidas(List<Bebida> bebidas) {
+        this.bebidas = bebidas;
+    }
+
+    public List<Postre> getPostres() {
+        return postres;
+    }
+    public void setPostres(List<Postre> postres) {
+        this.postres = postres;
+    }
+
+    public List<Entrada> getEntradas() {
+        return entradas;
+    }
+    public void setEntradas(List<Entrada> entradas) {
+        this.entradas = entradas;
     }
 
     public Long getId() {

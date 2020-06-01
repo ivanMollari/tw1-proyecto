@@ -41,6 +41,9 @@
                         </div>
                     </div>
                 </c:forEach>
+                <c:forEach var="bebida" items="${menuBuscado.getBebidas()}" >
+
+                </c:forEach>
             </div>
         </div>
         <div class="col-lg-4">

@@ -44,5 +44,4 @@ public class RepositorioRestaurantImpl implements RepositorioRestaurant{
 
         return session.get(Restaurant.class, id);
     }
-
 }

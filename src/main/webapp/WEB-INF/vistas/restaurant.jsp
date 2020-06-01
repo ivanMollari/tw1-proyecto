@@ -3,12 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Menu</title>
+    <title>Restaurant</title>
     <link rel="stylesheet" type="text/css" href="../../css/main.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/menu.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
     <script type="application/javascript" src="../../js/jquery-1.11.3.min.js"></script>
-    <script type="application/javascript" src="../../js/menu.js"></script>
     <script>
         var map;
         function initMap() {

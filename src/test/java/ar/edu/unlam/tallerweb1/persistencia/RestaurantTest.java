@@ -2,20 +2,35 @@ package ar.edu.unlam.tallerweb1.persistencia;
 
 
 import ar.edu.unlam.tallerweb1.SpringTest;
+import ar.edu.unlam.tallerweb1.modelo.Bebida;
+import ar.edu.unlam.tallerweb1.modelo.Comida;
 import ar.edu.unlam.tallerweb1.modelo.Menu;
 import ar.edu.unlam.tallerweb1.modelo.Restaurant;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioRestaurantImpl;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
 import org.junit.Test;
+
+import org.mockito.Mockito;
 import org.springframework.test.annotation.Rollback;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
+import static org.mockito.Mockito.*;
+
+import java.util.HashSet;
+
 
 import static org.assertj.core.api.Assertions.*;
 
 
 
 public class RestaurantTest extends SpringTest {
+    SessionFactory sessionFactory= Mockito.mock(SessionFactory.class);
+    Session session=Mockito.mock(Session.class);
+    Criteria criteria=Mockito.mock(Criteria.class);
+    RepositorioRestaurantImpl instancia=new RepositorioRestaurantImpl(sessionFactory);
+
     @Test
     @Transactional @Rollback
     public void insertarUnResto(){
@@ -76,18 +91,19 @@ public class RestaurantTest extends SpringTest {
     @Test
     @Transactional @Rollback
     public void obtenerMenues() {
-
-        Restaurant LaFarola = new Restaurant();
-
+        //given:
         Menu menu=new Menu();
-        LaFarola.setMenu(menu);
-        LaFarola.setNombre("La Farola");
-        LaFarola.setCantMesas(19);
+        menu.setDescripcion("soy una descripcion");
+        when( sessionFactory.getCurrentSession()).thenReturn(session);
+        when(criteria.add(any())).thenReturn( criteria);
+        when(session.createCriteria(Menu.class)).thenReturn(criteria);
+        when(criteria.uniqueResult()).thenReturn( menu);
 
-        final Session session = session();
-        session.save(LaFarola);
+        //when:
+        Menu menuResultado=instancia.consultarMenu(1L);
 
-       assertThat(LaFarola.getMenu()).isNotNull();
+        //then:
+       assertThat(menuResultado.getDescripcion()).isEqualTo("soy una descripcion");
 
     }
 }

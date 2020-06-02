@@ -5,7 +5,6 @@ import javax.persistence.*;
 @Entity
 //@Table("Bebida")
 public class Bebida {
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -27,4 +26,8 @@ public class Bebida {
     public void setPrecio(Long precio) {
         this.precio = precio;
     }
+
+    @ManyToOne
+    @JoinColumn(name="menu_id", nullable =false)
+    Menu menu;
 }

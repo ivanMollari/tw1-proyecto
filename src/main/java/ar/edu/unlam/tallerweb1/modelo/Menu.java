@@ -5,78 +5,42 @@ import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Menu {
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String descripcion;
 
+    @OneToMany(mappedBy = "menu",fetch =FetchType.EAGER)
+    Set<Comida> comidas;
 
-    @OneToMany(fetch =FetchType.EAGER)
-    List<Comida> comidas;
-
-    @OneToMany(fetch =FetchType.EAGER)
-    List<Bebida> bebidas;
-
-    @OneToMany(fetch =FetchType.EAGER)
-    List<Postre> postres;
-
-    @OneToMany(fetch =FetchType.EAGER)
-    List<Entrada> entradas;
-
-
-    public Long getMenuId() {
-        return Id;
-    }
+    @OneToMany(mappedBy = "menu",fetch = FetchType.EAGER)
+    Set<Bebida> bebidas;
 
     public String getDescripcion() {
         return descripcion;
     }
-
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
-    public void setMenuId(Long id) {
-        this.Id = id;
-    }
-
-
-    public List<Comida> getComidas() {
+    public Set<Comida> getComidas() {
         return comidas;
     }
-    public void setComidas(List<Comida> comidas) {
+    public void setComidas(Set<Comida> comidas) {
         this.comidas = comidas;
     }
 
-    public List<Bebida> getBebidas() {
+    public Set<Bebida> getBebidas() {
         return bebidas;
     }
-    public void setBebidas(List<Bebida> bebidas) {
+    public void setBebidas(Set<Bebida> bebidas) {
         this.bebidas = bebidas;
-    }
-
-    public List<Postre> getPostres() {
-        return postres;
-    }
-    public void setPostres(List<Postre> postres) {
-        this.postres = postres;
-    }
-
-    public List<Entrada> getEntradas() {
-        return entradas;
-    }
-    public void setEntradas(List<Entrada> entradas) {
-        this.entradas = entradas;
     }
 
     public Long getId() {
         return Id;
-    }
-
-    public void setId(Long id) {
-        Id = id;
     }
 }

@@ -30,7 +30,7 @@ public class ControladorRestaurant {
         Menu menu = servicioRestaurant.consultarMenu(id);
         Restaurant restaurant = servicioRestaurant.consultarRestaurant(id);
         modelo.put("menuBuscado", menu);
-        modelo.put("restaurant", restaurant);
+
         return new ModelAndView("menu", modelo);
     }
 

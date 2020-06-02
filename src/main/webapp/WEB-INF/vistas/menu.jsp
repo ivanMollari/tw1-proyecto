@@ -42,7 +42,7 @@
                     </div>
                 </c:forEach>
                 <c:forEach var="bebida" items="${menuBuscado.getBebidas()}" >
-
+                    ${AAAA}
                 </c:forEach>
             </div>
         </div>

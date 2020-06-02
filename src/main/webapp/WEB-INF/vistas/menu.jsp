@@ -16,6 +16,7 @@
         <div class="col-lg-7">
             <h1>Menu - ${menuBuscado.getDescripcion()}</h1>
             <div class="menu-box">
+                <h3>Comidas</h3>
                 <c:forEach var="comida" items="${menuBuscado.getComidas()}" >
                     <div class="comida col-lg-12" comida-id=${comida.getId()}>
                         <input type="hidden" id="nombre-${comida.getId()}" value=${comida.getNombre()}>
@@ -42,7 +43,10 @@
                     </div>
                 </c:forEach>
                 <c:forEach var="bebida" items="${menuBuscado.getBebidas()}" >
-                    ${AAAA}
+                    ${bebida.getNombre()}
+                </c:forEach>
+                <c:forEach var="postre" items="${menuBuscado.getPostres()}" >
+                    ${postre.getNombre()}
                 </c:forEach>
             </div>
         </div>

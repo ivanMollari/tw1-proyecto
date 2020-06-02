@@ -5,12 +5,19 @@ import javax.persistence.*;
 @Entity
 //@Table("Entrada")
 public class Entrada {
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nombre;
     private Long precio;
+
+    private String descripcion;
+    public String getDescripcion() {
+        return descripcion;
+    }
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
     public Long getId() { return id; }
 

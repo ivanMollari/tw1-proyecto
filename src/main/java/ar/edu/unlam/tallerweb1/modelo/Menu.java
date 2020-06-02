@@ -19,6 +19,12 @@ public class Menu {
     @OneToMany(mappedBy = "menu",fetch = FetchType.EAGER)
     Set<Bebida> bebidas;
 
+    @OneToMany(mappedBy = "menu",fetch = FetchType.EAGER)
+    Set<Postre> postres;
+
+    @OneToMany(mappedBy = "menu",fetch = FetchType.EAGER)
+    Set<Entrada> entradas;
+
     public String getDescripcion() {
         return descripcion;
     }
@@ -38,6 +44,20 @@ public class Menu {
     }
     public void setBebidas(Set<Bebida> bebidas) {
         this.bebidas = bebidas;
+    }
+
+    public Set<Postre> getPostres() {
+        return postres;
+    }
+    public void setPostres(Set<Postre> postres) {
+        this.postres = postres;
+    }
+
+    public Set<Entrada> getEntradas() {
+        return entradas;
+    }
+    public void setEntradas(Set<Entrada> entradas) {
+        this.entradas = entradas;
     }
 
     public Long getId() {

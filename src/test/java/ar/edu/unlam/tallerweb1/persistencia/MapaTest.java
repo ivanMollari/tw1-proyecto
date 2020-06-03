@@ -1,100 +1,128 @@
 package ar.edu.unlam.tallerweb1.persistencia;
 
 
+import ar.edu.unlam.tallerweb1.SpringTest;
+import ar.edu.unlam.tallerweb1.modelo.Menu;
+import ar.edu.unlam.tallerweb1.modelo.Restaurant;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioMapaImpl;
+import ar.edu.unlam.tallerweb1.servicios.ResultadoNegativoException;
+import ar.edu.unlam.tallerweb1.servicios.ServicioMapaImpl;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
+import java.util.List;
 
-/*public class MapaTest extends SpringTest {
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
+
+
+public class MapaTest extends SpringTest {
+	
+	@InjectMocks
+	private ServicioMapaImpl servicioMapa;
+	@Mock
+	private RepositorioMapaImpl repositorioMapa;
+
+
+	 
+    @Before
+    public void setUp(){
+    	MockitoAnnotations.initMocks(this);
+		
+    }
+	    
 	@Test
-	@Transactional @Rollback
-	public void mostrarDistanciaTest() {
-
-
+	public void mostrarDistanciaTest()  {
 		Restaurant laFarola = new Restaurant();
+		laFarola.setId(1L);
 		laFarola.setNombre("La Farola");
 		laFarola.setLatitudResto(-34.647658);
 		laFarola.setLongitudResto(-58.628743);
-
-
-
+		
+		
+		Menu menu1 = new Menu();
+		laFarola.setMenu(menu1);
+		
 		Usuario jose = new Usuario();
-		jose.setLatitud(-34.646986);
-		jose.setLongitud(-58.633182);
+		jose.setId(1L);
+		jose.setLatitud(-34.647858);
+		jose.setLongitud(-58.62861);
+		
+		
+		Mockito.when(repositorioMapa.consultarRestaurant(1L)).thenReturn(laFarola);
+		Mockito.when(repositorioMapa.consultarUsuario(1L)).thenReturn(jose);
+		
 
-
-
-
-		Mapa Mimapa = new Mapa();
-		Mimapa.agregarResto(laFarola);
-
-		final Session session= session();
-		session.save(laFarola);
-		session.save(jose);
-		session.save(Mimapa);
-
-		Mapa buscado= session.get(Mapa.class, Mimapa.getId());
-		assertThat(buscado.sacarDistancia(laFarola, jose)).isEqualTo(0.4129980737872941);
-
-
-	}*/
-
-	/*@Test
-	@Transactional @Rollback
-	public void mostrarRestosCercanosTest() {
-
-		ServicioMapa servicioMapa;
-
+		
+		try {
+			  
+			 assertThat(servicioMapa.sacarDistancia(laFarola,jose)).isEqualTo(25);
+		} catch (ResultadoNegativoException e) {
+			e.getMessage();
+		}	
+	}
+	
+	@Test
+	public void mostrarListaRestosCercanosTest()  {
 		Restaurant laFarola = new Restaurant();
+		laFarola.setId(1L);
 		laFarola.setNombre("La Farola");
 		laFarola.setLatitudResto(-34.647658);
 		laFarola.setLongitudResto(-58.628743);
-		Restaurant tioDue = new Restaurant();
+		Restaurant tioDue= new Restaurant();
 		tioDue.setNombre("Tio Due");
+		tioDue.setId(2L);
 		tioDue.setLatitudResto(-34.645704);
 		tioDue.setLongitudResto(-58.640903);
-		Restaurant noi = new Restaurant();
+		Restaurant noi= new Restaurant();
 		noi.setNombre("Noi");
+		noi.setId(3L);
 		noi.setLatitudResto(-34.647503);
 		noi.setLongitudResto(-58.629588);
-
-
+		
+		
+		Menu menu1 = new Menu();
+		laFarola.setMenu(menu1);
+		tioDue.setMenu(menu1);
+		noi.setMenu(menu1);
+		
 		Usuario jose = new Usuario();
+		jose.setId(1L);
 		jose.setLatitud(-34.647858);
-		jose.setLongitud(-58.628610);
-
-		Mapa miMapa = new Mapa(jose);
-
-		miMapa.agregarResto(laFarola);
-		miMapa.agregarResto(tioDue);
-		miMapa.agregarResto(noi);
-
-
-		final Session session = session();
-		session.save(laFarola);
-		session.save(tioDue);
-		session.save(noi);
-		session.save(jose);
-		session.save(miMapa);
-
-		Criteria criteria = session.createCriteria(Restaurant.class)
-				.add(Restrictions.isNotNull("id"));
-
-		List <Restaurant> listaRestos = criteria.list();
-
-		assertThat(miMapa.mostrarRestosMasCercanos(jose, listaRestos).size()).isEqualTo(2);
-
-		/*for(Mapa m : mapa) {
-
-			if(miMapa.getResto().contains(m)){
-				assertThat(m.getResto().contains(laFarola)).isTrue();
-				assertThat(m.getResto().contains(tioDue)).isTrue();
-			}
-		}
-
-		//assertThat(miMapa.mostrarRestosMasCercanos(jose).size()).isEqualTo(2);
-
-
-
+		jose.setLongitud(-58.62861);
+		
+		List<Restaurant> listita = new ArrayList();
+		
+		listita.add(laFarola);
+		listita.add(tioDue);
+		listita.add(noi);
+		
+		Mockito.when(repositorioMapa.consultarRestaurant(1L)).thenReturn(laFarola);
+		Mockito.when(repositorioMapa.consultarRestaurant(2L)).thenReturn(tioDue);
+		Mockito.when(repositorioMapa.consultarRestaurant(3L)).thenReturn(noi);
+		Mockito.when(repositorioMapa.consultarUsuario(1L)).thenReturn(jose);
+		Mockito.when(repositorioMapa.consultarListaRestos()).thenReturn(listita);
+		
+		List<Restaurant> listitaCercanos= new ArrayList();
+		listitaCercanos.add(laFarola);
+		listitaCercanos.add(noi);
+		
+		try {
+			  
+			 assertThat(servicioMapa.sacarDistancia(laFarola,jose)).isEqualTo(25);
+			 assertThat(servicioMapa.sacarDistancia(tioDue,jose)).isEqualTo(1150);
+			 assertThat(servicioMapa.sacarDistancia(noi,jose)).isEqualTo(97);
+			 assertThat(servicioMapa.mostrarRestosMasCercanos(jose, 100)).isEqualTo(listitaCercanos);
+			 assertThat(servicioMapa.mostrarRestosMasCercanos(jose, 100).size()).isEqualTo(2);
+		} catch (ResultadoNegativoException e) {
+			e.getMessage();
+		}	
 	}
-}*/
+}
+	

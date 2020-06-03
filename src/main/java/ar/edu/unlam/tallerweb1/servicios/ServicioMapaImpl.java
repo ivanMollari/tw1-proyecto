@@ -42,38 +42,40 @@ public class ServicioMapaImpl implements ServicioMapa{
         return servicioMapaDao.consultarUsuario(id);
     }
 
-	public Double sacarDistancia(Restaurant resto, Usuario usuario) {
+	public Integer sacarDistancia(Restaurant resto, Usuario usuario) throws ResultadoNegativoException {
 
-		Double distancia= 0.0;
+		Double distancia = 0.0;
+		Integer resultado;
 
-		if(resto !=null && usuario != null) {
+		Double radianes = (Math.PI / 180);
+		Double radioTierra = 6372.795477598;
 
-		Double	radianes= (Math.PI/180);
-		Double radioTierra= 6372.795477598;
-
-		Double diferenciaLatitud= ((resto.getLatitudResto())-(usuario.getLatitud()));
-		Double diferenciaLongitud= 	((resto.getLongitudResto()) - (usuario.getLongitud()));
-		Double calculoDentroDeLaRaiz= Math.pow((Math.sin(radianes*diferenciaLatitud/2)), 2) + Math.cos(radianes*usuario.getLatitud())* Math.cos(radianes*resto.getLatitudResto())* Math.pow((Math.sin(radianes*diferenciaLongitud/2)), 2);
-		distancia= 2*radioTierra*Math.asin(Math.sqrt(calculoDentroDeLaRaiz));
-
-
+		Double diferenciaLatitud = ((resto.getLatitudResto()) - (usuario.getLatitud()));
+		Double diferenciaLongitud = ((resto.getLongitudResto()) - (usuario.getLongitud()));
+		Double calculoDentroDeLaRaiz = Math.pow((Math.sin(radianes * diferenciaLatitud / 2)), 2)
+				+ Math.cos(radianes * usuario.getLatitud()) * Math.cos(radianes * resto.getLatitudResto())
+						* Math.pow((Math.sin(radianes * diferenciaLongitud / 2)), 2);
+		distancia = 2 * radioTierra * Math.asin(Math.sqrt(calculoDentroDeLaRaiz));
+		
+		if(distancia != distancia*(-1)) {
+			resultado= (int) (distancia*1000);
 		}
 		else {
-			distancia= -1.0;
+			throw new ResultadoNegativoException("La distancia no puede ser negativa");
 		}
-		return distancia;
+
+		return resultado;
 
 	}
 
-	public List<Restaurant> mostrarRestosMasCercanos(Usuario usuario) {
+	public List<Restaurant> mostrarRestosMasCercanos(Usuario usuario,Integer radioEnKm) throws ResultadoNegativoException {
 
 		List<Restaurant> listaRestaurantCercano = new ArrayList();
 
 		for (Restaurant restaurant : this.traerLista()) {
-			if(this.sacarDistancia(restaurant, usuario) >-1.0 && this.sacarDistancia(restaurant, usuario)<=1.0) {
+			if ( this.sacarDistancia(restaurant, usuario) <= radioEnKm) {
 				listaRestaurantCercano.add(restaurant);
-			}
-
+			}	
 		}
 
 		return listaRestaurantCercano;

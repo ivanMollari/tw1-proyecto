@@ -11,10 +11,10 @@ public interface ServicioMapa {
 
 	Usuario consultarUsuario(Long id);
 	
-	Double sacarDistancia(Restaurant resto, Usuario usuario);
+	Integer sacarDistancia(Restaurant resto, Usuario usuario)throws ResultadoNegativoException;
 
 	List<Restaurant> traerLista();
 	
-	List<Restaurant> mostrarRestosMasCercanos(Usuario usuario);
+	List<Restaurant> mostrarRestosMasCercanos(Usuario usuario,Integer radioEnKm)throws ResultadoNegativoException;
 
 }

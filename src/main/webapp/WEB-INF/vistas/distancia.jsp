@@ -4,11 +4,14 @@
 <html>
 <head>
 	<title>Restaurantes Cercanos</title>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu9ULYND69swbtjAbJttbsRKiGFvHDtzU&callback=initMap" async defer></script>
-	<script type="application/javascript" src="../../js/jquery-1.11.3.min.js"></script>
+	
+	
 	<link rel="stylesheet" type="text/css" href="../../css/main.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/header.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/distancia.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/footer.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
+	<script type="application/javascript" src="../../js/jquery-1.11.3.min.js"></script>
 	<script>
 			var map;
 			function initMap() {
@@ -48,6 +51,7 @@
 				});
 			}
 	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu9ULYND69swbtjAbJttbsRKiGFvHDtzU&callback=initMap" async defer></script>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>

@@ -59,7 +59,7 @@
                                     ${bebida.getPrecio()}$
                             </h4>
                             <p class="menu-descripcion">
-                                    ${bebida.getDescripcion() ? bebida.getDescripcion : "Sin descripcion"}
+                                    ${bebida.getDescripcion()}
                             </p>
                         </div>
                     </div>

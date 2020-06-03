@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Restaurant;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.servicios.ResultadoNegativoException;
 import ar.edu.unlam.tallerweb1.servicios.ServicioMapa;
 
 
@@ -29,18 +30,25 @@ public class ControladorMapa{
         this.servicioMapa = servicioMapa;
     }
 
-	@RequestMapping(path= "/mapa/restos_cercanos/{idUsuario}", method = RequestMethod.GET)
-	public ModelAndView mostrarLista(@PathVariable (value="idUsuario") Long idUsuario) {
+	@RequestMapping(path = "/{idUsuario}/{direccion}/{radioEnKm}", method = RequestMethod.GET)
+	public ModelAndView mostrarLista(@PathVariable(value = "idUsuario") Long idUsuario,
+			@PathVariable(value = "radioEnKm") Integer radioEnKm, @PathVariable(value = "direccion") String direccion) {
 
 		Usuario usuarioBuscado = servicioMapa.consultarUsuario(idUsuario);
-		List<Restaurant> listaRestosCercanos = servicioMapa.mostrarRestosMasCercanos(usuarioBuscado);
+
+		List<Restaurant> listaRestosCercanos= new ArrayList();
+		try {
+			listaRestosCercanos = servicioMapa.mostrarRestosMasCercanos(usuarioBuscado, radioEnKm);
+		} catch (ResultadoNegativoException e) {
+			e.printStackTrace();
+		}
 
 		ModelMap model = new ModelMap();
 		model.put("listado", listaRestosCercanos);
 		model.put("usuario", usuarioBuscado);
+		model.put("direccion",direccion);
 
-		return new ModelAndView("distancia",model);
-
+		return new ModelAndView("distancia", model);
 
 	}
 }

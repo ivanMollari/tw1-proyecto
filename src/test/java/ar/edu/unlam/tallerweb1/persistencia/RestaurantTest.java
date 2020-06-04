@@ -11,9 +11,11 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.test.annotation.Rollback;
 import javax.transaction.Transactional;
 import static org.mockito.Mockito.*;
@@ -28,8 +30,8 @@ import static org.assertj.core.api.Assertions.*;
 public class RestaurantTest extends SpringTest {
     SessionFactory sessionFactory= Mockito.mock(SessionFactory.class);
     Session session=Mockito.mock(Session.class);
-    Criteria criteria=Mockito.mock(Criteria.class);
     RepositorioRestaurantImpl instancia=new RepositorioRestaurantImpl(sessionFactory);
+
 
     @Test
     @Transactional @Rollback
@@ -89,21 +91,21 @@ public class RestaurantTest extends SpringTest {
    	
     }
     @Test
-    @Transactional @Rollback
-    public void obtenerMenu() {
+    public void testConsultarRestaurant() {
         //given:
+        Restaurant restaurant=new Restaurant();
+        restaurant.setId(1L);
         Menu menu=new Menu();
         menu.setDescripcion("soy una descripcion");
+        restaurant.setMenu(menu);
         when( sessionFactory.getCurrentSession()).thenReturn(session);
-        when(criteria.add(any())).thenReturn( criteria);
-        when(session.createCriteria(Menu.class)).thenReturn(criteria);
-        when(criteria.uniqueResult()).thenReturn( menu);
+        when(session.get(Restaurant.class,restaurant.getId())).thenReturn(restaurant);
 
         //when:
-        Menu menuResultado=instancia.consultarMenu(1L);
+       Restaurant resultado=instancia.consultarRestaurant(1L);
 
         //then:
-       assertThat(menuResultado.getDescripcion()).isEqualTo("soy una descripcion");
+       assertThat(resultado.getMenu().getDescripcion()).isEqualTo("soy una descripcion");
 
     }
 }

@@ -6,6 +6,6 @@ import ar.edu.unlam.tallerweb1.modelo.Restaurant;
 import java.util.List;
 
 public interface ServicioRestaurant {
-        Menu consultarMenu(Long id);
+
         Restaurant consultarRestaurant(Long id);
 }

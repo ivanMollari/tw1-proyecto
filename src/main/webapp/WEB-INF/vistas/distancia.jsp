@@ -10,8 +10,8 @@
 	<link rel="stylesheet" type="text/css" href="../../../css/header.css"/>
 	<link rel="stylesheet" type="text/css" href="../../../css/distancia.css"/>
 	<link rel="stylesheet" type="text/css" href="../../../css/footer.css"/>
-	<link rel="stylesheet" type="text/css" href="../../../../css/bootstrap.min.css"/>
-	<script type="application/javascript" src="../../../../js/jquery-1.11.3.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css"/>
+	<script type="application/javascript" src="../../../js/jquery-1.11.3.min.js"></script>
 	<script>
 			var map;
 			function initMap() {

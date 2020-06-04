@@ -90,7 +90,7 @@ public class RestaurantTest extends SpringTest {
     }
     @Test
     @Transactional @Rollback
-    public void obtenerMenues() {
+    public void obtenerMenu() {
         //given:
         Menu menu=new Menu();
         menu.setDescripcion("soy una descripcion");

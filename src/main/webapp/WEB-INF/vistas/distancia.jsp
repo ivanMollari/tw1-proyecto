@@ -30,7 +30,9 @@
 					lat: ${usuario.getLatitud()},
 					lng: ${usuario.getLongitud()}
 				};
-
+				
+				var iconBase ='https://maps.google.com/mapfiles/kml/shapes/'; 
+				
 				map = new google.maps.Map(document.getElementById('map'), {
 					center: myLatLng,
 					zoom: 16
@@ -46,7 +48,8 @@
 					new google.maps.Marker({
 						position: restaurant.ubicacion,
 						map: map,
-						title: restaurant.nombre
+						title: restaurant.nombre,
+						icon: iconBase + 'library_maps.png'
 					});
 				});
 			}

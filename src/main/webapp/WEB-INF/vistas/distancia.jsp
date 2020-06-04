@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css"/>
 	<script type="application/javascript" src="../../../js/jquery-1.11.3.min.js"></script>
 	<script>
+		 var iconBase ='https://maps.google.com/mapfiles/kml/shapes/';
 			var map;
 			function initMap() {
 				var restaurants = [];

@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.repositorios;
 
 import java.util.List;
 
+import ar.edu.unlam.tallerweb1.modelo.Menu;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -46,6 +47,7 @@ public class RepositorioMapaImpl implements RepositorioMapa{
 
 	    Criteria criteria = session.createCriteria(Restaurant.class);
 	           criteria.add(Restrictions.isNotNull("id"));
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 
 	    List<Restaurant> listaRestaurantes = criteria.list();
 	    return listaRestaurantes;

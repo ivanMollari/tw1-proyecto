@@ -30,15 +30,24 @@ public class ControladorMapa{
         this.servicioMapa = servicioMapa;
     }
 
-	@RequestMapping(path = "/{idUsuario}/{direccion}/{radioEnKm}", method = RequestMethod.GET)
+	@RequestMapping(path = "/{idUsuario}/{latitud}/{longitud}/{radioEnM}", method = RequestMethod.GET)
 	public ModelAndView mostrarLista(@PathVariable(value = "idUsuario") Long idUsuario,
-			@PathVariable(value = "radioEnKm") Integer radioEnKm, @PathVariable(value = "direccion") String direccion) {
+									 @PathVariable(value = "latitud") Double latitud,
+									 @PathVariable(value = "longitud") Double longitud,
+									 @PathVariable(value = "radioEnM") Integer radioEnM
+	) {
+
 
 		Usuario usuarioBuscado = servicioMapa.consultarUsuario(idUsuario);
 
 		List<Restaurant> listaRestosCercanos= new ArrayList();
 		try {
-			listaRestosCercanos = servicioMapa.mostrarRestosMasCercanos(usuarioBuscado, radioEnKm);
+			if (usuarioBuscado!=null) {
+				usuarioBuscado.setLongitud(longitud);
+				usuarioBuscado.setLatitud(latitud);
+				listaRestosCercanos = servicioMapa.mostrarRestosMasCercanos(usuarioBuscado, radioEnM);
+			}
+
 		} catch (ResultadoNegativoException e) {
 			e.printStackTrace();
 		}
@@ -46,9 +55,12 @@ public class ControladorMapa{
 		ModelMap model = new ModelMap();
 		model.put("listado", listaRestosCercanos);
 		model.put("usuario", usuarioBuscado);
-		model.put("direccion",direccion);
+
+
 
 		return new ModelAndView("distancia", model);
 
 	}
+
+
 }

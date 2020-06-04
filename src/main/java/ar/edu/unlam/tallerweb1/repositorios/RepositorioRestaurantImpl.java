@@ -30,14 +30,6 @@ public class RepositorioRestaurantImpl implements RepositorioRestaurant{
         this.sessionFactory = sessionFactory;
     }
 
-    @Override
-    public Menu consultarMenu(Long id){
-        final Session session = sessionFactory.getCurrentSession();
-        Criteria criteria=session.createCriteria(Menu.class);
-        return (Menu) session.createCriteria(Menu.class)
-                .add(Restrictions.eq("id", id))
-                .uniqueResult();
-    }
 
     @Override
     public Restaurant consultarRestaurant(Long id){

@@ -24,15 +24,7 @@ public class ControladorRestaurant {
         this.servicioRestaurant = servicioRestaurant;
     }
 
-    @RequestMapping(path = "/restaurant/menu/{id}",method = RequestMethod.GET)
-    public ModelAndView mostrarMenues(@PathVariable (value="id") Long id) {
-        ModelMap modelo = new ModelMap();
-        Menu menu = servicioRestaurant.consultarMenu(id);
-        Restaurant restaurant = servicioRestaurant.consultarRestaurant(id);
-        modelo.put("menuBuscado", menu);
 
-        return new ModelAndView("menu", modelo);
-    }
 
     @RequestMapping(path = "/restaurant/{id}",method = RequestMethod.GET)
     public ModelAndView mostrarRestaurant(@PathVariable (value="id") Long id) {

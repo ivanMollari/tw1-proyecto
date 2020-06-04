@@ -20,12 +20,7 @@ public class ServicioRestaurantImpl implements ServicioRestaurant{
         this.servicioRestaurantDao = servicioRestaurantDao;
     }
 
-    @Override
-    public Menu consultarMenu (Long id) {
-        Menu menu=servicioRestaurantDao.consultarMenu(id);
 
-        return menu;
-    }
 
     @Override
     public Restaurant consultarRestaurant (Long id) {

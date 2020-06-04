@@ -30,19 +30,22 @@ public class ControladorMapa{
         this.servicioMapa = servicioMapa;
     }
 
-	@RequestMapping(path = "/{idUsuario}/{latitud}/{longitud}/{radioEnKm}", method = RequestMethod.GET)
+	@RequestMapping(path = "/{idUsuario}/{latitud}/{longitud}/{radioEnM}", method = RequestMethod.GET)
 	public ModelAndView mostrarLista(@PathVariable(value = "idUsuario") Long idUsuario,
 									 @PathVariable(value = "latitud") Double latitud,
 									 @PathVariable(value = "longitud") Double longitud,
-									 @PathVariable(value = "radioEnKm") Integer radioEnKm) {
+									 @PathVariable(value = "radioEnM") Integer radioEnM
+	) {
+
 
 		Usuario usuarioBuscado = servicioMapa.consultarUsuario(idUsuario);
+
 		List<Restaurant> listaRestosCercanos= new ArrayList();
 		try {
 			if (usuarioBuscado!=null) {
-				usuarioBuscado.setLatitud(latitud);
 				usuarioBuscado.setLongitud(longitud);
-				listaRestosCercanos = servicioMapa.mostrarRestosMasCercanos(usuarioBuscado, radioEnKm);
+				usuarioBuscado.setLatitud(latitud);
+				listaRestosCercanos = servicioMapa.mostrarRestosMasCercanos(usuarioBuscado, radioEnM);
 			}
 
 		} catch (ResultadoNegativoException e) {
@@ -52,6 +55,30 @@ public class ControladorMapa{
 		ModelMap model = new ModelMap();
 		model.put("listado", listaRestosCercanos);
 		model.put("usuario", usuarioBuscado);
+
+
+
+		return new ModelAndView("distancia", model);
+
+	}
+
+	@RequestMapping(path = "/{idUsuario}/{direccion}/{radioEnKm}", method = RequestMethod.GET)
+	public ModelAndView mostrarLista2(@PathVariable(value = "idUsuario") Long idUsuario,
+									  @PathVariable(value = "radioEnKm") Integer radioEnKm, @PathVariable(value = "direccion") String direccion) {
+
+		Usuario usuarioBuscado = servicioMapa.consultarUsuario(idUsuario);
+
+		List<Restaurant> listaRestosCercanos = new ArrayList();
+		try {
+			listaRestosCercanos = servicioMapa.mostrarRestosMasCercanos(usuarioBuscado, radioEnKm);
+		} catch (ResultadoNegativoException e) {
+			e.printStackTrace();
+		}
+
+		ModelMap model = new ModelMap();
+		model.put("listado", listaRestosCercanos);
+		model.put("usuario", usuarioBuscado);
+		model.put("direccion", direccion);
 
 		return new ModelAndView("distancia", model);
 

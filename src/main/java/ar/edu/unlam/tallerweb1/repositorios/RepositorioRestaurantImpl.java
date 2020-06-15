@@ -35,6 +35,7 @@ public class RepositorioRestaurantImpl implements RepositorioRestaurant{
     public Restaurant consultarRestaurant(Long id){
         final Session session = sessionFactory.getCurrentSession();
 
+
         return session.get(Restaurant.class, id);
     }
 }

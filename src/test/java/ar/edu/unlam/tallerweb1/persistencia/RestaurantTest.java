@@ -2,23 +2,23 @@ package ar.edu.unlam.tallerweb1.persistencia;
 
 
 import ar.edu.unlam.tallerweb1.SpringTest;
-import ar.edu.unlam.tallerweb1.modelo.Bebida;
+
 import ar.edu.unlam.tallerweb1.modelo.Comida;
 import ar.edu.unlam.tallerweb1.modelo.Menu;
 import ar.edu.unlam.tallerweb1.modelo.Restaurant;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRestaurantImpl;
 
-import com.sun.xml.internal.ws.server.sei.SEIInvokerTube;
+
 import org.hibernate.Session;
 
 
 import org.junit.Test;
 
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 
-import javax.inject.Inject;
+
 import javax.transaction.Transactional;
 import java.util.HashSet;
 
@@ -32,8 +32,10 @@ import static org.assertj.core.api.Assertions.*;
 
 public class RestaurantTest extends SpringTest {
 
-    @Inject
+    @Autowired
     RepositorioRestaurantImpl instancia;
+
+
 
 
 
@@ -94,24 +96,24 @@ public class RestaurantTest extends SpringTest {
     	assertThat(buscado).isNull();
    	
     }
-    @Test
+ @Test
     @Transactional @Rollback
     public void testConsultarRestaurant() {
-        //given:
-
+       //given:
+        final Session session=session();
         Restaurant restaurant=new Restaurant();
-        restaurant.setId(1L);
+        /*restaurant.setId(1L);*/
         Menu menu=new Menu();
         menu.setDescripcion("soy una descripcion");
         menu.setComidas(new HashSet<Comida>());
         restaurant.setMenu(menu);
         restaurant.setNombre("nombre");
-        final Session session=session();
+
         session.save(restaurant);
 
 
         //when:
-       Restaurant resultado=instancia.consultarRestaurant(1L);
+       Restaurant resultado=instancia.consultarRestaurant(restaurant.getId());
 
         //then:
        assertThat(resultado.getMenu().getDescripcion()).isEqualTo("soy una descripcion");

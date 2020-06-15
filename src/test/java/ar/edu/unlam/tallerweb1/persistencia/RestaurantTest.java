@@ -7,20 +7,23 @@ import ar.edu.unlam.tallerweb1.modelo.Comida;
 import ar.edu.unlam.tallerweb1.modelo.Menu;
 import ar.edu.unlam.tallerweb1.modelo.Restaurant;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRestaurantImpl;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
-import org.junit.Before;
+import com.sun.xml.internal.ws.server.sei.SEIInvokerTube;
+import org.hibernate.Session;
+
+
 import org.junit.Test;
 
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-import org.springframework.test.annotation.Rollback;
-import javax.transaction.Transactional;
-import static org.mockito.Mockito.*;
 
+
+import org.springframework.test.annotation.Rollback;
+
+import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.HashSet;
+
+
+
 
 
 import static org.assertj.core.api.Assertions.*;
@@ -28,9 +31,10 @@ import static org.assertj.core.api.Assertions.*;
 
 
 public class RestaurantTest extends SpringTest {
-    SessionFactory sessionFactory= Mockito.mock(SessionFactory.class);
-    Session session=Mockito.mock(Session.class);
-    RepositorioRestaurantImpl instancia=new RepositorioRestaurantImpl(sessionFactory);
+
+    @Inject
+    RepositorioRestaurantImpl instancia;
+
 
 
     @Test
@@ -91,15 +95,20 @@ public class RestaurantTest extends SpringTest {
    	
     }
     @Test
+    @Transactional @Rollback
     public void testConsultarRestaurant() {
         //given:
+
         Restaurant restaurant=new Restaurant();
         restaurant.setId(1L);
         Menu menu=new Menu();
         menu.setDescripcion("soy una descripcion");
+        menu.setComidas(new HashSet<Comida>());
         restaurant.setMenu(menu);
-        when( sessionFactory.getCurrentSession()).thenReturn(session);
-        when(session.get(Restaurant.class,restaurant.getId())).thenReturn(restaurant);
+        restaurant.setNombre("nombre");
+        final Session session=session();
+        session.save(restaurant);
+
 
         //when:
        Restaurant resultado=instancia.consultarRestaurant(1L);

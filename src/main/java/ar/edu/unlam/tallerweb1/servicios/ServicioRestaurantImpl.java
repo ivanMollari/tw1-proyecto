@@ -24,14 +24,22 @@ public class ServicioRestaurantImpl implements ServicioRestaurant{
     private RepositorioRestaurant servicioRestaurantDao;
     private ServicioComida servicioComida;
     private ServicioBebida servicioBebida;
+    private ServicioEntrada servicioEntrada;
+    private ServicioPostre servicioPostre;
 
     @Autowired
-    public ServicioRestaurantImpl(RepositorioRestaurant servicioRestaurantDao,
-                                  ServicioComida servicioComida,
-                                  ServicioBebida servicioBebida){
+    public ServicioRestaurantImpl(
+            RepositorioRestaurant servicioRestaurantDao,
+            ServicioComida servicioComida,
+            ServicioBebida servicioBebida,
+            ServicioEntrada servicioEntrada,
+            ServicioPostre servicioPostre
+    ){
         this.servicioRestaurantDao = servicioRestaurantDao;
         this.servicioComida = servicioComida;
         this.servicioBebida = servicioBebida;
+        this.servicioEntrada = servicioEntrada;
+        this.servicioPostre = servicioPostre;
     }
 
     @Override
@@ -55,9 +63,13 @@ public class ServicioRestaurantImpl implements ServicioRestaurant{
 
         List<ItemMenu> comidas = servicioComida.getComidasByMenuId(MenuId);
         List<ItemMenu> bebidas = servicioBebida.getBebidasByMenuId(MenuId);
+        List<ItemMenu> entradas = servicioEntrada.getEntradasByMenuId(MenuId);
+        List<ItemMenu> postres = servicioPostre.getPostresByMenuId(MenuId);
 
         menuCompleto.put("Comidas", comidas);
         menuCompleto.put("Bebidas", bebidas);
+        menuCompleto.put("Entradas", entradas);
+        menuCompleto.put("Postres", postres);
 
         return menuCompleto;
     }

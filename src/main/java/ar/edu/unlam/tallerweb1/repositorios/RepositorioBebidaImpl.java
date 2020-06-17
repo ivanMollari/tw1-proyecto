@@ -1,7 +1,9 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import ar.edu.unlam.tallerweb1.modelo.Bebida;
 import ar.edu.unlam.tallerweb1.modelo.Comida;
 import ar.edu.unlam.tallerweb1.modelo.ItemMenu;
+import org.hibernate.FetchMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -21,8 +23,9 @@ public class RepositorioBebidaImpl implements RepositorioBebida{
     public List<ItemMenu> getBebidaByMenuId(Long menuId){
         final Session session = sessionFactory.getCurrentSession();
 
-        return (List<ItemMenu>) session.createCriteria(Comida.class)
-                .add(Restrictions.eq("id", menuId))
+        return (List<ItemMenu>) session.createCriteria(Bebida.class)
+                .add(Restrictions.eq("menu.id", menuId))
+                .setFetchMode("menu", FetchMode.EAGER)
                 .list();
     };
 }

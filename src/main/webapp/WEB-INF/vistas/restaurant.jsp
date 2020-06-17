@@ -74,7 +74,7 @@
                 </div>
                 <div id="bebidas" class="tab-pane fade in">
                     <h3>Bebidas</h3>
-                    <c:forEach var="comida" items="${items.Bebidas}" >
+                    <c:forEach var="bebida" items="${items.Bebidas}" >
                         <div class="comida col-lg-12" comida-id=${bebida.getId()}>
                             <div class="col-lg-8">
                                 <h4>

@@ -4,4 +4,5 @@ public interface ItemMenu {
     String getNombre();
     Long getPrecio();
     Integer getTiempoPreparacion();
+    Menu getMenu();
 }

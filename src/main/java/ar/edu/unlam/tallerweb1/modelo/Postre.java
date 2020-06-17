@@ -43,6 +43,10 @@ public class Postre implements ItemMenu{
     public Integer getTiempoPreparacion() { return tiempoPreparacion; }
     public void setTiempoPreparacion(Integer tiempoPreparacion) { this.tiempoPreparacion = tiempoPreparacion; }
 
+    @Override
+    public Menu getMenu() { return menu; }
+    public void setMenu(Menu menu) { this.menu = menu; }
+
     @ManyToOne
     @JoinColumn(name="menu_id", nullable =false)
     Menu menu;

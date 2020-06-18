@@ -12,6 +12,9 @@ public class Postre {
     private Long precio;
 
     private String descripcion;
+    @ManyToOne
+    @JoinColumn(name="menu_id", nullable =false)
+    Menu menu;
     public String getDescripcion() {
         return descripcion;
     }
@@ -35,7 +38,5 @@ public class Postre {
         this.precio = precio;
     }
 
-    @ManyToOne
-    @JoinColumn(name="menu_id", nullable =false)
-    Menu menu;
+
 }

@@ -5,6 +5,7 @@ import ar.edu.unlam.tallerweb1.SpringTest;
 
 import ar.edu.unlam.tallerweb1.modelo.Comida;
 import ar.edu.unlam.tallerweb1.modelo.Menu;
+import ar.edu.unlam.tallerweb1.modelo.Pedido;
 import ar.edu.unlam.tallerweb1.modelo.Restaurant;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRestaurantImpl;
 
@@ -119,5 +120,19 @@ public class RestaurantTest extends SpringTest {
        assertThat(resultado.getMenu().getDescripcion()).isEqualTo("soy una descripcion");
 
     }
+    @Test
+    @Transactional @Rollback
+    public void testCrearPedido() {
+        //given:
+
+        Pedido pedido=new Pedido();
+        //when:
+        Integer resultado=instancia.crearPedido(pedido);
+
+        //then:
+        assertThat(resultado).isEqualTo(201);
+
+    }
+
 }
 

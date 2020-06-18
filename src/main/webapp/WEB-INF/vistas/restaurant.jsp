@@ -41,9 +41,10 @@
                     <div class="comida col-lg-12" comida-id=${comida.getId()}>
                         <div class="col-lg-8">
                             <h4>
-                                    ${comida.getNombre()} -
-                                    ${comida.getPrecio()}$
+                                <a href="comida/${comida.getId()}/pedido"> ${comida.getNombre()} </a>
+                                -${comida.getPrecio()}$
                             </h4>
+                            <form action="comida/${comida.getId()}/pedido"></form>
                             <p class="menu-descripcion">${comida.getDescripcion()}</p>
                         </div>
                     </div>
@@ -55,7 +56,7 @@
                     <div class="comida col-lg-12">
                         <div class="col-lg-5">
                             <h4>
-                                    ${bebida.getNombre()} -
+                                <a href="pedido"> ${bebida.getNombre()}</a> -
                                     ${bebida.getPrecio()}$
                             </h4>
                             <p class="menu-descripcion">
@@ -71,7 +72,7 @@
                     <div class="comida col-lg-12">
                         <div class="col-lg-5">
                             <h4>
-                                    ${postre.getNombre()} -
+                                <a href="pedido">  ${postre.getNombre()}</a> -
                                     ${postre.getPrecio()}$
                             </h4>
                             <p class="menu-descripcion">
@@ -87,7 +88,7 @@
                     <div class="comida col-lg-12">
                         <div class="col-lg-5">
                             <h4>
-                                    ${entrada.getNombre()} -
+                                <a href="pedido"> ${entrada.getNombre()}</a>  -
                                     ${entrada.getPrecio()}$
                             </h4>
                             <p class="menu-descripcion">

@@ -11,6 +11,13 @@ public class Bebida {
     private String nombre;
     private Long precio;
     private String descripcion;
+    @ManyToOne
+    @JoinColumn(name="menu_id", nullable =false)
+    Menu menu;
+
+    @ManyToOne
+    @JoinColumn(name="pedido_id", nullable =false)
+    Pedido pedido;
     public String getDescripcion() {
         return descripcion;
     }
@@ -33,7 +40,5 @@ public class Bebida {
         this.precio = precio;
     }
 
-    @ManyToOne
-    @JoinColumn(name="menu_id", nullable =false)
-    Menu menu;
+
 }

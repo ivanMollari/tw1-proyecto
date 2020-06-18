@@ -12,6 +12,16 @@ public class Entrada {
     private Long precio;
 
     private String descripcion;
+    @ManyToOne
+    @JoinColumn(name="menu_id", nullable =false)
+    Menu menu;
+
+
+    @ManyToOne
+    @JoinColumn(name="pedido_id", nullable =false)
+    Pedido pedido;
+
+
     public String getDescripcion() {
         return descripcion;
     }
@@ -35,7 +45,5 @@ public class Entrada {
         this.precio = precio;
     }
 
-    @ManyToOne
-    @JoinColumn(name="menu_id", nullable =false)
-    Menu menu;
+
 }

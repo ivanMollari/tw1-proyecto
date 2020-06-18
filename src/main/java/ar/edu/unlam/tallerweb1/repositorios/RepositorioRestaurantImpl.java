@@ -2,6 +2,8 @@ package ar.edu.unlam.tallerweb1.repositorios;
 
 import ar.edu.unlam.tallerweb1.modelo.Comida;
 import ar.edu.unlam.tallerweb1.modelo.Restaurant;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -21,24 +23,30 @@ import java.util.List;
 public class RepositorioRestaurantImpl implements RepositorioRestaurant{
 
     private SessionFactory sessionFactory;
-    @PersistenceUnit
-    private EntityManagerFactory entityManagerFactory;
+
 
     @Autowired
     public RepositorioRestaurantImpl(SessionFactory sessionFactory){
         this.sessionFactory = sessionFactory;
     }
 
+
     @Override
-    public Menu consultarMenu(Long id){
+    public Restaurant consultarRestaurant(Long id){
         final Session session = sessionFactory.getCurrentSession();
-        Query q=session.createQuery("select m from Menu m join Restaurant r on m=r.menu where r.id=:id");
-        List<Menu> menues=( List<Menu>) q.setParameter("id",id).list();
-        Menu menu=menues.get(0);
-        return menu;
 
+        return session.get(Restaurant.class, id);
     }
+    
+	@Override
+	public List<Restaurant> consultarListaRestos(){
+	    final Session session = sessionFactory.getCurrentSession();
 
+	    Criteria criteria = session.createCriteria(Restaurant.class);
+	           criteria.add(Restrictions.isNotNull("id"));
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 
-
+	    List<Restaurant> listaRestaurantes = criteria.list();
+	    return listaRestaurantes;
+	}
 }

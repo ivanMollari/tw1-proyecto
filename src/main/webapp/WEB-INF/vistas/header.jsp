@@ -1,5 +1,3 @@
-<link type="text/css" rel="stylesheet" href="../../css/header.css" />
-
 <header>
     Logo y nombre plataforma
     <div class="header-menu">

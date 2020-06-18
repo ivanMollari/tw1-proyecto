@@ -8,4 +8,6 @@ import java.util.List;
 public interface RepositorioRestaurant {
 
        Restaurant consultarRestaurant(Long id);
+
+	List<Restaurant> consultarListaRestos();
 }

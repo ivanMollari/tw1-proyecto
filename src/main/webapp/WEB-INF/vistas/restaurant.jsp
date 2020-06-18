@@ -4,12 +4,14 @@
 <html>
 <head>
     <title>Restaurant</title>
-    <link rel="stylesheet" type="text/css" href="../css/main.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/header.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/menu.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/footer.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
-    <script type="application/javascript" src="../js/jquery-1.11.3.min.js"></script>
+    <c:set var="context" value="${pageContext.request.contextPath}" />
+    <link rel="stylesheet" type="text/css" href="${context}/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="${context}/css/header.css"/>
+    <link rel="stylesheet" type="text/css" href="${context}/css/menu.css"/>
+    <link rel="stylesheet" type="text/css" href="${context}/css/footer.css"/>
+    <link rel="stylesheet" type="text/css" href="${context}/css/bootstrap.min.css"/>
+     <script type="application/javascript" src="${context}/js/menu.js"></script>
+    <script type="application/javascript" src="${context}/js/jquery-1.11.3.min.js"></script>
     <script>
         var map;
         function initMap() {
@@ -46,6 +48,19 @@
                             </h4>
                             <p class="menu-descripcion">${comida.getDescripcion()}</p>
                         </div>
+                                                       <div class="col-lg-4">
+                        <button class="cambiar-cantidad" type-change="decrement" disabled>-</button>
+                        <b id="cantidad-${comida.getId()}">0</b>
+                        <button class="cambiar-cantidad" type-change="increment">+</button>
+                    </div>
+                    <div class="col-lg-3 menu-agregar">
+                        <div class="row">
+                            Subtotal: <b id="subtotal-${comida.getId()}">0 $</b>
+                        </div>
+                        <div class="row">
+                            <button class="button-agregar" id="agregar-${comida.getId()}" disabled>Agregar</button>
+                        </div>
+                    </div>
                     </div>
                 </c:forEach>
             </div>
@@ -98,9 +113,11 @@
                 </c:forEach>
             </div>
         </div>
+        
         <div class="col-lg-4">
             <h3>Ubicacion</h3>
             <div id="map" style="width: 400px; height: 300px"></div>
+ 
         </div>
     </div>
     <jsp:include page="footer.jsp"></jsp:include>

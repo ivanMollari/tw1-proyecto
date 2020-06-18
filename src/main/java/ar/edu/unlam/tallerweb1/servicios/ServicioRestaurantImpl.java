@@ -28,5 +28,9 @@ public class ServicioRestaurantImpl implements ServicioRestaurant{
 
         return restaurant;
     }
+    
+   /* public void tiempoTotalPedido(Restaurant resto) {
+    	resto.
+    }*/
 
 }

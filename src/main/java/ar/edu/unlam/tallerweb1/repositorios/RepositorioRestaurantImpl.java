@@ -37,4 +37,16 @@ public class RepositorioRestaurantImpl implements RepositorioRestaurant{
 
         return session.get(Restaurant.class, id);
     }
+    
+	@Override
+	public List<Restaurant> consultarListaRestos(){
+	    final Session session = sessionFactory.getCurrentSession();
+
+	    Criteria criteria = session.createCriteria(Restaurant.class);
+	           criteria.add(Restrictions.isNotNull("id"));
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+
+	    List<Restaurant> listaRestaurantes = criteria.list();
+	    return listaRestaurantes;
+	}
 }

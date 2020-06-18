@@ -10,6 +10,10 @@ public class Postre {
 
     private String nombre;
     private Long precio;
+    private Double tiempoPreparacion;
+    @ManyToOne
+    @JoinColumn(name="menu_id", nullable =false)
+    Menu menu;
 
     private String descripcion;
     public String getDescripcion() {
@@ -28,14 +32,19 @@ public class Postre {
         this.nombre = nombre;
     }
 
-    public Long getPrecio() {
+    public Double getTiempoPreparacion() {
+		return tiempoPreparacion;
+	}
+	public void setTiempoPreparacion(Double tiempoPreparacion) {
+		this.tiempoPreparacion = tiempoPreparacion;
+	}
+	public Long getPrecio() {
         return precio;
     }
     public void setPrecio(Long precio) {
         this.precio = precio;
     }
+    
 
-    @ManyToOne
-    @JoinColumn(name="menu_id", nullable =false)
-    Menu menu;
+
 }

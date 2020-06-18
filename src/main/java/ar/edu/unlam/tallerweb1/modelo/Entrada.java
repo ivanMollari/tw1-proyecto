@@ -10,6 +10,7 @@ public class Entrada {
 
     private String nombre;
     private Long precio;
+    private Double tiempoPreparacion;
 
     private String descripcion;
     public String getDescripcion() {
@@ -34,8 +35,17 @@ public class Entrada {
     public void setPrecio(Long precio) {
         this.precio = precio;
     }
+    
+    public Double getTiempoPreparacion() {
+		return tiempoPreparacion;
+	}
+	public void setTiempoPreparacion(Double tiempoPreparacion) {
+		this.tiempoPreparacion = tiempoPreparacion;
+	}
 
-    @ManyToOne
+
+
+	@ManyToOne
     @JoinColumn(name="menu_id", nullable =false)
     Menu menu;
 }

@@ -21,7 +21,7 @@ public class ServicioBebidaImpl implements ServicioBebida{
 
     @Override
     public List<ItemMenu> getBebidasByMenuId(Long menuId){
-        List<ItemMenu> comidas = servicioBebidaDao.getBebidaByMenuId(menuId);
+        List<ItemMenu> comidas = servicioBebidaDao.getBebidasByMenuId(menuId);
 
         return comidas;
     }

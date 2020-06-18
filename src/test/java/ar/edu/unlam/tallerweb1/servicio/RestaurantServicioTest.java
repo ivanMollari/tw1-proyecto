@@ -3,7 +3,7 @@ package ar.edu.unlam.tallerweb1.servicio;
 import ar.edu.unlam.tallerweb1.modelo.Menu;
 import ar.edu.unlam.tallerweb1.modelo.Restaurant;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRestaurantImpl;
-import ar.edu.unlam.tallerweb1.servicios.ServicioRestaurantImpl;
+import ar.edu.unlam.tallerweb1.servicios.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
@@ -15,7 +15,18 @@ import static org.mockito.Mockito.when;
 
 public class RestaurantServicioTest {
     RepositorioRestaurantImpl repositorio= Mockito.mock(RepositorioRestaurantImpl.class);
-    ServicioRestaurantImpl instancia=new ServicioRestaurantImpl(repositorio);
+    ServicioComida servicioComida = Mockito.mock(ServicioComida.class);
+    ServicioEntrada servicioEntrada = Mockito.mock(ServicioEntrada.class);
+    ServicioBebida servicioBebida = Mockito.mock(ServicioBebida.class);
+    ServicioPostre servicioPostre = Mockito.mock(ServicioPostre.class);
+
+    ServicioRestaurantImpl instancia=new ServicioRestaurantImpl(
+            repositorio,
+            servicioComida,
+            servicioBebida,
+            servicioEntrada,
+            servicioPostre
+    );
 
     @Test
     public void consultarRestaurant() {

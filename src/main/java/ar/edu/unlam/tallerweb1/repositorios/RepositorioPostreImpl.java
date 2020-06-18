@@ -20,7 +20,7 @@ public class RepositorioPostreImpl implements RepositorioPostre{
     public RepositorioPostreImpl(SessionFactory sessionFactory) { this.sessionFactory = sessionFactory; }
 
     @Override
-    public List<ItemMenu> getPostreByMenuId(Long menuId){
+    public List<ItemMenu> getPostresByMenuId(Long menuId){
         final Session session = sessionFactory.getCurrentSession();
 
         return (List<ItemMenu>) session.createCriteria(Postre.class)

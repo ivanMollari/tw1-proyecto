@@ -20,7 +20,7 @@ public class RepositorioBebidaImpl implements RepositorioBebida{
     public RepositorioBebidaImpl(SessionFactory sessionFactory) { this.sessionFactory = sessionFactory; }
 
     @Override
-    public List<ItemMenu> getBebidaByMenuId(Long menuId){
+    public List<ItemMenu> getBebidasByMenuId(Long menuId){
         final Session session = sessionFactory.getCurrentSession();
 
         return (List<ItemMenu>) session.createCriteria(Bebida.class)

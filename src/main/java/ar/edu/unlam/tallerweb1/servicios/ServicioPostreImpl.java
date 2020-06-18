@@ -21,7 +21,7 @@ public class ServicioPostreImpl implements ServicioPostre {
 
     @Override
     public List<ItemMenu> getPostresByMenuId(Long menuId){
-        List<ItemMenu> comidas = servicioPostreDao.getPostreByMenuId(menuId);
+        List<ItemMenu> comidas = servicioPostreDao.getPostresByMenuId(menuId);
 
         return comidas;
     }

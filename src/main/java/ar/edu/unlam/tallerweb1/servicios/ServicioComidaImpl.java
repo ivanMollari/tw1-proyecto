@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import ar.edu.unlam.tallerweb1.modelo.Comida;
 import ar.edu.unlam.tallerweb1.modelo.ItemMenu;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComida;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ public class ServicioComidaImpl implements ServicioComida{
 
     @Override
     public List<ItemMenu> getComidasByMenuId(Long menuId){
-        List<ItemMenu> comidas = servicioComidaDao.getComidaByMenuId(menuId);
+        List<ItemMenu> comidas = servicioComidaDao.getComidasByMenuId(menuId);
 
         return comidas;
     }

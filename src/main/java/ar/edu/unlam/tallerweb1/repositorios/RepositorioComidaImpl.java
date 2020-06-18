@@ -10,17 +10,18 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository("repositorioComida")
-public class RepositorioComidaImpl implements RepositorioComida{
+public class RepositorioComidaImpl implements RepositorioComida {
     private SessionFactory sessionFactory;
 
     @Autowired
     public RepositorioComidaImpl(SessionFactory sessionFactory) { this.sessionFactory = sessionFactory; }
 
     @Override
-    public List<ItemMenu> getComidaByMenuId(Long menuId){
+    public List<ItemMenu> getComidasByMenuId(Long menuId){
         final Session session = sessionFactory.getCurrentSession();
 
         return (List<ItemMenu>) session.createCriteria(Comida.class)

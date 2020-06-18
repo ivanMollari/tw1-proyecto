@@ -47,7 +47,7 @@ public class ComidaTest extends SpringTest {
         comida.setNombre("Hamburguesa");
         comida.setDescripcion("Hamburguesa con queso");
         comida.setPrecio(250L);
-        comida.setTiempoPreparacion(40);
+        comida.setTiempoPreparacion(40.0);
         comida.setMenu(menu);
 
         // ejecucion
@@ -93,12 +93,12 @@ public class ComidaTest extends SpringTest {
         comida.setMenu(menu);
         comida.setNombre("Hamburguesa");
         comida.setPrecio(200L);
-        comida.setTiempoPreparacion(20);
+        comida.setTiempoPreparacion(20.0);
 
         session.save(comida);
         session.delete(comida);
 
-        Restaurant buscado = session.get(Restaurant.class, comida.getId());
+        Comida buscado = session.get(Comida.class, comida.getId());
         assertThat(buscado).isNull();
     }
 
@@ -118,13 +118,13 @@ public class ComidaTest extends SpringTest {
         comida.setMenu(menu);
         comida.setNombre("Hamburguesa");
         comida.setPrecio(200L);
-        comida.setTiempoPreparacion(20);
+        comida.setTiempoPreparacion(20.0);
         session.save(comida);
 
         comida2.setMenu(menu);
         comida2.setNombre("Ñoquis");
         comida2.setPrecio(300L);
-        comida2.setTiempoPreparacion(30);
+        comida2.setTiempoPreparacion(30.0);
         session.save(comida2);
 
         List<ItemMenu> lista = new ArrayList<>();

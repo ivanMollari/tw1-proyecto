@@ -10,9 +10,8 @@ public class Comida implements ItemMenu{
 
     private String nombre;
     private Long precio;
+    private Double tiempoPreparacion;
     private String descripcion;
-    private Integer tiempoPreparacion;
-
 
     public String getDescripcion() {
         return descripcion;
@@ -38,10 +37,12 @@ public class Comida implements ItemMenu{
     public void setPrecio(Long precio) {
         this.precio = precio;
     }
-
-    @Override
-    public Integer getTiempoPreparacion() { return tiempoPreparacion; }
-    public void setTiempoPreparacion(Integer tiempoPreparacion) { this.tiempoPreparacion = tiempoPreparacion; }
+	public Double getTiempoPreparacion() {
+		return tiempoPreparacion;
+	}
+	public void setTiempoPreparacion(Double tiempoPreparacion) {
+		this.tiempoPreparacion = tiempoPreparacion;
+	}
 
     @Override
     public Menu getMenu() { return menu; }

@@ -4,15 +4,6 @@
 <html>
 <head>
     <title>Restaurant</title>
-<<<<<<< HEAD
-    <link rel="stylesheet" type="text/css" href="../css/main.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/header.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/menu.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/footer.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
-    <script type="application/javascript" src="../js/jquery-1.11.3.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-=======
     <c:set var="context" value="${pageContext.request.contextPath}" />
     <link rel="stylesheet" type="text/css" href="${context}/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="${context}/css/header.css"/>
@@ -21,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="${context}/css/bootstrap.min.css"/>
      <script type="application/javascript" src="${context}/js/menu.js"></script>
     <script type="application/javascript" src="${context}/js/jquery-1.11.3.min.js"></script>
->>>>>>> 5426f7e9b37d68bf764a85b563ab138f332ee027
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
         var map;
         function initMap() {

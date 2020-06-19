@@ -50,7 +50,7 @@ public class ServicioRestaurantImpl implements ServicioRestaurant{
 
         return restaurant;
     }
-    
+
    /* public void tiempoTotalPedido(Restaurant resto) {
     	resto.
     }*/
@@ -58,7 +58,6 @@ public class ServicioRestaurantImpl implements ServicioRestaurant{
     @Override
     public Map<String, List<ItemMenu>> consultarMenuCompleto(Long MenuId) {
         Map<String, List<ItemMenu>> menuCompleto = new HashMap<>();
-        System.out.println(MenuId);
 
         List<ItemMenu> comidas = servicioComida.getComidasByMenuId(MenuId);
         List<ItemMenu> bebidas = servicioBebida.getBebidasByMenuId(MenuId);
@@ -72,5 +71,12 @@ public class ServicioRestaurantImpl implements ServicioRestaurant{
 
         return menuCompleto;
     }
+
+   @Override
+   public List<Restaurant> buscarRestaurants(String searchText) {
+        List<Restaurant> listaResto = servicioRestaurantDao.buscarRestaurants(searchText);
+
+        return listaResto;
+   }
 
 }

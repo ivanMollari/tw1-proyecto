@@ -12,6 +12,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
@@ -22,10 +23,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 public class EntradaTest extends SpringTest {
-    SessionFactory sessionFactory= Mockito.mock(SessionFactory.class);
-    Session session = Mockito.mock(Session.class);
-
-    RepositorioEntradaImpl instancia = new RepositorioEntradaImpl(sessionFactory);
+    @Autowired
+    RepositorioEntradaImpl instancia;
 
     @Test
     @Transactional @Rollback
@@ -104,6 +103,7 @@ public class EntradaTest extends SpringTest {
         Menu menu = new Menu();
         Entrada entrada = new Entrada();
         Entrada entrada2 = new Entrada();
+        final Session session = session();
 
 
         menu.setId(1L);
@@ -127,7 +127,6 @@ public class EntradaTest extends SpringTest {
         lista.add(entrada);
         lista.add(entrada2);
 
-        when(sessionFactory.getCurrentSession()).thenReturn(session);
         when(
                 session.createCriteria(Entrada.class)
                         .add(Restrictions.eq("menu.id", menu.getId()))

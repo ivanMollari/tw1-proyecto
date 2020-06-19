@@ -48,59 +48,51 @@
             <div class="tab-content">
                 <div id="entradas" class="tab-pane fade in active">
                     <h3>Entradas</h3>
-                    <c:forEach var="entrada" items="${items.Entradas}" >
-                        <div class="comida col-lg-12" comida-id=${entrada.getId()}>
-                            <div class="col-lg-8">
-                                <h4>
-                                        ${entrada.getNombre()} -
-                                        ${entrada.getPrecio()}$
-                                </h4>
-                                <p class="menu-descripcion">${entrada.getDescripcion()}</p>
-                            </div>
-                        </div>
-                    </c:forEach>
+                    <div class="list-group">
+                        <c:forEach var="entrada" items="${items.Entradas}" >
+                                <a href="#" class="list-group-item" comida-id=${entrada.getId()}>
+                                    <h4 class="list-group-item-heading">${entrada.getNombre()}</h4>
+                                    <p class="list-group-item-text menu-descripcion">${entrada.getDescripcion()}</p>
+                                    <p>$ ${entrada.getPrecio()}</p>
+                                </a>
+                        </c:forEach>
+                    </div>
                 </div>
                 <div id="comidas" class="tab-pane fade in">
                     <h3>Comidas</h3>
-                    <c:forEach var="comida" items="${items.Comidas}" >
-                        <div class="comida col-lg-12" comida-id=${comida.getId()}>
-                            <div class="col-lg-8">
-                                <h4>
-                                        ${comida.getNombre()} -
-                                        ${comida.getPrecio()}$
-                                </h4>
-                                <p class="menu-descripcion">${comida.getDescripcion()}</p>
-                            </div>
-                        </div>
-                    </c:forEach>
+                    <div class="list-group">
+                        <c:forEach var="comida" items="${items.Comidas}" >
+                                <a href="#" class="list-group-item" comida-id=${comida.getId()}>
+                                    <h4 class="list-group-item-heading">${comida.getNombre()}</h4>
+                                    <p class="list-group-item-text menu-descripcion">${comida.getDescripcion()}</p>
+                                    <p>$ ${comida.getPrecio()}</p>
+                                </a>
+                        </c:forEach>
+                    </div>
                 </div>
                 <div id="bebidas" class="tab-pane fade in">
                     <h3>Bebidas</h3>
-                    <c:forEach var="bebida" items="${items.Bebidas}" >
-                        <div class="comida col-lg-12" comida-id=${bebida.getId()}>
-                            <div class="col-lg-8">
-                                <h4>
-                                        ${bebida.getNombre()} -
-                                        ${bebida.getPrecio()}$
-                                </h4>
-                                <p class="menu-descripcion">${bebida.getDescripcion()}</p>
-                            </div>
-                        </div>
-                    </c:forEach>
+                    <div class="list-group">
+                        <c:forEach var="bebida" items="${items.Bebidas}" >
+                                <a href="#" class="list-group-item" comida-id=${bebida.getId()}>
+                                    <h4 class="list-group-item-heading">${bebida.getNombre()}</h4>
+                                    <p class="list-group-item-text menu-descripcion">${bebida.getDescripcion()}</p>
+                                    <p>$ ${bebida.getPrecio()}</p>
+                                </a>
+                        </c:forEach>
+                    </div>
                 </div>
                 <div id="postres" class="tab-pane fade in">
                     <h3>Postres</h3>
-                    <c:forEach var="postre" items="${items.Postres}" >
-                        <div class="comida col-lg-12" comida-id=${postre.getId()}>
-                            <div class="col-lg-8">
-                                <h4>
-                                        ${postre.getNombre()} -
-                                        ${postre.getPrecio()}$
-                                </h4>
-                                <p class="menu-descripcion">${postre.getDescripcion()}</p>
-                            </div>
-                        </div>
-                    </c:forEach>
+                    <div class="list-group">
+                        <c:forEach var="postre" items="${items.Postres}" >
+                                <a href="#" class="list-group-item" comida-id=${postre.getId()}>
+                                    <h4 class="list-group-item-heading">${postre.getNombre()}</h4>
+                                    <p class="list-group-item-text menu-descripcion">${postre.getDescripcion()}</p>
+                                    <p>$ ${postre.getPrecio()}</p>
+                                </a>
+                        </c:forEach>
+                    </div>
                 </div>
             </div>
         </div>

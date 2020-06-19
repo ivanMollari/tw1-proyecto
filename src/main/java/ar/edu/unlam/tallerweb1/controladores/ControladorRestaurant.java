@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -41,11 +42,13 @@ public class ControladorRestaurant {
         return new ModelAndView("restaurant", modelo);
     }
 
-    @RequestMapping(path = "/test/{id}",method = RequestMethod.GET)
-    public Map<String, List<ItemMenu>> test(@PathVariable (value="id") Long id) {
-        Restaurant restaurant = servicioRestaurant.consultarRestaurant(id);
-        Map<String, List<ItemMenu>> ListaItems = servicioRestaurant.consultarMenuCompleto(restaurant.getMenu().getId());
+    @RequestMapping(path = "/restaurant/buscar", method = RequestMethod.GET)
+    public ModelAndView buscarRestaurants(@RequestParam String searchText) {
+        ModelMap modelo = new ModelMap();
 
-        return ListaItems;
+        List<Restaurant> listaResto = servicioRestaurant.buscarRestaurants(searchText);
+        modelo.put("listaResto", listaResto);
+
+        return new ModelAndView("buscarResto", modelo);
     }
 }

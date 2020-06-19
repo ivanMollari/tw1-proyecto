@@ -6,8 +6,7 @@ import ar.edu.unlam.tallerweb1.modelo.Restaurant;
 import java.util.List;
 
 public interface RepositorioRestaurant {
-
-       Restaurant consultarRestaurant(Long id);
-
+    Restaurant consultarRestaurant(Long id);
 	List<Restaurant> consultarListaRestos();
+    List<Restaurant> buscarRestaurants(String searchText);
 }

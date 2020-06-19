@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository("repositorioBebida")
-public class RepositorioBebidaImpl implements RepositorioBebida{
+public class RepositorioBebidaImpl implements RepositorioBebida {
     private SessionFactory sessionFactory;
 
     @Autowired

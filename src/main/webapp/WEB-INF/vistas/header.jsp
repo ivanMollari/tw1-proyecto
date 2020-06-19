@@ -2,7 +2,7 @@
     Logo y nombre plataforma
     <div class="header-menu">
         <div class="header-menu-section">
-            Restaurantes
+            <a href="/proyecto_limpio_spring_war_exploded/mapa" style="color:white; text-decoration: none">Restaurantes Cercanos</a>
         </div>
 
         <div class="header-menu-section">

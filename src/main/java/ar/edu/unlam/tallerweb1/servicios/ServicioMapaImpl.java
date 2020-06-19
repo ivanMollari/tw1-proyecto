@@ -33,7 +33,8 @@ public class ServicioMapaImpl implements ServicioMapa{
 
     @Override
     public List<Restaurant> traerLista (){
-    	return servicioRestaurantDao.consultarListaRestos();
+    	List<Restaurant>restaurants=servicioRestaurantDao.consultarListaRestos();
+    	return  restaurants;
     }
 
 

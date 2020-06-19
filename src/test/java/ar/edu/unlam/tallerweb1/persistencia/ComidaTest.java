@@ -20,17 +20,14 @@ import org.springframework.test.annotation.Rollback;
 import javax.transaction.Transactional;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 public class ComidaTest extends SpringTest {
-    SessionFactory sessionFactory= Mockito.mock(SessionFactory.class);
-    Session session = Mockito.mock(Session.class);
-
-    RepositorioComidaImpl instancia = new RepositorioComidaImpl(sessionFactory);
+    @Autowired
+    RepositorioComidaImpl instancia;
 
     @Test
     @Transactional @Rollback
@@ -109,7 +106,7 @@ public class ComidaTest extends SpringTest {
         Menu menu = new Menu();
         Comida comida = new Comida();
         Comida comida2 = new Comida();
-
+        final Session session = session();
 
         menu.setId(1L);
         menu.setDescripcion("Menu 1");
@@ -132,20 +129,11 @@ public class ComidaTest extends SpringTest {
         lista.add(comida);
         lista.add(comida2);
 
-        when(sessionFactory.getCurrentSession()).thenReturn(session);
-        when(
-                session.createCriteria(Comida.class)
-                        .add(Restrictions.eq("menu.id", menu.getId()))
-                        .setFetchMode("menu", FetchMode.EAGER)
-                        .list()
-        ).thenReturn(lista);
-
         //when:
         List<ItemMenu> resultado = instancia.getComidasByMenuId(menu.getId());
 
-        System.out.println(resultado);
         //then:
-//        assertThat(resultado.getMenu().getDescripcion()).isEqualTo("soy una descripcion");
+        assertThat(resultado).hasSize(2);
 
     }
 }

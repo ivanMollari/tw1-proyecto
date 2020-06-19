@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface ServicioRestaurant {
-
         Restaurant consultarRestaurant(Long id);
 
          Integer crearPedido (Pedido pedido);
@@ -21,5 +20,7 @@ public interface ServicioRestaurant {
         Comida consultarComida(Long id);
 
         Map<String, List<ItemMenu>> consultarMenuCompleto(Long menuId);
+
+        List<Restaurant> buscarRestaurants(String searchText);
 
 }

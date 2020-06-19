@@ -14,10 +14,6 @@ public class Bebida implements ItemMenu {
     @JoinColumn(name="menu_id", nullable =false)
     Menu menu;
 
-    @ManyToOne
-    @JoinColumn(name="pedido_id", nullable =false)
-    Pedido pedido;
-
     private Double tiempoPreparacion;
 
 

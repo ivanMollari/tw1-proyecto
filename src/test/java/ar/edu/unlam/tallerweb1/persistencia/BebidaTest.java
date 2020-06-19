@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
@@ -19,10 +20,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 public class BebidaTest extends SpringTest {
-    SessionFactory sessionFactory= Mockito.mock(SessionFactory.class);
-    Session session = Mockito.mock(Session.class);
-
-    RepositorioBebidaImpl instancia = new RepositorioBebidaImpl(sessionFactory);
+    @Autowired
+    RepositorioBebidaImpl instancia;
 
     @Test
     @Transactional @Rollback
@@ -101,7 +100,7 @@ public class BebidaTest extends SpringTest {
         Menu menu = new Menu();
         Bebida bebida = new Bebida();
         Bebida bebida2 = new Bebida();
-
+        final Session session = session();
 
         menu.setId(1L);
         menu.setDescripcion("Menu 1");
@@ -124,20 +123,12 @@ public class BebidaTest extends SpringTest {
         lista.add(bebida);
         lista.add(bebida2);
 
-        when(sessionFactory.getCurrentSession()).thenReturn(session);
-        when(
-                session.createCriteria(Bebida.class)
-                        .add(Restrictions.eq("menu.id", menu.getId()))
-                        .setFetchMode("menu", FetchMode.EAGER)
-                        .list()
-        ).thenReturn(lista);
 
         //when:
         List<ItemMenu> resultado = instancia.getBebidasByMenuId(menu.getId());
 
-        System.out.println(resultado);
-        //then:
-//        assertThat(resultado.getMenu().getDescripcion()).isEqualTo("soy una descripcion");
+
+         assertThat(resultado.size()).isEqualTo(2);
 
     }
 }

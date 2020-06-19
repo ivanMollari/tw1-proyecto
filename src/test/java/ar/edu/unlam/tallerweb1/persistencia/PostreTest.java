@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.persistencia;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
+import ar.edu.unlam.tallerweb1.modelo.Pedido;
 import ar.edu.unlam.tallerweb1.modelo.Postre;
 import ar.edu.unlam.tallerweb1.modelo.ItemMenu;
 import ar.edu.unlam.tallerweb1.modelo.Menu;
@@ -12,6 +13,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
@@ -22,10 +24,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 public class PostreTest extends SpringTest {
-    SessionFactory sessionFactory= Mockito.mock(SessionFactory.class);
-    Session session = Mockito.mock(Session.class);
 
-    RepositorioPostreImpl instancia = new RepositorioPostreImpl(sessionFactory);
+    @Autowired
+    RepositorioPostreImpl instancia;
 
     @Test
     @Transactional @Rollback
@@ -33,7 +34,7 @@ public class PostreTest extends SpringTest {
         // preparacion
         Menu menu = new Menu();
         final Session session = session();
-
+        Pedido pedido=new Pedido();
         menu.setDescripcion("Menu 1");
         session.save(menu);
 
@@ -99,12 +100,12 @@ public class PostreTest extends SpringTest {
 
     @Test
     @Transactional @Rollback
-    public void testConsultarRestaurant() {
+    public void testConsultarPostres() {
         //given:
         Menu menu = new Menu();
         Postre postre = new Postre();
         Postre postre2 = new Postre();
-
+        final Session session = session();
 
         menu.setId(1L);
         menu.setDescripcion("Menu 1");
@@ -127,20 +128,13 @@ public class PostreTest extends SpringTest {
         lista.add(postre);
         lista.add(postre2);
 
-        when(sessionFactory.getCurrentSession()).thenReturn(session);
-        when(
-                session.createCriteria(Postre.class)
-                        .add(Restrictions.eq("menu.id", menu.getId()))
-                        .setFetchMode("menu", FetchMode.EAGER)
-                        .list()
-        ).thenReturn(lista);
 
         //when:
         List<ItemMenu> resultado = instancia.getPostresByMenuId(menu.getId());
 
-        System.out.println(resultado);
-        //then:
-//        assertThat(resultado.getMenu().getDescripcion()).isEqualTo("soy una descripcion");
+
+
+        assertThat(resultado.size()).isEqualTo(2);
 
     }
 }

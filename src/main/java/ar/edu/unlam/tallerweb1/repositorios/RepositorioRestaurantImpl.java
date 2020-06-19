@@ -4,6 +4,7 @@ import ar.edu.unlam.tallerweb1.modelo.*;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ public class RepositorioRestaurantImpl implements RepositorioRestaurant{
         return session.get(Restaurant.class, id);
     }
 
+
     @Override
    public Integer crearPedido(Pedido pedido){
         final Session session = sessionFactory.getCurrentSession();
@@ -56,6 +58,7 @@ public class RepositorioRestaurantImpl implements RepositorioRestaurant{
 
 
     
+
 	@Override
 	public List<Restaurant> consultarListaRestos(){
 	    final Session session = sessionFactory.getCurrentSession();
@@ -67,5 +70,18 @@ public class RepositorioRestaurantImpl implements RepositorioRestaurant{
 	    List<Restaurant> listaRestaurantes = criteria.list();
 	    return listaRestaurantes;
 	}
+
+
+	@Override
+    public List<Restaurant> buscarRestaurants(String searchText){
+        final Session session = sessionFactory.getCurrentSession();
+
+        Criteria criteria = session.createCriteria(Restaurant.class);
+        criteria.add(Restrictions.like("nombre", "%"+searchText+"%"));
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+
+        List<Restaurant> listaRestaurantes = criteria.list();
+        return listaRestaurantes;
+    }
 
 }

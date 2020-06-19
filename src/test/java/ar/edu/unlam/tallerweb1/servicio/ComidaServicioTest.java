@@ -45,6 +45,6 @@ public class ComidaServicioTest {
         List<ItemMenu> resultado = instancia.getComidasByMenuId(menu.getId());
 
         //then: The list should be size 2
-        assertThat(resultado.size()).isEqualTo(2);
+        assertThat(resultado).hasSize(2);
     }
 }

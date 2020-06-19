@@ -2,7 +2,7 @@
     Logo y nombre plataforma
     <div class="header-menu">
         <div class="header-menu-section">
-            Restaurantes
+            <a href="/proyecto_limpio_spring_war_exploded/mapa" style="color:white; text-decoration: none">Restaurantes Cercanos</a>
         </div>
 
         <div class="header-menu-section">
@@ -10,8 +10,11 @@
         </div>
 
         <div class="header-menu-buscar col-lg-4 pull-right">
-            <input class="buscar-input" placeholder="Buscar Restaurant">
-            <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
+            <form id="buscar" method="get" action="/proyecto_limpio_spring_war_exploded/restaurant/buscar">
+                <input class="buscar-input" placeholder="Buscar Restaurant" name="searchText">
+                <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
+                <input type="submit" value="Go" style="display: none">
+            </form>
         </div>
     </div>
 </header>

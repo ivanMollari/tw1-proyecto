@@ -8,14 +8,6 @@ public class Entrada implements ItemMenu{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public Pedido getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
-
     private String nombre;
     private Long precio;
     private Double tiempoPreparacion;
@@ -24,11 +16,6 @@ public class Entrada implements ItemMenu{
     @ManyToOne
     @JoinColumn(name="menu_id", nullable =false)
     Menu menu;
-
-
-    @ManyToOne
-    @JoinColumn(name="pedido_id", nullable =false)
-    Pedido pedido;
 
 
 

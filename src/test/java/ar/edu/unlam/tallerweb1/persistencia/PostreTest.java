@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.persistencia;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
+import ar.edu.unlam.tallerweb1.modelo.Pedido;
 import ar.edu.unlam.tallerweb1.modelo.Postre;
 import ar.edu.unlam.tallerweb1.modelo.ItemMenu;
 import ar.edu.unlam.tallerweb1.modelo.Menu;
@@ -33,7 +34,7 @@ public class PostreTest extends SpringTest {
         // preparacion
         Menu menu = new Menu();
         final Session session = session();
-
+        Pedido pedido=new Pedido();
         menu.setDescripcion("Menu 1");
         session.save(menu);
 
@@ -99,7 +100,7 @@ public class PostreTest extends SpringTest {
 
     @Test
     @Transactional @Rollback
-    public void testConsultarRestaurant() {
+    public void testConsultarPostres() {
         //given:
         Menu menu = new Menu();
         Postre postre = new Postre();
@@ -127,19 +128,13 @@ public class PostreTest extends SpringTest {
         lista.add(postre);
         lista.add(postre2);
 
-        when(
-                session.createCriteria(Postre.class)
-                        .add(Restrictions.eq("menu.id", menu.getId()))
-                        .setFetchMode("menu", FetchMode.EAGER)
-                        .list()
-        ).thenReturn(lista);
 
         //when:
         List<ItemMenu> resultado = instancia.getPostresByMenuId(menu.getId());
 
-        System.out.println(resultado);
-        //then:
-//        assertThat(resultado.getMenu().getDescripcion()).isEqualTo("soy una descripcion");
+
+
+        assertThat(resultado.size()).isEqualTo(2);
 
     }
 }

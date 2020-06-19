@@ -4,6 +4,7 @@ import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.modelo.Entrada;
 import ar.edu.unlam.tallerweb1.modelo.ItemMenu;
 import ar.edu.unlam.tallerweb1.modelo.Menu;
+import ar.edu.unlam.tallerweb1.modelo.Pedido;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioEntradaImpl;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioEntradaImpl;
 import org.hibernate.FetchMode;
@@ -26,23 +27,23 @@ public class EntradaTest extends SpringTest {
     @Autowired
     RepositorioEntradaImpl instancia;
 
+
     @Test
     @Transactional @Rollback
     public void insertarUnaEntrada(){
         // preparacion
-        Menu menu = new Menu();
         final Session session = session();
-
+        Menu menu = new Menu();
         menu.setDescripcion("Menu 1");
         session.save(menu);
 
         Entrada entrada = new Entrada();
-
         entrada.setNombre("Rabas");
         entrada.setDescripcion("Porcion para 2 personas");
         entrada.setPrecio(120L);
         entrada.setTiempoPreparacion(1.0);
         entrada.setMenu(menu);
+
 
         // ejecucion
         session.save(entrada);
@@ -66,6 +67,7 @@ public class EntradaTest extends SpringTest {
         entrada.setNombre("Rabas");
 
 
+
         session.save(entrada);
         entrada.setNombre("Papas fritas");
         session.update(entrada);
@@ -77,17 +79,19 @@ public class EntradaTest extends SpringTest {
     @Test
     @Transactional @Rollback
     public void eliminarEntrada() {
+        final Session session = session();
         Menu menu = new Menu();
         Entrada entrada = new Entrada();
-        final Session session = session();
 
         menu.setDescripcion("Menu 1");
         session.save(menu);
+
 
         entrada.setMenu(menu);
         entrada.setNombre("Hamburguesa");
         entrada.setPrecio(200L);
         entrada.setTiempoPreparacion(20.0);
+
 
         session.save(entrada);
         session.delete(entrada);
@@ -96,24 +100,29 @@ public class EntradaTest extends SpringTest {
         assertThat(buscado).isNull();
     }
 
+
     @Test
     @Transactional @Rollback
     public void testConsultarRestaurant() {
         //given:
+        final Session session = session();
         Menu menu = new Menu();
         Entrada entrada = new Entrada();
         Entrada entrada2 = new Entrada();
-        final Session session = session();
+
 
 
         menu.setId(1L);
         menu.setDescripcion("Menu 1");
         session.save(menu);
 
+
         entrada.setMenu(menu);
         entrada.setNombre("Rabas");
         entrada.setPrecio(200L);
         entrada.setTiempoPreparacion(20.0);
+
+
         session.save(entrada);
 
         entrada2.setMenu(menu);
@@ -122,24 +131,22 @@ public class EntradaTest extends SpringTest {
         entrada2.setTiempoPreparacion(30.0);
         session.save(entrada2);
 
+
         List<ItemMenu> lista = new ArrayList<>();
 
         lista.add(entrada);
         lista.add(entrada2);
 
-        when(
-                session.createCriteria(Entrada.class)
-                        .add(Restrictions.eq("menu.id", menu.getId()))
-                        .setFetchMode("menu", FetchMode.EAGER)
-                        .list()
-        ).thenReturn(lista);
 
         //when:
         List<ItemMenu> resultado = instancia.getEntradasByMenuId(menu.getId());
 
-        System.out.println(resultado);
-        //then:
-//        assertThat(resultado.getMenu().getDescripcion()).isEqualTo("soy una descripcion");
+
+       //then:
+        assertThat(resultado.size()).isEqualTo(2);
+//
 
     }
+
+
 }

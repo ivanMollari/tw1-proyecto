@@ -10,7 +10,12 @@ public class Bebida implements ItemMenu {
     private String nombre;
     private Long precio;
     private String descripcion;
+    @ManyToOne
+    @JoinColumn(name="menu_id", nullable =false)
+    Menu menu;
+
     private Double tiempoPreparacion;
+
 
     public String getDescripcion() {
         return descripcion;
@@ -37,6 +42,9 @@ public class Bebida implements ItemMenu {
         this.precio = precio;
     }
 
+
+
+
     @Override
     public Double getTiempoPreparacion() {
         return tiempoPreparacion;
@@ -49,7 +57,6 @@ public class Bebida implements ItemMenu {
     public Menu getMenu() { return menu; }
     public void setMenu(Menu menu) { this.menu = menu; }
 
-    @ManyToOne
-    @JoinColumn(name="menu_id", nullable =false)
-    Menu menu;
+
+
 }

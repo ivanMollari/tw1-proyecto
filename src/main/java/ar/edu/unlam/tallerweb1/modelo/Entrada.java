@@ -13,6 +13,11 @@ public class Entrada implements ItemMenu{
     private Double tiempoPreparacion;
     private String descripcion;
 
+    @ManyToOne
+    @JoinColumn(name="menu_id", nullable =false)
+    Menu menu;
+
+
 
     public String getDescripcion() {
         return descripcion;
@@ -39,6 +44,7 @@ public class Entrada implements ItemMenu{
         this.precio = precio;
     }
 
+
     @Override
     public Double getTiempoPreparacion() {
 		return tiempoPreparacion;
@@ -51,7 +57,6 @@ public class Entrada implements ItemMenu{
     public Menu getMenu() { return menu; }
     public void setMenu(Menu menu) { this.menu = menu; }
 
-    @ManyToOne
-    @JoinColumn(name="menu_id", nullable =false)
-    Menu menu;
+
+
 }

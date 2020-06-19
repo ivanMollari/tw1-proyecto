@@ -13,6 +13,12 @@ public class Postre implements ItemMenu{
     private Double tiempoPreparacion;
     private String descripcion;
 
+    @ManyToOne
+    @JoinColumn(name="menu_id", nullable =false)
+    Menu menu;
+
+
+
 
     public String getDescripcion() {
         return descripcion;
@@ -44,11 +50,11 @@ public class Postre implements ItemMenu{
         this.precio = precio;
     }
 
+
     @Override
     public Menu getMenu() { return menu; }
     public void setMenu(Menu menu) { this.menu = menu; }
 
-    @ManyToOne
-    @JoinColumn(name="menu_id", nullable =false)
-    Menu menu;
+
+
 }

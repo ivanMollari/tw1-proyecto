@@ -1,8 +1,10 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.modelo.Comida;
+
 import ar.edu.unlam.tallerweb1.modelo.ItemMenu;
-import ar.edu.unlam.tallerweb1.modelo.Menu;
+
+import ar.edu.unlam.tallerweb1.modelo.Pedido;
 import ar.edu.unlam.tallerweb1.modelo.Restaurant;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComida;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComidaImpl;
@@ -72,11 +74,27 @@ public class ServicioRestaurantImpl implements ServicioRestaurant{
         return menuCompleto;
     }
 
+
+    @Override
+    public Integer crearPedido (Pedido pedido) {
+       Integer statusCode= servicioRestaurantDao.crearPedido(pedido);
+
+        return statusCode;
+    }
+
+    @Override
+    public Comida consultarComida(Long id){
+
+        Comida comida=servicioRestaurantDao.consultarComida( id);
+        return comida;
+    }
+
    @Override
    public List<Restaurant> buscarRestaurants(String searchText) {
         List<Restaurant> listaResto = servicioRestaurantDao.buscarRestaurants(searchText);
 
         return listaResto;
    }
+
 
 }

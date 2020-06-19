@@ -20,10 +20,13 @@ public class RepositorioMapaImpl implements RepositorioMapa{
 
 	private SessionFactory sessionFactory;
 
+
 	@Autowired
 	public RepositorioMapaImpl(SessionFactory sessionFactory){
 	    this.sessionFactory = sessionFactory;
 	}
+
+
 
 	@Override
 	public Restaurant consultarRestaurant(Long restoId){

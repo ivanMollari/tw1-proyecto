@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="${context}/css/menu.css"/>
     <link rel="stylesheet" type="text/css" href="${context}/css/footer.css"/>
     <link rel="stylesheet" type="text/css" href="${context}/css/bootstrap.min.css"/>
-     <script type="application/javascript" src="${context}/js/menu.js"></script>
+    <script type="application/javascript" src="${context}/js/menu.js"></script>
     <script type="application/javascript" src="${context}/js/jquery-1.11.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
@@ -22,7 +22,6 @@
                 zoom: 16,
                 disableDefaultUI: true,
             });
-
             var marker = new google.maps.Marker({
                 position: myLatLng,
                 map: map,
@@ -34,16 +33,17 @@
             async defer></script>
 </head>
 <body>
-    <jsp:include page="header.jsp"></jsp:include>
-    <div class="container">
-        <div class="col-lg-8">
-            <h1>${restaurant.getNombre()}</h1>
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#entradas">Entradas</a></li>
-                <li><a data-toggle="tab" href="#comidas">Comidas</a></li>
-                <li><a data-toggle="tab" href="#bebidas">Bebidas</a></li>
-                <li><a data-toggle="tab" href="#postres">Postres</a></li>
-            </ul>
+<jsp:include page="header.jsp"></jsp:include>
+<div class="container">
+    <div class="col-lg-8">
+        <h1>${restaurant.getNombre()}</h1>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#entradas">Entradas</a></li>
+            <li><a data-toggle="tab" href="#comidas">Comidas</a></li>
+            <li><a data-toggle="tab" href="#bebidas">Bebidas</a></li>
+            <li><a data-toggle="tab" href="#postres">Postres</a></li>
+        </ul>
+
 
             <div class="tab-content">
                 <div id="entradas" class="tab-pane fade in active">
@@ -94,15 +94,17 @@
                         </c:forEach>
                     </div>
                 </div>
+>>>>>>> master
             </div>
         </div>
-
-        <div class="col-lg-4">
-            <h3>Ubicacion</h3>
-            <div id="map" style="width: 400px; height: 300px"></div>
-
-        </div>
     </div>
-    <jsp:include page="footer.jsp"></jsp:include>
+
+    <div class="col-lg-4">
+        <h3>Ubicacion</h3>
+        <div id="map" style="width: 400px; height: 300px"></div>
+
+    </div>
+</div>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

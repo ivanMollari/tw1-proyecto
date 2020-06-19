@@ -123,19 +123,12 @@ public class BebidaTest extends SpringTest {
         lista.add(bebida);
         lista.add(bebida2);
 
-        when(
-                session.createCriteria(Bebida.class)
-                        .add(Restrictions.eq("menu.id", menu.getId()))
-                        .setFetchMode("menu", FetchMode.EAGER)
-                        .list()
-        ).thenReturn(lista);
 
         //when:
         List<ItemMenu> resultado = instancia.getBebidasByMenuId(menu.getId());
 
-        System.out.println(resultado);
-        //then:
-//        assertThat(resultado.getMenu().getDescripcion()).isEqualTo("soy una descripcion");
+
+         assertThat(resultado.size()).isEqualTo(2);
 
     }
 }

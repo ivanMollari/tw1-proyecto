@@ -23,6 +23,14 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	public RepositorioUsuarioImpl(SessionFactory sessionFactory){
 		this.sessionFactory = sessionFactory;
 	}
+    
+	@Override
+	public Usuario buscarUsuario(Long usuarioId){
+	    final Session session = sessionFactory.getCurrentSession();
+	    return (Usuario) session.createCriteria(Usuario.class)
+	            .add(Restrictions.eq("id", usuarioId))
+	            .uniqueResult();
+	}
 
 	@Override
 	public Usuario consultarUsuario(Usuario usuario) {
@@ -35,6 +43,12 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 				.add(Restrictions.eq("email", usuario.getEmail()))
 				.add(Restrictions.eq("password", usuario.getPassword()))
 				.uniqueResult();
+	}
+	
+	@Override
+	public void modificarUsuario(Usuario usuario) {
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(usuario);
 	}
 
 }

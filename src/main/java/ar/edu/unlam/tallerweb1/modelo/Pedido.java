@@ -1,8 +1,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import javax.persistence.*;
-import java.awt.*;
-import java.awt.font.NumericShaper;
 import java.util.Set;
 
 @Entity
@@ -91,4 +89,7 @@ public class Pedido {
         this.usuario = usuario;
     }
 
+    public void agregarComida(Comida comida) {
+        this.comidas.add(comida);
+    }
 }

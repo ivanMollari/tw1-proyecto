@@ -6,13 +6,18 @@ import ar.edu.unlam.tallerweb1.modelo.Pedido;
 import ar.edu.unlam.tallerweb1.modelo.Restaurant;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 public interface RepositorioRestaurant {
 
        Restaurant consultarRestaurant(Long id);
 
+
        Integer crearPedido(Pedido pedido);
 
        Comida consultarComida(Long id);
+
+	List<Restaurant> consultarListaRestos();
+
 }

@@ -106,7 +106,6 @@ public class RestaurantTest extends SpringTest {
         /*restaurant.setId(1L);*/
         Menu menu=new Menu();
         menu.setDescripcion("soy una descripcion");
-        menu.setComidas(new HashSet<Comida>());
         restaurant.setMenu(menu);
         restaurant.setNombre("nombre");
 

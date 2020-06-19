@@ -1,10 +1,11 @@
 package ar.edu.unlam.tallerweb1.servicio;
 
+import ar.edu.unlam.tallerweb1.exception.ResultadoNegativoException;
 import ar.edu.unlam.tallerweb1.modelo.Menu;
 import ar.edu.unlam.tallerweb1.modelo.Restaurant;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioMapaImpl;
-import ar.edu.unlam.tallerweb1.servicios.ResultadoNegativoException;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioRestaurantImpl;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuarioImpl;
 import ar.edu.unlam.tallerweb1.servicios.ServicioMapaImpl;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +23,9 @@ public class mapaServicioTest {
     @InjectMocks
     private ServicioMapaImpl servicioMapa;
     @Mock
-    private RepositorioMapaImpl repositorioMapa;
+    private RepositorioRestaurantImpl repositorioRestaurant;
+    @Mock
+    private RepositorioUsuarioImpl repositorioUsuario;
 
 
 
@@ -50,8 +53,8 @@ public class mapaServicioTest {
         jose.setLongitud(-58.62861);
 
 
-        Mockito.when(repositorioMapa.consultarRestaurant(1L)).thenReturn(laFarola);
-        Mockito.when(repositorioMapa.consultarUsuario(1L)).thenReturn(jose);
+        Mockito.when(repositorioRestaurant.consultarRestaurant(1L)).thenReturn(laFarola);
+        Mockito.when(repositorioUsuario.buscarUsuario(1L)).thenReturn(jose);
 
 
 
@@ -98,11 +101,11 @@ public class mapaServicioTest {
         listita.add(tioDue);
         listita.add(noi);
 
-        Mockito.when(repositorioMapa.consultarRestaurant(1L)).thenReturn(laFarola);
-        Mockito.when(repositorioMapa.consultarRestaurant(2L)).thenReturn(tioDue);
-        Mockito.when(repositorioMapa.consultarRestaurant(3L)).thenReturn(noi);
-        Mockito.when(repositorioMapa.consultarUsuario(1L)).thenReturn(jose);
-        Mockito.when(repositorioMapa.consultarListaRestos()).thenReturn(listita);
+        Mockito.when(repositorioRestaurant.consultarRestaurant(1L)).thenReturn(laFarola);
+        Mockito.when(repositorioRestaurant.consultarRestaurant(2L)).thenReturn(tioDue);
+        Mockito.when(repositorioRestaurant.consultarRestaurant(3L)).thenReturn(noi);
+        Mockito.when(repositorioUsuario.buscarUsuario(1L)).thenReturn(jose);
+        Mockito.when(repositorioRestaurant.consultarListaRestos()).thenReturn(listita);
 
         List<Restaurant> listitaCercanos= new ArrayList();
         listitaCercanos.add(laFarola);

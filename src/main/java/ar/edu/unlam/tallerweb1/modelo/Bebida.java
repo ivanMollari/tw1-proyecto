@@ -4,10 +4,9 @@ import javax.persistence.*;
 
 @Entity
 //@Table("Bebida")
-public class Bebida {
+public class Bebida implements ItemMenu {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nombre;
     private Long precio;
     private String descripcion;
@@ -18,14 +17,20 @@ public class Bebida {
     @ManyToOne
     @JoinColumn(name="pedido_id", nullable =false)
     Pedido pedido;
+
+    private Double tiempoPreparacion;
+
+
     public String getDescripcion() {
         return descripcion;
     }
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
     public Long getId() { return id; }
 
+    @Override
     public String getNombre() {
         return nombre;
     }
@@ -33,12 +38,29 @@ public class Bebida {
         this.nombre = nombre;
     }
 
+    @Override
     public Long getPrecio() {
         return precio;
     }
     public void setPrecio(Long precio) {
         this.precio = precio;
     }
+
+
+
+
+    @Override
+    public Double getTiempoPreparacion() {
+        return tiempoPreparacion;
+    }
+    public void setTiempoPreparacion(Double tiempoPreparacion) {
+        this.tiempoPreparacion = tiempoPreparacion;
+    }
+
+    @Override
+    public Menu getMenu() { return menu; }
+    public void setMenu(Menu menu) { this.menu = menu; }
+
 
 
 }

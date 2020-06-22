@@ -37,7 +37,7 @@ public class BebidaTest extends SpringTest {
 
         bebida.setNombre("Agua mineral");
         bebida.setDescripcion("Botella de 500ml");
-        bebida.setPrecio(120L);
+        bebida.setPrecio(120.0);
         bebida.setTiempoPreparacion(1.0);
         bebida.setMenu(menu);
 
@@ -83,7 +83,7 @@ public class BebidaTest extends SpringTest {
 
         bebida.setMenu(menu);
         bebida.setNombre("Hamburguesa");
-        bebida.setPrecio(200L);
+        bebida.setPrecio(200.0);
         bebida.setTiempoPreparacion(20.0);
 
         session.save(bebida);
@@ -108,13 +108,13 @@ public class BebidaTest extends SpringTest {
 
         bebida.setMenu(menu);
         bebida.setNombre("Hamburguesa");
-        bebida.setPrecio(200L);
+        bebida.setPrecio(200.0);
         bebida.setTiempoPreparacion(20.0);
         session.save(bebida);
 
         bebida2.setMenu(menu);
         bebida2.setNombre("Ñoquis");
-        bebida2.setPrecio(300L);
+        bebida2.setPrecio(300.0);
         bebida2.setTiempoPreparacion(30.0);
         session.save(bebida2);
 

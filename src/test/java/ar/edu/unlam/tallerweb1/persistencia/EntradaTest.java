@@ -40,7 +40,7 @@ public class EntradaTest extends SpringTest {
         Entrada entrada = new Entrada();
         entrada.setNombre("Rabas");
         entrada.setDescripcion("Porcion para 2 personas");
-        entrada.setPrecio(120L);
+        entrada.setPrecio(120.0);
         entrada.setTiempoPreparacion(1.0);
         entrada.setMenu(menu);
 
@@ -89,7 +89,7 @@ public class EntradaTest extends SpringTest {
 
         entrada.setMenu(menu);
         entrada.setNombre("Hamburguesa");
-        entrada.setPrecio(200L);
+        entrada.setPrecio(200.0);
         entrada.setTiempoPreparacion(20.0);
 
 
@@ -119,7 +119,7 @@ public class EntradaTest extends SpringTest {
 
         entrada.setMenu(menu);
         entrada.setNombre("Rabas");
-        entrada.setPrecio(200L);
+        entrada.setPrecio(200.0);
         entrada.setTiempoPreparacion(20.0);
 
 
@@ -127,7 +127,7 @@ public class EntradaTest extends SpringTest {
 
         entrada2.setMenu(menu);
         entrada2.setNombre("Papas fritas");
-        entrada2.setPrecio(300L);
+        entrada2.setPrecio(300.0);
         entrada2.setTiempoPreparacion(30.0);
         session.save(entrada2);
 

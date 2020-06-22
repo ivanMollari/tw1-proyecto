@@ -8,7 +8,7 @@ public class Bebida implements ItemMenu {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
-    private Long precio;
+    private Double precio;
     private String descripcion;
     @ManyToOne
     @JoinColumn(name="menu_id", nullable =false)
@@ -35,10 +35,10 @@ public class Bebida implements ItemMenu {
     }
 
     @Override
-    public Long getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
-    public void setPrecio(Long precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 

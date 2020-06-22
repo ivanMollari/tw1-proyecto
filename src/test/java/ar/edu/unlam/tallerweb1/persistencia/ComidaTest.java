@@ -43,7 +43,7 @@ public class ComidaTest extends SpringTest {
 
         comida.setNombre("Hamburguesa");
         comida.setDescripcion("Hamburguesa con queso");
-        comida.setPrecio(250L);
+        comida.setPrecio(250.0);
         comida.setTiempoPreparacion(40.0);
         comida.setMenu(menu);
 
@@ -89,7 +89,7 @@ public class ComidaTest extends SpringTest {
 
         comida.setMenu(menu);
         comida.setNombre("Hamburguesa");
-        comida.setPrecio(200L);
+        comida.setPrecio(200.0);
         comida.setTiempoPreparacion(20.0);
 
         session.save(comida);
@@ -114,13 +114,13 @@ public class ComidaTest extends SpringTest {
 
         comida.setMenu(menu);
         comida.setNombre("Hamburguesa");
-        comida.setPrecio(200L);
+        comida.setPrecio(200.0);
         comida.setTiempoPreparacion(20.0);
         session.save(comida);
 
         comida2.setMenu(menu);
         comida2.setNombre("Ñoquis");
-        comida2.setPrecio(300L);
+        comida2.setPrecio(300.0);
         comida2.setTiempoPreparacion(30.0);
         session.save(comida2);
 

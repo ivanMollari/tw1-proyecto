@@ -1,10 +1,14 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 //@Table("Restaurant")
+
 public class Restaurant{
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 

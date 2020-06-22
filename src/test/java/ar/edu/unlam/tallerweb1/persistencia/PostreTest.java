@@ -42,7 +42,7 @@ public class PostreTest extends SpringTest {
 
         postre.setNombre("Flan");
         postre.setDescripcion("Flan con crema");
-        postre.setPrecio(120L);
+        postre.setPrecio(120.0);
         postre.setTiempoPreparacion(1.0);
         postre.setMenu(menu);
 
@@ -88,7 +88,7 @@ public class PostreTest extends SpringTest {
 
         postre.setMenu(menu);
         postre.setNombre("Flan");
-        postre.setPrecio(200L);
+        postre.setPrecio(200.0);
         postre.setTiempoPreparacion(20.0);
 
         session.save(postre);
@@ -113,13 +113,13 @@ public class PostreTest extends SpringTest {
 
         postre.setMenu(menu);
         postre.setNombre("Flan");
-        postre.setPrecio(200L);
+        postre.setPrecio(200.0);
         postre.setTiempoPreparacion(20.0);
         session.save(postre);
 
         postre2.setMenu(menu);
         postre2.setNombre("Panqueque");
-        postre2.setPrecio(300L);
+        postre2.setPrecio(300.0);
         postre2.setTiempoPreparacion(30.0);
         session.save(postre2);
 

@@ -9,7 +9,7 @@ public class Comida implements ItemMenu{
     private Long id;
 
     private String nombre;
-    private Long precio;
+    private Double precio;
     private Double tiempoPreparacion;
     private String descripcion;
 
@@ -40,10 +40,10 @@ public class Comida implements ItemMenu{
     }
 
     @Override
-    public Long getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
-    public void setPrecio(Long precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 	public Double getTiempoPreparacion() {

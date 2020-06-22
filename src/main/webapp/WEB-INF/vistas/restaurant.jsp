@@ -62,7 +62,7 @@
                     <h3>Comidas</h3>
                     <div class="list-group">
                         <c:forEach var="comida" items="${items.Comidas}" >
-                                <a href="#" class="list-group-item" comida-id=${comida.getId()}>
+                                <a href="pedido?comida.id=${comida.getId()}&restaurant.id=${restaurant.getId()}" class="list-group-item" comida-id=${comida.getId()}>
                                     <h4 class="list-group-item-heading">${comida.getNombre()}</h4>
                                     <p class="list-group-item-text menu-descripcion">${comida.getDescripcion()}</p>
                                     <p>$ ${comida.getPrecio()}</p>
@@ -94,7 +94,7 @@
                         </c:forEach>
                     </div>
                 </div>
->>>>>>> master
+
             </div>
         </div>
     </div>

@@ -6,14 +6,11 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioRestaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -43,30 +40,57 @@ public class ControladorRestaurant {
     }
 
 
-    @RequestMapping(path = "/restaurant/{id}/pedido", method = RequestMethod.POST)
-    public ModelAndView hacerPedido(@PathVariable(value = "id") Long id, @ModelAttribute("pedido") Pedido pedido, HttpServletRequest request) {
+    @RequestMapping(path = "/restaurant/{idResto}/pedido", method = RequestMethod.POST)
+    public ModelAndView hacerPedido(@PathVariable(value = "idResto") Long id, @ModelAttribute("requestPedido") RequestPedido requestPedido, HttpServletRequest request) {
         ModelMap modelo = new ModelMap();
-
+        Pedido pedido=new Pedido();
+        Restaurant restaurant=servicioRestaurant.consultarRestaurant(id);
+        List<Comida> comidas=new ArrayList<Comida>();
+        for (Long idComida :requestPedido.getId_comidas()) {
+            Comida comida=servicioRestaurant.consultarComida(idComida);
+            if (comida!=null)
+                comidas.add(comida);
+        }
+        pedido.setComidas(comidas);
+        pedido.setRestaurant(restaurant);
         Integer statusCode = servicioRestaurant.crearPedido(pedido);
-        modelo.put("statusCode", statusCode);
-        return new ModelAndView("pedido", modelo);
+        if (statusCode==201){
+            modelo.put("statusCode", statusCode);
+            return new ModelAndView("pedidoRespuesta");
+        }
+        return new ModelAndView("pedido");
+
     }
 
-    @RequestMapping(path = "/restaurant/comida/{id}/pedido", method = RequestMethod.GET)
-
-    public ModelAndView irPaginaPedidoComida(@PathVariable(value = "id") Long id, HttpServletRequest request) {
-
+    @RequestMapping(path = "/restaurant/pedido", method = RequestMethod.GET)
+    public ModelAndView irPaginaPedidoComida(@RequestParam(name = "comida.id") Long comidaId, @RequestParam(name = "restaurant.id") Long restaurantId, HttpServletRequest request) {
         ModelMap modelo = new ModelMap();
-        Comida comidaBuscada = servicioRestaurant.consultarComida(id);
-        Pedido pedido;
-        if (request.getSession().getAttribute("pedido") == null) {
-            pedido = new Pedido();
-            request.getSession().setAttribute("pedido", pedido);
+
+        List<ItemMenu> comidas=new ArrayList<>();
+
+        Comida comidaBuscada = servicioRestaurant.consultarComida(comidaId);
+
+
+        RequestPedido requestPedido;
+        if (request.getSession().getAttribute("requestPedido") == null) {
+            requestPedido=new RequestPedido();
+            request.getSession().setAttribute("requestPedido", requestPedido);
         } else {
-            pedido = (Pedido) request.getSession().getAttribute("pedido");
+            requestPedido = (RequestPedido) request.getSession().getAttribute("requestPedido");
+
         }
-        pedido.agregarComida(comidaBuscada);
-        modelo.put("comida", comidaBuscada);
+
+        if (comidaBuscada!=null && restaurantId!=null){
+        requestPedido.agregarIdComida(comidaBuscada.getId());
+        requestPedido.setId_restaurant(restaurantId);
+        requestPedido.sumarTotal(comidaBuscada);
+        }
+
+        for (Long idComida:requestPedido.getId_comidas()) {
+            comidas.add(servicioRestaurant.consultarComida(idComida));
+        }
+        modelo.put("requestPedido", requestPedido);
+        modelo.put("comidas",comidas);
         return new ModelAndView("pedido", modelo);
     }
 

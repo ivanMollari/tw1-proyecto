@@ -9,7 +9,7 @@ public class Postre implements ItemMenu{
     private Long id;
 
     private String nombre;
-    private Long precio;
+    private Double precio;
     private Double tiempoPreparacion;
     private String descripcion;
 
@@ -43,10 +43,10 @@ public class Postre implements ItemMenu{
 	public void setTiempoPreparacion(Double tiempoPreparacion) {
 		this.tiempoPreparacion = tiempoPreparacion;
 	}
-	public Long getPrecio() {
+	public Double getPrecio() {
         return precio;
     }
-    public void setPrecio(Long precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 

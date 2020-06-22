@@ -1,7 +1,11 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
 import javax.persistence.*;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Pedido {
@@ -10,7 +14,7 @@ public class Pedido {
     @GeneratedValue
     private Long id;
 
-    private Float total;
+    private Double total;
 
     @ManyToOne
     private Usuario usuario;
@@ -18,50 +22,68 @@ public class Pedido {
 
     @ManyToMany
     @JoinColumn(name="comida_id")
-    Set<Comida> comidas;
+    List<Comida> comidas;
 
     @ManyToMany
     @JoinColumn(name="bebida_id")
-    Set<Bebida> bebidas;
+    List<Bebida> bebidas;
 
     @ManyToMany
     @JoinColumn(name="entrada_id")
-    Set<Entrada> entradas;
+    List<Entrada> entradas;
 
     @ManyToMany
     @JoinColumn(name="postre_id")
-    Set<Postre> postres;
+    List<Postre> postres;
 
+    @ManyToOne
+    @JoinColumn(name="restaurant_id")
+    Restaurant restaurant;
 
-    public Set<Comida> getComidas() {
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    public Pedido(){
+        comidas=new ArrayList<Comida>();
+        bebidas=new ArrayList<Bebida>();
+        entradas=new ArrayList<Entrada>();
+        postres=new ArrayList<Postre>();
+    }
+
+    public List<Comida> getComidas() {
         return comidas;
     }
 
-    public void setComidas(Set<Comida> comidas) {
+    public void setComidas(List<Comida> comidas) {
         this.comidas = comidas;
     }
 
-    public Set<Bebida> getBebidas() {
+    public List<Bebida> getBebidas() {
         return bebidas;
     }
 
-    public void setBebidas(Set<Bebida> bebidas) {
+    public void setBebidas(List<Bebida> bebidas) {
         this.bebidas = bebidas;
     }
 
-    public Set<Entrada> getEntradas() {
+    public List<Entrada> getEntradas() {
         return entradas;
     }
 
-    public void setEntradas(Set<Entrada> entradas) {
+    public void setEntradas(List<Entrada> entradas) {
         this.entradas = entradas;
     }
 
-    public Set<Postre> getPostres() {
+    public List<Postre> getPostres() {
         return postres;
     }
 
-    public void setPostres(Set<Postre> postres) {
+    public void setPostres(List<Postre> postres) {
         this.postres = postres;
     }
 
@@ -73,11 +95,11 @@ public class Pedido {
         this.id = id;
     }
 
-    public Float getTotal() {
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(Float total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
 

@@ -8,16 +8,18 @@ public class RequestPedido {
 
     private Long id;
     private Double total;
-    private Long idUsuario;
+   /* private Long idUsuario;
     private String email;
     private String password;
     private String rol;
     private Double latitud;
-    private Double longitud;
+    private Double longitud;*/
+    private Usuario usuario;
     private List<Long> id_comidas;
     private List<Long> id_bebidas;
     private List<Long> id_entradas;
     private List<Long> id_postre;
+    private List<ItemMenu> pedido;
     private  Long id_restaurant;
 
     public  RequestPedido (){
@@ -25,6 +27,7 @@ public class RequestPedido {
         id_comidas=new ArrayList<Long>();
         id_entradas=new ArrayList<Long>();
         id_postre=new ArrayList<Long>();
+        pedido = new ArrayList();
         total=0.0;
     }
     public Long getId() {
@@ -43,11 +46,11 @@ public class RequestPedido {
         this.total=total;
 
     }
-    public void sumarTotal(ItemMenu comida) {
-        this.total+=comida.getPrecio();
+    public Double sumarTotal(ItemMenu comida) {
+      return this.total+=comida.getPrecio();
 
     }
-    public Long getIdUsuario() {
+ /*   public Long getIdUsuario() {
         return idUsuario;
     }
 
@@ -93,7 +96,7 @@ public class RequestPedido {
 
     public void setLongitud(Double longitud) {
         this.longitud = longitud;
-    }
+    }*/
 
     public List<Long> getId_comidas() {
         return id_comidas;
@@ -138,6 +141,29 @@ public class RequestPedido {
     public void agregarIdComida(Long idComida){
         this.id_comidas.add(idComida);
     }
+    public void agregarIdEntrada(Long idEntrada){
+        this.id_entradas.add(idEntrada);
+    }
+    public void agregarIdPostre(Long idPostre){
+        this.id_postre.add(idPostre);
+    }
+    public void agregarIdBebida(Long idBebida){
+        this.id_bebidas.add(idBebida);
+    }
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	public List<ItemMenu> getPedido() {
+		return pedido;
+	}
+    public void agregarPedido(ItemMenu pedido){
+        this.pedido.add(pedido);
+    }
+    
+    
 
 
 }

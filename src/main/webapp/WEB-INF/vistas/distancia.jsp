@@ -14,6 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="${context}/css/distancia.css"/>
 	<link rel="stylesheet" type="text/css" href="${context}/css/footer.css"/>
 	<link rel="stylesheet" type="text/css" href="${context}/css/bootstrap.min.css"/>
+	<script src="https://kit.fontawesome.com/1a26fee52e.js" crossorigin="anonymous"></script>
 	<script type="application/javascript" src=" ${context}/js/jquery-1.11.3.min.js"></script>
 	
 	<script>
@@ -95,35 +96,41 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="container">
-		<h1>Bienveinido ${usuario}</h1>
+		<h1>Bienvenido ${usuario}</h1>
 		<div class="col-lg-8">
 			<div id="map"></div>
 		</div>
-		<div class="col-lg-4">
+		<div class="col-lg-4 form-mapa">
 
-			<h2>Cambiar ubicacion</h2>
+			<h2 class="titulo-form">CAMBIAR UBICACIÓN</h2>
 
 				   <form method="POST" action="mapa/modificar-ubicacion" >
-					<p>Cambie su ubicación</p>
-						<div class="form-group col-md-8 ">
+					<hr class="colorgraph"><br>
+						<div class="form-group col-md-10 ">
+							<h4>Cambie su ubucación</h4>
+						</div>
+						<div class="form-group col-md-10 ">
 							<input path="ubicacion" type="text" name="ubicacion" class="form-control" placeholder="Escriba la ubicacion" id="ubicacion"/>
 						</div>
-						<input id="submit" type="button" value="Cambiar">
-						<div class="form-group col-md-8 ">		
-					        <input path="latitud" type="text" name="latitud" class="form-control" placeholder="Escriba la latitud" id="latitud"/>
+						<div class="form-group col-md-10 ">		
+					        <input path="latitud" type="hidden" name="latitud" class="form-control" placeholder="Escriba la latitud" id="latitud"/>
 					   </div> 
-					   <div class="form-group col-md-8 ">    
-					        <input path="longitud" type="text" name="longitud" placeholder="Escriba la longitud" class="form-control" id="longitud"/>
+					   <div class="form-group col-md-10 ">    
+					        <input path="longitud" type="hidden" name="longitud" placeholder="Escriba la longitud" class="form-control" id="longitud"/>
 					   </div>
-					   <div class="form-group col-md-8 "> 
-							<p>Escriba el radio en metros</p>
+						<div class="form-group col-md-6 ">
+							<input id="submit" type="button" value="Cambiar"class="btn btn-lg btn-block fn-n">
+						</div>
+
+					   <div class="form-group col-md-10"> 
+							<h4>Escriba el radio en metros</h4>
 						</div>	
-					   <div class="form-group col-md-8 ">    
+					   <div class="form-group col-md-10">    
 					        <input path="radioEnM" type="text" name="radioEnM" placeholder="Escriba los metros para saber la distancia" class="form-control" />
 					   </div>
 
-					   <div class="form-group col-md-8 ">     
-					        <input type="submit" value="Enviar" class="btn btn-lg btn-primary btn-block">
+					   <div class="form-group col-md-10">     
+					        <input type="submit" value="Enviar" class="btn btn-lg btn-block fn-n">
 					   </div>
 				  </form> 
 

@@ -25,7 +25,7 @@ public class Entrada implements ItemMenu{
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
+   
     public Long getId() { return id; }
 
     @Override

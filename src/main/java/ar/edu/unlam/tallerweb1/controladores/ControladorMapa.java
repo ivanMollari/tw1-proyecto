@@ -32,13 +32,11 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 public class ControladorMapa{
 
     private ServicioMapa servicioMapa;
-    private ServicioUsuario servicioUsuario;
     private ServicioLogin servicioLogin;
 
     @Autowired
-    public ControladorMapa(ServicioMapa servicioMapa,ServicioUsuario servicioUsuario,ServicioLogin servicioLogin){
+    public ControladorMapa(ServicioMapa servicioMapa,ServicioLogin servicioLogin){
         this.servicioMapa = servicioMapa;
-        this.servicioUsuario = servicioUsuario;
         this.servicioLogin = servicioLogin;
     }
 

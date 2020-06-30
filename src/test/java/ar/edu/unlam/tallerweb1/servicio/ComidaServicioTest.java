@@ -5,6 +5,7 @@ import ar.edu.unlam.tallerweb1.modelo.ItemMenu;
 import ar.edu.unlam.tallerweb1.modelo.Menu;
 import ar.edu.unlam.tallerweb1.modelo.Restaurant;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComidaImpl;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioPedidoImpl;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRestaurantImpl;
 import ar.edu.unlam.tallerweb1.servicios.*;
 import org.junit.Test;
@@ -18,8 +19,9 @@ import static org.mockito.Mockito.when;
 
 public class ComidaServicioTest {
     RepositorioComidaImpl repositorio= Mockito.mock(RepositorioComidaImpl.class);
+    RepositorioPedidoImpl repositorioPedido= Mockito.mock(RepositorioPedidoImpl.class);
 
-    ServicioComidaImpl instancia=new ServicioComidaImpl(repositorio);
+    ServicioComidaImpl instancia=new ServicioComidaImpl(repositorio,repositorioPedido);
 
     @Test
     public void consultarComidasByMenuId() {

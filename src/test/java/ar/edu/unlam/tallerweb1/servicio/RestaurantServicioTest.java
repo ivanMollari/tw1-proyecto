@@ -2,6 +2,8 @@ package ar.edu.unlam.tallerweb1.servicio;
 import ar.edu.unlam.tallerweb1.modelo.Menu;
 import ar.edu.unlam.tallerweb1.modelo.Pedido;
 import ar.edu.unlam.tallerweb1.modelo.Restaurant;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioComidaImpl;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioPedidoImpl;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRestaurantImpl;
 
 import ar.edu.unlam.tallerweb1.servicios.ServicioRestaurantImpl;
@@ -30,6 +32,7 @@ public class RestaurantServicioTest {
             servicioBebida,
             servicioEntrada,
             servicioPostre
+        
     );
 
     @Test

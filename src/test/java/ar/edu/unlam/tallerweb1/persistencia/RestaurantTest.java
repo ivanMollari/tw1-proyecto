@@ -7,6 +7,7 @@ import ar.edu.unlam.tallerweb1.modelo.Comida;
 import ar.edu.unlam.tallerweb1.modelo.Menu;
 import ar.edu.unlam.tallerweb1.modelo.Pedido;
 import ar.edu.unlam.tallerweb1.modelo.Restaurant;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRestaurantImpl;
 
 
@@ -132,6 +133,7 @@ public class RestaurantTest extends SpringTest {
         assertThat(resultado).isEqualTo(201);
 
     }
+    
 
 }
 

@@ -20,7 +20,7 @@
         <c:choose>
             <c:when test="${listaResto.size() != 0}">
                 <c:forEach var="restaurant" items="${listaResto}" >
-                    <a href="/proyecto_limpio_spring_war_exploded/restaurant/${restaurant.getId()}" class="list-group-item list-group-item-action">
+                    <a href="${context}/restaurant/${restaurant.getId()}" class="list-group-item list-group-item-action">
                             ${restaurant.getNombre()}
                     </a>
                 </c:forEach>

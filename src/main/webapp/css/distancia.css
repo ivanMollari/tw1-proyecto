@@ -1,3 +1,26 @@
 #map {
-    height: 600px;
+    height: 41.5em;
+    margin-bottom:2em;
+}
+.fn-n{
+	background-color: #f27d0c;
+	color: black;
+}
+.fn-n:hover{
+	background-color: #E47101;
+	
+}
+titulo-form{
+	text-align: center;
+}
+.form-mapa{
+	background: rgba(0,0,0,.5);
+	padding: 20px;
+	border-radius:20px;
+}
+.list-restos{
+	text-align: center;
+	border-color:orange;
+	border:1em solid;
+	
 }

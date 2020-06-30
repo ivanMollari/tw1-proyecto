@@ -39,6 +39,12 @@ public class Pedido {
     @ManyToOne
     @JoinColumn(name="restaurant_id")
     Restaurant restaurant;
+    
+  /*  @ManyToMany
+    @JoinColumn(name="lista_id")
+    List<ItemMenu> pedidos;*/
+    
+    
 
     public Restaurant getRestaurant() {
         return restaurant;
@@ -114,4 +120,16 @@ public class Pedido {
     public void agregarComida(Comida comida) {
         this.comidas.add(comida);
     }
+
+
+
+	/*public List<ItemMenu> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<ItemMenu> pedidos) {
+		this.pedidos = pedidos;
+	}*/
+    
+    
 }

@@ -1,6 +1,8 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
 import ar.edu.unlam.tallerweb1.modelo.Comida;
+import ar.edu.unlam.tallerweb1.modelo.Entrada;
+import ar.edu.unlam.tallerweb1.modelo.ItemMenu;
 import ar.edu.unlam.tallerweb1.modelo.Menu;
 import ar.edu.unlam.tallerweb1.modelo.Pedido;
 import ar.edu.unlam.tallerweb1.modelo.Restaurant;
@@ -21,5 +23,9 @@ public interface RepositorioRestaurant {
 	    List<Restaurant> consultarListaRestos();
 
         List<Restaurant> buscarRestaurants(String searchText);
+
+		Entrada consultarEntrada(Long id);
+
+		
 
 }

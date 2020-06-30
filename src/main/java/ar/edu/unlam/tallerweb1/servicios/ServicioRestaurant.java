@@ -2,7 +2,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 
 import ar.edu.unlam.tallerweb1.modelo.Comida;
-
+import ar.edu.unlam.tallerweb1.modelo.Entrada;
 import ar.edu.unlam.tallerweb1.modelo.ItemMenu;
 
 
@@ -20,7 +20,14 @@ public interface ServicioRestaurant {
         Comida consultarComida(Long id);
 
         Map<String, List<ItemMenu>> consultarMenuCompleto(Long menuId);
+        
 
         List<Restaurant> buscarRestaurants(String searchText);
+
+		Entrada consultarEntrada(Long id);
+
+		
+
+		
 
 }

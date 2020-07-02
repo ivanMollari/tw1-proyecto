@@ -78,6 +78,7 @@ public class ControladorRestaurant {
 
         if (entrada!=null && id!=null){
         requestPedido.agregarPedido(entrada);
+        requestPedido.agregarComida(entrada);
         requestPedido.setId_restaurant(id);
         requestPedido.sumarTotal(entrada);
         requestPedido.setUsuario(usuarioBuscado);
@@ -114,7 +115,7 @@ public class ControladorRestaurant {
         if (request.getSession().getAttribute("requestPedido") == null) {
             requestPedido=new RequestPedido();
             request.getSession().setAttribute("requestPedido", requestPedido);
-            Long idComida=0L;
+
         } else {
             requestPedido = (RequestPedido) request.getSession().getAttribute("requestPedido");
 
@@ -167,8 +168,10 @@ public class ControladorRestaurant {
 
         if (bebida!=null && id!=null){
         requestPedido.agregarPedido(bebida);
+        requestPedido.agregarComida(bebida);
         requestPedido.setId_restaurant(id);
         requestPedido.sumarTotal(bebida);
+        requestPedido.setUsuario(usuarioBuscado);
         }
               
         modelo.put("menu", restaurant.getMenu());

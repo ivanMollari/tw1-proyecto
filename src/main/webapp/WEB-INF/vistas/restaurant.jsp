@@ -66,8 +66,8 @@
                             <li class="list-group-item">
                                 <form:form method="POST" action="${context}/restaurant/${restaurant.id}/entrada" modelAttribute="entrada" >
                                     <h4 class="list-group-item-heading ">${entrada.getNombre()}</h4>
-                                    <p class="list-group-item-text menu-descripcion ">${entrada.value.getDescripcion()}</p>
-                                    <p>$ ${entrada.value.getPrecio()}</p>
+                                    <p class="list-group-item-text menu-descripcion ">${entrada.getDescripcion()}</p>
+                                    <p>$ ${entrada.getPrecio()}</p>
                                     <form:hidden path="id"  id="entradaId" value="${entrada.id}"/>
                                     <form:hidden path="nombre"  id="nombre" value="${entrada.nombre}" />
                                     <form:hidden path="precio"  id="precio" value="${entrada.precio}" />

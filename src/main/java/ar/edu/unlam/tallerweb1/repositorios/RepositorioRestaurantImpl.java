@@ -59,7 +59,19 @@ public class RepositorioRestaurantImpl implements RepositorioRestaurant{
     public Entrada consultarEntrada(Long id){
         final Session session = sessionFactory.getCurrentSession();
         return session.get(Entrada.class,id);
-    }    
+    }
+
+    @Override
+    public Bebida consultarBebida(Long id){
+        final Session session = sessionFactory.getCurrentSession();
+        return session.get(Bebida.class,id);
+    }
+
+    @Override
+    public Postre consultarPostre(Long id){
+        final Session session = sessionFactory.getCurrentSession();
+        return session.get(Postre.class,id);
+    }
 
 	@Override
 	public List<Restaurant> consultarListaRestos(){

@@ -50,6 +50,9 @@ public class Postre implements ItemMenu{
         this.precio = precio;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Override
     public Menu getMenu() { return menu; }

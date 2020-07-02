@@ -58,5 +58,7 @@ public class Entrada implements ItemMenu{
     public void setMenu(Menu menu) { this.menu = menu; }
 
 
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

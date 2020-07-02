@@ -17,10 +17,10 @@ public class Comida implements ItemMenu{
     @JoinColumn(name="menu_id", nullable =false)
     Menu menu;
 
-    
 
-
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getDescripcion() {
         return descripcion;

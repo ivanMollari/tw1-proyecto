@@ -1,11 +1,6 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
-import ar.edu.unlam.tallerweb1.modelo.Comida;
-import ar.edu.unlam.tallerweb1.modelo.Entrada;
-import ar.edu.unlam.tallerweb1.modelo.ItemMenu;
-import ar.edu.unlam.tallerweb1.modelo.Menu;
-import ar.edu.unlam.tallerweb1.modelo.Pedido;
-import ar.edu.unlam.tallerweb1.modelo.Restaurant;
+import ar.edu.unlam.tallerweb1.modelo.*;
 
 import java.io.Serializable;
 import java.util.List;
@@ -26,6 +21,8 @@ public interface RepositorioRestaurant {
 
 		Entrada consultarEntrada(Long id);
 
+		Bebida consultarBebida(Long id);
+        Postre consultarPostre(Long id);
 		
 
 }

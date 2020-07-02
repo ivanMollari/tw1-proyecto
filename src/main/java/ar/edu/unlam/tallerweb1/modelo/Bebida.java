@@ -57,6 +57,7 @@ public class Bebida implements ItemMenu {
     public Menu getMenu() { return menu; }
     public void setMenu(Menu menu) { this.menu = menu; }
 
-
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

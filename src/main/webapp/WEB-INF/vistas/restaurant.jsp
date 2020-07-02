@@ -60,31 +60,33 @@
                 <div id="entradas" class="tab-pane fade in active">
                     <h3>Entradas</h3>
                     <div class="list-group">
-                       <c:forEach var="entrada" items="${items.Entradas}" varStatus="status" >                               
-                                <li class="list-group-item">
-                                	<form:form method="POST" action="${context}/restaurant/${restaurant.id}/entrada" modelAttribute="entrada" >
-	                                 	<h4 class="list-group-item-heading ">${entrada.getNombre()}</h4>
-	                                    <p class="list-group-item-text menu-descripcion ">${entrada.getDescripcion()}</p>
-	                                    <p>$ ${entrada.getPrecio()}</p>
-	                                    <form:hidden path="id"  id="entradaId" value="${entrada.id}" />
-	                                    <form:hidden path="nombre"  id="nombre" value="${entrada.nombre}" />
-	                                    <form:hidden path="precio"  id="precio" value="${entrada.precio}" />
-                                    	<input id="add" type="submit" value="Agregar"class="btn  btn-success ">
-                                    </form:form>
-                                </li>
+
+
+                        <c:forEach var="entrada" items="${items.Entradas}">
+                            <li class="list-group-item">
+                                <form:form method="POST" action="${context}/restaurant/${restaurant.id}/entrada" modelAttribute="entrada" >
+                                    <h4 class="list-group-item-heading ">${entrada.getNombre()}</h4>
+                                    <p class="list-group-item-text menu-descripcion ">${entrada.value.getDescripcion()}</p>
+                                    <p>$ ${entrada.value.getPrecio()}</p>
+                                    <form:hidden path="id"  id="entradaId" value="${entrada.id}"/>
+                                    <form:hidden path="nombre"  id="nombre" value="${entrada.nombre}" />
+                                    <form:hidden path="precio"  id="precio" value="${entrada.precio}" />
+                                    <input id="add" type="submit" value="Agregar"class="btn  btn-success ">
+                                </form:form>
+                            </li>
                         </c:forEach>
                     </div>
                 </div>
                 <div id="comidas" class="tab-pane fade in">
                     <h3>Comidas</h3>
                     <div class="list-group">
-                        <c:forEach var="comida" items="${items.Comidas}" >                   
+                        <c:forEach var="comida" items="${items.Comidas}" >
                                 <li class="list-group-item">
                                 <form:form method="POST" action="${context}/restaurant/${restaurant.id}/comida" modelAttribute="comida" >
                                     <h4 class="list-group-item-heading">${comida.getNombre()}</h4>
                                     <p class="list-group-item-text menu-descripcion">${comida.getDescripcion()}</p>
                                     <p>$ ${comida.getPrecio()}</p>
-                                    <form:hidden path="id"  id="comidaId" value="${comida.id}" />
+                                    <form:hidden path="id"  id="nombre" value="${comida.id}" />
 	                                <form:hidden path="nombre"  id="nombre" value="${comida.nombre}" />
 	                                <form:hidden path="precio"  id="precio" value="${comida.precio}" />
                                     <input id="add" type="submit" value="Agregar"class="btn  btn-success ">
@@ -115,7 +117,7 @@
                 <div id="postres" class="tab-pane fade in">
                     <h3>Postres</h3>
                     <div class="list-group">
-                        <c:forEach var="postre" items="${items.Postres}" >                             
+                        <c:forEach var="postre" items="${items.Postres}" >
                                 <li class="list-group-item">
                                 <form:form method="POST" action="${context}/restaurant/${restaurant.id}/postre" modelAttribute="postre" >
                                     <h4 class="list-group-item-heading">${postre.getNombre()}</h4>
@@ -140,15 +142,33 @@
         <div id="map" style="width: 400px; height: 300px"></div>
         <div class="col-lg-10">
 			<h2>Su pedido</h2>
-			<form:form method="POST" action="${context}/${restaurant.id}/pedido" >
-				<c:forEach var="pedido" items="${pedidos}">
-					<li class="list-group-item">
-					<p>${pedido.nombre}</p>
-					</li>
-				</c:forEach>
-				<li class="list-group-item">$ ${total}</li>
-				<input id="enviar" type="submit" value="Enviar"class="btn  btn-succes">
-			</form:form>
+			<%--@elvariable id="requestPedido" type="ar.edu.unlam.tallerweb1.modelo.RequestPedido"--%>
+            <form:form method="POST" action="${context}/restaurant/${requestPedido.id_restaurant}/pedido" modelAttribute="requestPedido">
+                <c:forEach var="pedido" items="${pedidos}">
+                    <li class="list-group-item">
+                        <p>${pedido.nombre}</p>
+                    </li>
+                </c:forEach>
+                <li class="list-group-item">${total}</li>
+                <form:hidden name="id" path="idRequestPedido" value="${requestPedido.id}"/>
+                <form:hidden name="total" path="total" value="${requestPedido.total}"/>
+                <form:hidden name="total" path="id_restaurant" value="${requestPedido.id_restaurant}"/>
+                <c:forEach var="idComida" items="${requestPedido.idConmidas}">
+                    <form:hidden name="comida" path="idConmidas" value="${idComida}"/>
+                </c:forEach>
+                <c:forEach var="idEntrada" items="${requestPedido.idEntradas}">
+                    <form:hidden name="entrada" path="idEntradas" value="${idEntrada}"/>
+                </c:forEach>
+                <c:forEach var="idPostre" items="${requestPedido.idPostres}">
+                    <form:hidden name="postre" path="idPostres" value="${idPostre}"/>
+                </c:forEach>
+                <c:forEach var="idBebida" items="${requestPedido.idBebidas}">
+                    <form:hidden name="bebida" path="idBebidas" value="${idBebida}"/>
+                </c:forEach>
+
+                <input id="enviar" type="submit" value="Enviar"class="btn  btn-succes">
+            </form:form>
+
 			</div>
 
     </div>

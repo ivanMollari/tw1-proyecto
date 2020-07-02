@@ -15,8 +15,8 @@
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 <div class="container">
-   <h1>Su pedidop ha sido realizado</h1>
-    <a href="${context}/restaurant/${idRestaurant}">Agregar otra comida</a>
+   <h1>Su pedido ha sido realizado</h1>
+    <a href="${context}/restaurant/${idRestaurant}">Realizar otra pedido</a>
 </div>
 <jsp:include page="footer.jsp"></jsp:include>
 </body>

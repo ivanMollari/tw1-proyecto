@@ -28,5 +28,9 @@ public class RepositorioComidaImpl implements RepositorioComida {
                 .add(Restrictions.eq("menu.id", menuId))
                 .setFetchMode("menu", FetchMode.EAGER)
                 .list();
-    };
+    }
+    
+
+    
+
 }

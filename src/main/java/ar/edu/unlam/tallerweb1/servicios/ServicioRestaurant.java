@@ -1,13 +1,8 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 
-import ar.edu.unlam.tallerweb1.modelo.Comida;
+import ar.edu.unlam.tallerweb1.modelo.*;
 
-import ar.edu.unlam.tallerweb1.modelo.ItemMenu;
-
-
-import ar.edu.unlam.tallerweb1.modelo.Pedido;
-import ar.edu.unlam.tallerweb1.modelo.Restaurant;
 
 import java.util.List;
 import java.util.Map;
@@ -20,7 +15,18 @@ public interface ServicioRestaurant {
         Comida consultarComida(Long id);
 
         Map<String, List<ItemMenu>> consultarMenuCompleto(Long menuId);
+        
 
         List<Restaurant> buscarRestaurants(String searchText);
+
+		Postre consultarPostre(Long id);
+
+        Entrada consultarEntrada(Long id);
+
+        Bebida consultarBebida(Long id);
+
+		
+
+		
 
 }

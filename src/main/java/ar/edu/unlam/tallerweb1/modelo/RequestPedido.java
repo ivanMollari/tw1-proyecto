@@ -1,12 +1,17 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import javax.persistence.*;
+
+
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import java.util.List;
+import java.util.Map;
 
 public class RequestPedido {
 
-    private Long id;
+
+    private Long idRequestPedido;
     private Double total;
     private Long idUsuario;
     private String email;
@@ -14,25 +19,28 @@ public class RequestPedido {
     private String rol;
     private Double latitud;
     private Double longitud;
-    private List<Long> id_comidas;
-    private List<Long> id_bebidas;
-    private List<Long> id_entradas;
-    private List<Long> id_postre;
-    private  Long id_restaurant;
+    private Usuario usuario;
+    private List<Long> idEntradas;
+    private List<Long> idConmidas;
+    private List<Long> idPostres;
+    private List<Long> idBebidas;
+    private Long id_restaurant;
+    private List<ItemMenu> pedido;
 
     public  RequestPedido (){
-        id_bebidas=new ArrayList<Long>();
-        id_comidas=new ArrayList<Long>();
-        id_entradas=new ArrayList<Long>();
-        id_postre=new ArrayList<Long>();
+        idEntradas=new ArrayList<>();
+        idConmidas=new ArrayList<>();
+        idPostres=new ArrayList<>();
+        idBebidas=new ArrayList<>();
+        pedido=new ArrayList<>();
         total=0.0;
     }
     public Long getId() {
-        return id;
+        return idRequestPedido;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.idRequestPedido = id;
     }
 
     public  Double getTotal() {
@@ -43,16 +51,61 @@ public class RequestPedido {
         this.total=total;
 
     }
-    public void sumarTotal(ItemMenu comida) {
-        this.total+=comida.getPrecio();
+    public Double sumarTotal(ItemMenu comida) {
+      return this.total+=comida.getPrecio();
 
     }
-    public Long getIdUsuario() {
+   public Long getIdUsuario() {
         return idUsuario;
     }
 
     public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
+    }
+    public void agregarPedido(ItemMenu comida){
+        pedido.add(comida);
+    }
+
+    public List<Long> getIdEntradas() {
+        return idEntradas;
+    }
+
+    public void setIdEntradas(List<Long> idEntradas) {
+        this.idEntradas = idEntradas;
+    }
+
+    public List<Long> getIdConmidas() {
+        return idConmidas;
+    }
+
+    public void setIdConmidas(List<Long> idConmidas) {
+        this.idConmidas = idConmidas;
+    }
+
+    public List<Long> getIdPostres() {
+        return idPostres;
+    }
+
+    public void setIdPostres(List<Long> idPostres) {
+        this.idPostres = idPostres;
+    }
+
+    public List<Long> getIdBebidas() {
+        return idBebidas;
+    }
+
+    public void setIdBebidas(List<Long> idBebidas) {
+        this.idBebidas = idBebidas;
+    }
+
+    public void setPedido(List<ItemMenu> pedido) {
+        this.pedido = pedido;
+    }
+
+
+
+    public List<ItemMenu> getPedido() {
+        return pedido;
     }
 
     public String getEmail() {
@@ -95,37 +148,7 @@ public class RequestPedido {
         this.longitud = longitud;
     }
 
-    public List<Long> getId_comidas() {
-        return id_comidas;
-    }
 
-    public void setId_comidas(List<Long> id_comidas) {
-        this.id_comidas = id_comidas;
-    }
-
-    public List<Long> getId_bebidas() {
-        return id_bebidas;
-    }
-
-    public void setId_bebidas(List<Long> id_bebidas) {
-        this.id_bebidas = id_bebidas;
-    }
-
-    public List<Long> getId_entradas() {
-        return id_entradas;
-    }
-
-    public void setId_entradas(List<Long> id_entradas) {
-        this.id_entradas = id_entradas;
-    }
-
-    public List<Long> getId_postre() {
-        return id_postre;
-    }
-
-    public void setId_postre(List<Long> id_postre) {
-        this.id_postre = id_postre;
-    }
 
     public Long getId_restaurant() {
         return id_restaurant;
@@ -135,9 +158,40 @@ public class RequestPedido {
         this.id_restaurant = id_restaurant;
     }
 
-    public void agregarIdComida(Long idComida){
-        this.id_comidas.add(idComida);
+    public void agregarComida(ItemMenu menu){
+
+        if (menu.getClass().equals(Entrada.class)){
+            this.idEntradas.add(((Entrada) menu).getId());
+        }
+        if (menu.getClass().equals(Comida.class)){
+            this.idConmidas.add(((Comida) menu).getId());
+        }
+        if (menu.getClass().equals(Postre.class)){
+            this.idPostres.add(((Postre) menu).getId());
+        }
+        if (menu.getClass().equals(Bebida.class)){
+            this.idBebidas.add(((Bebida) menu).getId());
+        }
+
     }
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+    public Long getIdRequestPedido() {
+        return idRequestPedido;
+    }
+    public void setIdRequestPedido(Long idRequestPedido) {
+        this.idRequestPedido = idRequestPedido;
+    }
+
+
+
+    
 
 
 }

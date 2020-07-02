@@ -1,7 +1,11 @@
 header {
     width: 100%;
-    background: #142850;
+    /*background: #142850;*/
+    background: #1A1021;
     color: white;
+}
+.li-nav:hover{
+	background:black;
 }
 
 .header-menu {

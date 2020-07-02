@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.servicio;
 import ar.edu.unlam.tallerweb1.modelo.Postre;
 import ar.edu.unlam.tallerweb1.modelo.ItemMenu;
 import ar.edu.unlam.tallerweb1.modelo.Menu;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioPedidoImpl;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPostreImpl;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPostreImpl;
 import org.junit.Test;
@@ -16,8 +17,9 @@ import static org.mockito.Mockito.when;
 
 public class PostreServicioTest {
     RepositorioPostreImpl repositorio = Mockito.mock(RepositorioPostreImpl.class);
+    RepositorioPedidoImpl repositorioPedido = Mockito.mock(RepositorioPedidoImpl.class);
 
-    ServicioPostreImpl instancia = new ServicioPostreImpl(repositorio);
+    ServicioPostreImpl instancia = new ServicioPostreImpl(repositorio,repositorioPedido);
 
     @Test
     public void consultarBebidasByMenuId() {

@@ -5,6 +5,8 @@
 <html>
 <head>
     <title>Pedido</title>
+    <c:set var="context" value="${pageContext.request.contextPath}" />
+    
     <link rel="stylesheet" type="text/css" href="../css/main.css"/>
     <link rel="stylesheet" type="text/css" href="../css/header.css"/>
     <link rel="stylesheet" type="text/css" href="../css/menu.css"/>
@@ -32,8 +34,9 @@
                 <form:hidden name="comida_id" path="id_comidas" value="${idComida}"/>
             </c:forEach>
             <input type="submit" value="enviar">
+            
         </form:form>
-                
+            <a href="${context}/restaurant/${idRestaurant}">Agregar otra comida</a>    
 
         </div>
     </div>

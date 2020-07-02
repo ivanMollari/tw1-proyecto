@@ -15,6 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="${context}/css/distancia.css"/>
 	<link rel="stylesheet" type="text/css" href="${context}/css/footer.css"/>
 	<link rel="stylesheet" type="text/css" href="${context}/css/bootstrap.min.css"/>
+	<script src="https://kit.fontawesome.com/1a26fee52e.js" crossorigin="anonymous"></script>
 	<script type="application/javascript" src=" ${context}/js/jquery-1.11.3.min.js"></script>
 	
 	<script>
@@ -48,7 +49,7 @@
 				        document.getElementById("latitud").value = results[0].geometry.location.lat();
 				        document.getElementById("longitud").value = results[0].geometry.location.lng();
 				        document.getElementById("ubicacion").value = results[0].formatted_address;
-				        var marker = new google.maps.Marker({
+				        marker = new google.maps.Marker({
 				            map: map,
 				            title: 'Tu ubicacion',
 				            position: results[0].geometry.location
@@ -60,12 +61,7 @@
 				      }
 				    });
 					
-					/*var marker = new google.maps.Marker({
-						position: myLatLng,
-						map: map,
-						title: 'Tu ubicacion',
-					});*/
-					
+
 				
 					var iconBase={
 							url: '${context}/images/resto.png',
@@ -80,10 +76,31 @@
 						});
 					});
 					
-					
+			        document.getElementById('submit').addEventListener('click', function() {
+				          geocodeAddress(geocoder, map);
+				     });
+			        
+				      function geocodeAddress(geocoder, resultsMap) {
+					        var address = document.getElementById('ubicacion').value;
+					        geocoder.geocode({'address': address}, function(results, status) {
+					          if (status === 'OK') {
+					            resultsMap.setCenter(results[0].geometry.location);
+					            marker.setPosition(results[0].geometry.location);
+				            	document.getElementById("latitud").value = results[0].geometry.location.lat();
+								document.getElementById("longitud").value = results[0].geometry.location.lng();
+					           
+					          } else {
+					            alert('Geocode was not successful for the following reason: ' + status);
+					          }
+					        });
+					      }		
 				}
+			
+
+					
 				
-		
+				
+			
 				
 
 			
@@ -102,37 +119,48 @@
 			${mensaje}
 
 			
-			<div class="col-lg-12">
+			<div class="col-lg-12 form-mapa">
 					<h2>Buscar restaurantes cercanos</h2>
-				   <form method="POST" action="modificar-ubicacion" >
-					<p>Cambie su ubicación</p>
-						<div class="form-group col-md-8 ">
+				   <form method="POST" action="${context}/mapa/modificar-ubicacion" >
+					<hr class="colorgraph"><br>
+						<div class="form-group col-md-10 ">
+							<h4>Cambie su ubucación</h4>
+						</div>
+						<div class="form-group col-md-10 ">
 							<input path="ubicacion" type="text" name="ubicacion" class="form-control" placeholder="Escriba la ubicacion" id="ubicacion"/>
 						</div>
-						<div class="form-group col-md-8 ">		
-					        <input path="latitud" type="text" name="latitud" class="form-control" placeholder="Escriba la latitud" id="latitud"/>
+						<div class="form-group col-md-10 ">		
+					        <input path="latitud" type="hidden" name="latitud" class="form-control" placeholder="Escriba la latitud" id="latitud"/>
 					   </div> 
-					   <div class="form-group col-md-8 ">    
-					        <input path="longitud" type="text" name="longitud" placeholder="Escriba la longitud" class="form-control" id="longitud"/>
+					   <div class="form-group col-md-10 ">    
+					        <input path="longitud" type="hidden" name="longitud" placeholder="Escriba la longitud" class="form-control" id="longitud"/>
 					   </div>
-					   <div class="form-group col-md-8 "> 
-							<p>Escriba la distancia maxima a buscar</p>
+						<div class="form-group col-md-6 ">
+							<input id="submit" type="button" value="Cambiar"class="btn btn-lg btn-block fn-n">
 						</div>
-					   <div class="form-group col-md-8 ">    
-					        <input path="radioEnM" type="text" name="radioEnM" placeholder="Escriba los metros para saber la distancia" class="form-control" value="${radioEnM}" />
+					   <div class="form-group col-md-10"> 
+							<h4>Escriba el radio en metros</h4>
+						</div>	
+					   <div class="form-group col-md-10">    
+					        <input path="radioEnM" type="text" name="radioEnM" placeholder="Escriba los metros para saber la distancia" class="form-control" />
 					   </div>
-					   <div class="form-group col-md-8 ">  
-					        <input type="submit" value="Enviar" class="btn btn-lg btn-primary btn-block">
+
+					   <div class="form-group col-md-10">     
+					        <input type="submit" value="Enviar" class="btn btn-lg btn-block fn-n">
 					   </div>
 				  </form> 
 			</div>
 
 			</div>
-			<div class="col-lg-10">
+			<div class="col-lg-8">
 				<h2>Lista de los restos cercanos a usted</h2>
 					<c:forEach var="restaurant" items="${listado}">
-						<li>${restaurant.getNombre()}</li>
+				
+						<a href="${context}/restaurant/${restaurant.id}" class="list-group-item list-restos">
+						<strong>${restaurant.nombre}</strong></a>
+					
 					</c:forEach>
+				
 			</div>
 		</div>
 		

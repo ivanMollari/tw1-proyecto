@@ -2,6 +2,8 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.modelo.ItemMenu;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComida;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioPedido;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,15 +14,24 @@ import java.util.List;
 @Transactional
 public class ServicioComidaImpl implements ServicioComida{
     private RepositorioComida servicioComidaDao;
+    private RepositorioPedido servicioPedidoDao;
 
     @Autowired
-    public ServicioComidaImpl(RepositorioComida servicioComidaDao){
+    public ServicioComidaImpl(RepositorioComida servicioComidaDao,RepositorioPedido servicioPedidoDao){
         this.servicioComidaDao = servicioComidaDao;
+        this.servicioPedidoDao = servicioPedidoDao;
     }
 
     @Override
     public List<ItemMenu> getComidasByMenuId(Long menuId){
         List<ItemMenu> comidas = servicioComidaDao.getComidasByMenuId(menuId);
+
+        return comidas;
+    }
+    
+    @Override
+    public List<ItemMenu> getComidasDeUnPedidoPorUsuarioId(Long usuarioId){
+        List<ItemMenu> comidas = servicioPedidoDao.getPedidosPorIdUsuario(usuarioId);
 
         return comidas;
     }

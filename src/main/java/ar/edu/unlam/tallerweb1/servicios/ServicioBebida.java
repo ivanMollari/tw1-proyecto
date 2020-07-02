@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ServicioBebida {
     List<ItemMenu> getBebidasByMenuId(Long menuId);
+
+	List<ItemMenu> getBebidasDeUnPedidoPorUsuarioId(Long usuarioId);
 }

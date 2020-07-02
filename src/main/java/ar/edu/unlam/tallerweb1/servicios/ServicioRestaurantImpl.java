@@ -1,13 +1,11 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import ar.edu.unlam.tallerweb1.modelo.Comida;
+import ar.edu.unlam.tallerweb1.modelo.*;
 
-import ar.edu.unlam.tallerweb1.modelo.ItemMenu;
-
-import ar.edu.unlam.tallerweb1.modelo.Pedido;
-import ar.edu.unlam.tallerweb1.modelo.Restaurant;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComida;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComidaImpl;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioPedido;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.internal.SessionFactoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,12 +34,14 @@ public class ServicioRestaurantImpl implements ServicioRestaurant{
             ServicioBebida servicioBebida,
             ServicioEntrada servicioEntrada,
             ServicioPostre servicioPostre
+
     ){
         this.servicioRestaurantDao = servicioRestaurantDao;
         this.servicioComida = servicioComida;
         this.servicioBebida = servicioBebida;
         this.servicioEntrada = servicioEntrada;
         this.servicioPostre = servicioPostre;
+
     }
 
 
@@ -53,9 +53,6 @@ public class ServicioRestaurantImpl implements ServicioRestaurant{
         return restaurant;
     }
 
-   /* public void tiempoTotalPedido(Restaurant resto) {
-    	resto.
-    }*/
 
     @Override
     public Map<String, List<ItemMenu>> consultarMenuCompleto(Long MenuId) {
@@ -73,7 +70,8 @@ public class ServicioRestaurantImpl implements ServicioRestaurant{
 
         return menuCompleto;
     }
-
+    
+    
 
     @Override
     public Integer crearPedido (Pedido pedido) {
@@ -88,6 +86,25 @@ public class ServicioRestaurantImpl implements ServicioRestaurant{
         Comida comida=servicioRestaurantDao.consultarComida( id);
         return comida;
     }
+    public Postre consultarPostre(Long id){
+
+        Postre postre=servicioRestaurantDao.consultarPostre( id);
+        return postre;
+    }
+    public Bebida consultarBebida(Long id){
+
+        Bebida bebida=servicioRestaurantDao.consultarBebida( id);
+        return bebida;
+    }
+
+    @Override
+    public Entrada consultarEntrada(Long id){
+
+        Entrada entrada=servicioRestaurantDao.consultarEntrada( id);
+        return entrada;
+    }
+
+
 
    @Override
    public List<Restaurant> buscarRestaurants(String searchText) {

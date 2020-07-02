@@ -27,5 +27,7 @@ public class RepositorioEntradaImpl implements RepositorioEntrada{
                 .add(Restrictions.eq("menu.id", menuId))
                 .setFetchMode("menu", FetchMode.EAGER)
                 .list();
-    };
+    }
+    
+
 }

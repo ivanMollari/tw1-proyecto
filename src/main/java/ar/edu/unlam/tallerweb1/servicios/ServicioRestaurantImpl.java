@@ -3,12 +3,6 @@ package ar.edu.unlam.tallerweb1.servicios;
 import ar.edu.unlam.tallerweb1.modelo.*;
 
 import ar.edu.unlam.tallerweb1.modelo.dto.RequestPedido;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioComida;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioComidaImpl;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioPedido;
-
-import org.hibernate.SessionFactory;
-import org.hibernate.internal.SessionFactoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

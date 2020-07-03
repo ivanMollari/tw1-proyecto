@@ -149,7 +149,7 @@
                         <p>${pedido.nombre}</p>
                     </li>
                 </c:forEach>
-                <li class="list-group-item">${total}</li>
+                <li class="list-group-item">$ ${total}</li>
                 <form:hidden name="id" path="idRequestPedido" value="${requestPedido.id}"/>
                 <form:hidden name="total" path="total" value="${requestPedido.total}"/>
                 <form:hidden name="total" path="id_restaurant" value="${requestPedido.id_restaurant}"/>

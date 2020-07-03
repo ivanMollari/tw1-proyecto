@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="${context}/css/menu.css"/>
     <link rel="stylesheet" type="text/css" href="${context}/css/footer.css"/>
     <link rel="stylesheet" type="text/css" href="${context}/css/bootstrap.min.css"/>
+    <script src="https://kit.fontawesome.com/1a26fee52e.js" crossorigin="anonymous"></script>
     <script type="application/javascript" src="${context}/js/jquery-1.11.3.min.js"></script>
 </head>
 <body>

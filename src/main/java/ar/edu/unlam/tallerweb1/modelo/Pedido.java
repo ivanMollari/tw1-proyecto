@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -119,6 +120,14 @@ public class Pedido {
 
     public void agregarComida(Comida comida) {
         this.comidas.add(comida);
+    }
+    
+    public void agregarComidas(List<ItemMenu> comidas) {
+    	this.comidas.addAll((Collection<? extends Comida>) comidas);
+    }
+    
+    public void agregarEntrasdas(List<ItemMenu> entradas) {
+    	this.entradas.addAll((Collection<? extends Entrada>) entradas);
     }
 
 

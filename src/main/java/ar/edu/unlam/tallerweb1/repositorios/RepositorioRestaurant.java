@@ -11,7 +11,7 @@ public interface RepositorioRestaurant {
 
        Restaurant consultarRestaurant(Long id);
 
-       Integer crearPedido(Pedido pedido);
+       void crearPedido(Pedido pedido);
 
        Comida consultarComida(Long id);
 

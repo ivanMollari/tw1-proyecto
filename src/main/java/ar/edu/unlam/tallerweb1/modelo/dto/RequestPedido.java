@@ -1,12 +1,10 @@
-package ar.edu.unlam.tallerweb1.modelo;
+package ar.edu.unlam.tallerweb1.modelo.dto;
 
 
+import ar.edu.unlam.tallerweb1.modelo.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import java.util.List;
-import java.util.Map;
 
 public class RequestPedido {
 
@@ -27,7 +25,7 @@ public class RequestPedido {
     private Long id_restaurant;
     private List<ItemMenu> pedido;
 
-    public  RequestPedido (){
+    public RequestPedido(){
         idEntradas=new ArrayList<>();
         idConmidas=new ArrayList<>();
         idPostres=new ArrayList<>();
@@ -190,7 +188,18 @@ public class RequestPedido {
     }
 
 
+    public RequestPedido armarPedido(ItemMenu itemMenu,Long idResto,Usuario usuario){
+        if(itemMenu!=null && idResto!=null)
+        {
+        agregarPedido(itemMenu);
+        agregarComida(itemMenu);
+        setId_restaurant(idResto);
+        sumarTotal(itemMenu);
+        setUsuario(usuario);
+        }
+        return this;
 
+    }
     
 
 

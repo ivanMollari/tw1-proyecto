@@ -127,10 +127,10 @@ public class RestaurantTest extends SpringTest {
 
         Pedido pedido=new Pedido();
         //when:
-        Integer resultado=instancia.crearPedido(pedido);
+         instancia.crearPedido(pedido);
 
         //then:
-        assertThat(resultado).isEqualTo(201);
+        assertThat(session().get(Pedido.class,1l)).isNotNull();
 
     }
     

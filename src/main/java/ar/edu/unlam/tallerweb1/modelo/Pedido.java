@@ -41,9 +41,7 @@ public class Pedido {
     @JoinColumn(name="restaurant_id")
     Restaurant restaurant;
     
-  /*  @ManyToMany
-    @JoinColumn(name="lista_id")
-    List<ItemMenu> pedidos;*/
+
     
     
 
@@ -117,28 +115,40 @@ public class Pedido {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+    public void agregarUnItemMenu(ItemMenu itemMenu) {
+        if (itemMenu.getClass().equals(Entrada.class)){
+            entradas.add((Entrada)itemMenu);
+        }
+        if (itemMenu.getClass().equals(Comida.class)){
+            comidas.add((Comida)itemMenu);
+        }
+        if (itemMenu.getClass().equals(Postre.class)){
+            postres.add((Postre)itemMenu);
+        }
+        if (itemMenu.getClass().equals(Bebida.class)){
+            bebidas.add((Bebida)itemMenu);
+        }
 
-    public void agregarComida(Comida comida) {
-        this.comidas.add(comida);
-    }
-    
-    public void agregarComidas(List<ItemMenu> comidas) {
-    	this.comidas.addAll((Collection<? extends Comida>) comidas);
-    }
-    
-    public void agregarEntrasdas(List<ItemMenu> entradas) {
-    	this.entradas.addAll((Collection<? extends Entrada>) entradas);
-    }
+
+    /*
+    public void agregarItemsMenu(List<ItemMenu> itemMenus) {
+        if (itemMenus.get(0).getClass().equals(Entrada.class)){
+    	this.entradas.addAll((Collection<? extends Entrada>)itemMenus);
+        }
+        if (itemMenus.get(0).getClass().equals(Comida.class)){
+            this.comidas.addAll((Collection<? extends Comida>)itemMenus);
+        }
+        if (itemMenus.get(0).getClass().equals(Bebida.class)){
+            this.bebidas.addAll((Collection<? extends Bebida>)itemMenus);
+        }
+        if (itemMenus.get(0).getClass().equals(Postre.class)){
+            this.postres.addAll((Collection<? extends Postre>)itemMenus);
+        }*/
+
+}
 
 
 
-	/*public List<ItemMenu> getPedidos() {
-		return pedidos;
-	}
 
-	public void setPedidos(List<ItemMenu> pedidos) {
-		this.pedidos = pedidos;
-	}*/
-    
     
 }

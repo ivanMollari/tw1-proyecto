@@ -40,9 +40,7 @@ public class Pedido {
     @JoinColumn(name="restaurant_id")
     Restaurant restaurant;
     
-  /*  @ManyToMany
-    @JoinColumn(name="lista_id")
-    List<ItemMenu> pedidos;*/
+
     
     
 
@@ -116,20 +114,24 @@ public class Pedido {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
-    public void agregarComida(Comida comida) {
-        this.comidas.add(comida);
+    public void agregarUnItemMenu(ItemMenu itemMenu) {
+        if (itemMenu.getClass().equals(Entrada.class)){
+            entradas.add((Entrada)itemMenu);
+        }
+        if (itemMenu.getClass().equals(Comida.class)){
+            comidas.add((Comida)itemMenu);
+        }
+        if (itemMenu.getClass().equals(Postre.class)){
+            postres.add((Postre)itemMenu);
+        }
+        if (itemMenu.getClass().equals(Bebida.class)){
+            bebidas.add((Bebida)itemMenu);
+        }
     }
 
 
 
-	/*public List<ItemMenu> getPedidos() {
-		return pedidos;
-	}
 
-	public void setPedidos(List<ItemMenu> pedidos) {
-		this.pedidos = pedidos;
-	}*/
-    
+
     
 }

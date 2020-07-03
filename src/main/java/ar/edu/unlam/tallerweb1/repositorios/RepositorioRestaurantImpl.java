@@ -39,16 +39,11 @@ public class RepositorioRestaurantImpl implements RepositorioRestaurant{
 
 
     @Override
-   public Integer crearPedido(Pedido pedido){
+   public  void crearPedido(Pedido pedido){
         final Session session = sessionFactory.getCurrentSession();
-         Serializable id=session.save(pedido);
-         if (id!=null){
-             return 201;
-         }
-         return 500;
-
-
+         session.save(pedido);
     }
+
     @Override
     public Comida consultarComida(Long id){
         final Session session = sessionFactory.getCurrentSession();

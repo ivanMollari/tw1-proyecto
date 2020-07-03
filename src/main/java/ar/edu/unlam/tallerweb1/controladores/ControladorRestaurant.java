@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 import ar.edu.unlam.tallerweb1.modelo.*;
+import ar.edu.unlam.tallerweb1.modelo.dto.RequestPedido;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRestaurant;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,8 +54,8 @@ public class ControladorRestaurant {
         return new ModelAndView("restaurant", modelo);
     }
     
-    @RequestMapping(path = "/restaurant/{id}/entrada", method = RequestMethod.POST)
-    public ModelAndView listaEntradas(@PathVariable(value = "id") Long id,
+    @RequestMapping(path = "/restaurant/{idResto}/entrada", method = RequestMethod.POST)
+    public ModelAndView listaEntradas(@PathVariable(value = "idResto") Long idResto,
     								  @ModelAttribute("entrada") Entrada entrada,HttpServletRequest request) {
     	
         ModelMap modelo = new ModelMap();
@@ -64,7 +65,7 @@ public class ControladorRestaurant {
         Postre postre = new Postre();
         
         Usuario usuarioBuscado = servicioLogin.buscarUsuario((Long) request.getSession().getAttribute("idUsuario"));
-        Restaurant restaurant = servicioRestaurant.consultarRestaurant(id);
+        Restaurant restaurant = servicioRestaurant.consultarRestaurant(idResto);
         Map<String, List<ItemMenu>> ListaItems = servicioRestaurant.consultarMenuCompleto(restaurant.getMenu().getId());
         
          RequestPedido requestPedido;
@@ -76,14 +77,8 @@ public class ControladorRestaurant {
             requestPedido = (RequestPedido) request.getSession().getAttribute("requestPedido");
         }
 
-        if (entrada!=null && id!=null){
-        requestPedido.agregarPedido(entrada);
-        requestPedido.agregarComida(entrada);
-        requestPedido.setId_restaurant(id);
-        requestPedido.sumarTotal(entrada);
-        requestPedido.setUsuario(usuarioBuscado);
-        }
-              
+        requestPedido.armarPedido(entrada,idResto,usuarioBuscado);
+
         modelo.put("menu", restaurant.getMenu());
         modelo.put("requestPedido", requestPedido);
         modelo.put("restaurant", restaurant);
@@ -96,8 +91,8 @@ public class ControladorRestaurant {
         return new ModelAndView("restaurant", modelo);
     }
     
-    @RequestMapping(path = "/restaurant/{id}/comida", method = RequestMethod.POST)
-    public ModelAndView listaComidas(@PathVariable(value = "id") Long id
+    @RequestMapping(path = "/restaurant/{idResto}/comida", method = RequestMethod.POST)
+    public ModelAndView listaComidas(@PathVariable(value = "idResto") Long idResto
     										,@ModelAttribute("comida") Comida comida,HttpServletRequest request) {
     	
 
@@ -108,7 +103,7 @@ public class ControladorRestaurant {
 
         Usuario usuarioBuscado = servicioLogin.buscarUsuario((Long) request.getSession().getAttribute("idUsuario"));
         
-        Restaurant restaurant = servicioRestaurant.consultarRestaurant(id);
+        Restaurant restaurant = servicioRestaurant.consultarRestaurant(idResto);
         Map<String, List<ItemMenu>> ListaItems = servicioRestaurant.consultarMenuCompleto(restaurant.getMenu().getId());
         
         RequestPedido requestPedido;
@@ -121,15 +116,7 @@ public class ControladorRestaurant {
 
         }
 
-        if (comida!=null&&comida.getId()!=null){
-
-
-        requestPedido.agregarPedido(comida);
-        requestPedido.agregarComida(comida);
-        requestPedido.setId_restaurant(id);
-        requestPedido.sumarTotal(comida);
-       requestPedido.setUsuario(usuarioBuscado);
-        }
+        requestPedido.armarPedido(comida,idResto,usuarioBuscado);
         
         modelo.put("menu", restaurant.getMenu());
         modelo.put("requestPedido", requestPedido);
@@ -143,8 +130,8 @@ public class ControladorRestaurant {
         return new ModelAndView("restaurant", modelo);
     }
     
-    @RequestMapping(path = "/restaurant/{id}/bebida", method = RequestMethod.POST)
-    public ModelAndView listaBebidas(@PathVariable(value = "id") Long id,
+    @RequestMapping(path = "/restaurant/{idResto}/bebida", method = RequestMethod.POST)
+    public ModelAndView listaBebidas(@PathVariable(value = "idResto") Long idResto,
     								  @ModelAttribute("bebida") Bebida bebida,HttpServletRequest request) {
     	
         ModelMap modelo = new ModelMap();
@@ -154,7 +141,7 @@ public class ControladorRestaurant {
         Postre postre = new Postre();
         
         Usuario usuarioBuscado = servicioLogin.buscarUsuario((Long) request.getSession().getAttribute("idUsuario"));
-        Restaurant restaurant = servicioRestaurant.consultarRestaurant(id);
+        Restaurant restaurant = servicioRestaurant.consultarRestaurant(idResto);
         Map<String, List<ItemMenu>> ListaItems = servicioRestaurant.consultarMenuCompleto(restaurant.getMenu().getId());
         
          RequestPedido requestPedido;
@@ -166,13 +153,7 @@ public class ControladorRestaurant {
             requestPedido = (RequestPedido) request.getSession().getAttribute("requestPedido");
         }
 
-        if (bebida!=null && id!=null){
-        requestPedido.agregarPedido(bebida);
-        requestPedido.agregarComida(bebida);
-        requestPedido.setId_restaurant(id);
-        requestPedido.sumarTotal(bebida);
-        requestPedido.setUsuario(usuarioBuscado);
-        }
+        requestPedido.armarPedido(bebida,idResto,usuarioBuscado);
               
         modelo.put("menu", restaurant.getMenu());
         modelo.put("requestPedido", requestPedido);
@@ -185,9 +166,10 @@ public class ControladorRestaurant {
          modelo.put("total",requestPedido.getTotal());
         return new ModelAndView("restaurant", modelo);
     }
+
     
-    @RequestMapping(path = "/restaurant/{id}/postre", method = RequestMethod.POST)
-    public ModelAndView listaPostres(@PathVariable(value = "id") Long id,
+    @RequestMapping(path = "/restaurant/{idResto}/postre", method = RequestMethod.POST)
+    public ModelAndView listaPostres(@PathVariable(value = "idResto") Long idResto,
     								  @ModelAttribute("postre") Postre postre,HttpServletRequest request) {
     	
         ModelMap modelo = new ModelMap();
@@ -196,11 +178,11 @@ public class ControladorRestaurant {
         Entrada entrada = new Entrada();
         Bebida bebida = new Bebida();
         Usuario usuarioBuscado = servicioLogin.buscarUsuario((Long) request.getSession().getAttribute("idUsuario"));
-        Restaurant restaurant = servicioRestaurant.consultarRestaurant(id);
+        Restaurant restaurant = servicioRestaurant.consultarRestaurant(idResto);
         Map<String, List<ItemMenu>> ListaItems = servicioRestaurant.consultarMenuCompleto(restaurant.getMenu().getId());
 
          RequestPedido requestPedido;
-    
+
         if (request.getSession().getAttribute("requestPedido") == null) {
             requestPedido=new RequestPedido();
             request.getSession().setAttribute("requestPedido", requestPedido);
@@ -209,14 +191,7 @@ public class ControladorRestaurant {
         }
 
 
-        if (postre!=null && id!=null){
-        requestPedido.agregarPedido(postre);
-        requestPedido.agregarComida(postre);
-        requestPedido.setId_restaurant(id);
-        requestPedido.sumarTotal(postre);
-        requestPedido.setUsuario(usuarioBuscado);
-        }
-        requestPedido.getIdUsuario();
+        requestPedido.armarPedido(postre,idResto,usuarioBuscado);
               
         modelo.put("menu", restaurant.getMenu());
         modelo.put("requestPedido", requestPedido);
@@ -235,63 +210,15 @@ public class ControladorRestaurant {
    @RequestMapping(path = "/restaurant/{idResto}/pedido", method = RequestMethod.POST)
     public ModelAndView hacerPedido(@PathVariable(value = "idResto") Long id, @ModelAttribute("requestPedido") RequestPedido requestPedido,HttpServletRequest request) {
 
-        ModelMap modelo = new ModelMap();
-        Pedido pedido=new Pedido();
-        Restaurant restaurant=servicioRestaurant.consultarRestaurant(id);
-        List<Comida> comidas=new ArrayList<>();
-        List<Entrada> entradas=new ArrayList<>();
-        List<Postre> postres=new ArrayList<>();
-        List<Bebida> bebidas=new ArrayList<>();
-        Comida comida;
-        Bebida bebida;
-        Postre postre;
-        Entrada entrada;
-        Usuario usuarioBuscado = servicioLogin.buscarUsuario((Long) request.getSession().getAttribute("idUsuario"));
-       if (requestPedido.getIdConmidas().size()>0)
-           for (Long idComida:requestPedido.getIdConmidas()) {
-              comida =servicioRestaurant.consultarComida(idComida);
-              comidas.add(comida);
-           }
+       	 ModelMap modelo = new ModelMap();
+       	 Restaurant restaurant=servicioRestaurant.consultarRestaurant(id);
+       	 requestPedido.setUsuario( servicioLogin.buscarUsuario((Long) request.getSession().getAttribute("idUsuario")));
+	     Pedido  pedido=servicioRestaurant.armarPedido(requestPedido,restaurant);
 
-       if (requestPedido.getIdEntradas().size()>0)
-           for (Long idEntrada:requestPedido.getIdEntradas()) {
-               entrada =servicioRestaurant.consultarEntrada(idEntrada);
-               entradas.add(entrada);
-           }
+	     servicioRestaurant.crearPedido(pedido);
+	     modelo.put("pedido",pedido);
 
-       if (requestPedido.getIdBebidas().size()>0)
-           for (Long idBebida:requestPedido.getIdBebidas()) {
-               bebida =servicioRestaurant.consultarBebida(idBebida);
-               bebidas.add(bebida);
-           }
-
-       if (requestPedido.getIdPostres().size()>0)
-           for (Long idPostre:requestPedido.getIdPostres()) {
-               postre =servicioRestaurant.consultarPostre(idPostre);
-               postres.add(postre);
-           }
-
-       if (postres.size()>0)
-           pedido.setPostres(postres);
-
-       if (bebidas.size()>0)
-           pedido.setBebidas(bebidas);
-
-       if (comidas.size()>0)
-           pedido.setComidas(comidas);
-
-       if (entradas.size()>0)
-           pedido.setEntradas(entradas);
-        pedido.setUsuario(usuarioBuscado);
-        pedido.setRestaurant(restaurant);
-        pedido.setTotal(requestPedido.getTotal());
-        Integer statusCode = servicioRestaurant.crearPedido(pedido);
-        if (statusCode==201){
-            modelo.put("statusCode", statusCode);
-            modelo.put("idRestaurant", restaurant.getId());
-            return new ModelAndView("pedidoRespuesta",modelo);
-        }
-        return new ModelAndView("pedido");
+	     return new ModelAndView("pedidoRespuesta",modelo);
 
     }
 

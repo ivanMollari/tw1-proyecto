@@ -53,18 +53,5 @@ public class RestaurantServicioTest {
         assertThat(resultado.getMenu().getDescripcion()).isEqualTo("soy una descripcion");
     }
 
-    @Test
-    public void crearPedido() {
 
-        //given:
-        Pedido pedido=new Pedido();
-
-        when( repositorio.crearPedido(pedido)).thenReturn(200);
-
-        //when:
-        Integer resultado=instancia.crearPedido(pedido);
-
-        //then:
-        assertThat(resultado).isEqualTo(200);
-    }
 }

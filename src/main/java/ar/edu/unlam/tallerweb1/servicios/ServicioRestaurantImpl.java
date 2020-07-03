@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.modelo.*;
 
+import ar.edu.unlam.tallerweb1.modelo.dto.RequestPedido;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComida;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComidaImpl;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPedido;
@@ -74,10 +75,8 @@ public class ServicioRestaurantImpl implements ServicioRestaurant{
     
 
     @Override
-    public Integer crearPedido (Pedido pedido) {
-       Integer statusCode= servicioRestaurantDao.crearPedido(pedido);
-
-        return statusCode;
+    public void crearPedido (Pedido pedido) {
+        servicioRestaurantDao.crearPedido(pedido);
     }
 
     @Override
@@ -103,6 +102,33 @@ public class ServicioRestaurantImpl implements ServicioRestaurant{
         Entrada entrada=servicioRestaurantDao.consultarEntrada( id);
         return entrada;
     }
+
+    @Override
+    public Pedido armarPedido(RequestPedido requestPedido,Restaurant restaurant) {
+        Pedido pedido=new Pedido();
+        for (Long idEntrada:requestPedido.getIdEntradas() ) {
+            Entrada entrada=servicioRestaurantDao.consultarEntrada(idEntrada);
+            pedido.agregarUnItemMenu(entrada);
+        }
+        for (Long idComida:requestPedido.getIdConmidas() ) {
+            Comida comida=servicioRestaurantDao.consultarComida(idComida);
+            pedido.agregarUnItemMenu(comida);
+        }
+
+        for (Long idPostre:requestPedido.getIdPostres() ) {
+            Postre postre=servicioRestaurantDao.consultarPostre(idPostre);
+            pedido.agregarUnItemMenu(postre);
+        }
+        for (Long idBebida:requestPedido.getIdBebidas()) {
+            Bebida bebida=servicioRestaurantDao.consultarBebida(idBebida);
+            pedido.agregarUnItemMenu(bebida);
+        }
+        pedido.setTotal(requestPedido.getTotal());
+        pedido.setUsuario(requestPedido.getUsuario());
+        pedido.setRestaurant(restaurant);
+        return pedido;
+    }
+
 
 
 

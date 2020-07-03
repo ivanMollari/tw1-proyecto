@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 
 import ar.edu.unlam.tallerweb1.modelo.*;
+import ar.edu.unlam.tallerweb1.modelo.dto.RequestPedido;
 
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.Map;
 public interface ServicioRestaurant {
         Restaurant consultarRestaurant(Long id);
 
-         Integer crearPedido (Pedido pedido);
+        void crearPedido (Pedido pedido);
 
         Comida consultarComida(Long id);
 
@@ -24,6 +25,7 @@ public interface ServicioRestaurant {
         Entrada consultarEntrada(Long id);
 
         Bebida consultarBebida(Long id);
+        Pedido armarPedido(RequestPedido requestPedido,Restaurant restaurant);
 
 		
 

@@ -10,17 +10,24 @@
 	background-color: #E47101;
 	
 }
-titulo-form{
+.titulo-form{
 	text-align: center;
+	font-size:2em;
+	color:white;
+}
+.ct-fm{
+	color:#9d9d7e;
+}
+.input-fm{
+	margin-bottom:1em;
 }
 .form-mapa{
-	background: rgba(0,0,0,.5);
+	background: #222222;
 	padding: 20px;
 	border-radius:20px;
 }
 .list-restos{
 	text-align: center;
 	border-color:orange;
-	border:1em solid;
-	
+	border:1em solid;	
 }

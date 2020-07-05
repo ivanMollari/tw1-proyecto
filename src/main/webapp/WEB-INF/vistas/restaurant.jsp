@@ -29,14 +29,7 @@
                 map: map,
                 title: '${restaurant.getNombre()}'
             });
-            
-
-	      /*  document.getElementById('add').addEventListener('click', function() {
-	          agregar();
-	        });*/
-	      
-            
-
+           
         }
         
     </script>
@@ -152,7 +145,7 @@
                 <li class="list-group-item">$ ${total}</li>
                 <form:hidden name="id" path="idRequestPedido" value="${requestPedido.id}"/>
                 <form:hidden name="total" path="total" value="${requestPedido.total}"/>
-                <form:hidden name="total" path="id_restaurant" value="${requestPedido.id_restaurant}"/>
+                <form:hidden name="idResto" path="id_restaurant" value="${requestPedido.id_restaurant}"/>
                 <c:forEach var="idComida" items="${requestPedido.idConmidas}">
                     <form:hidden name="comida" path="idConmidas" value="${idComida}"/>
                 </c:forEach>
@@ -165,6 +158,7 @@
                 <c:forEach var="idBebida" items="${requestPedido.idBebidas}">
                     <form:hidden name="bebida" path="idBebidas" value="${idBebida}"/>
                 </c:forEach>
+				<form:hidden name="total" path="total" value="${total}"/>
 
                 <input id="enviar" type="submit" value="Enviar"class="btn  btn-succes">
             </form:form>

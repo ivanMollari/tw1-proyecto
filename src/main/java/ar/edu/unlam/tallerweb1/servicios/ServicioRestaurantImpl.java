@@ -9,9 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRestaurant;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Service("servicioRestaurant")
 @Transactional
@@ -66,55 +69,29 @@ public class ServicioRestaurantImpl implements ServicioRestaurant{
         return menuCompleto;
     }
     
-    
-
     @Override
     public void crearPedido (Pedido pedido) {
         servicioRestaurantDao.crearPedido(pedido);
     }
-
-    @Override
-    public Comida consultarComida(Long id){
-
-        Comida comida=servicioRestaurantDao.consultarComida( id);
-        return comida;
-    }
-    public Postre consultarPostre(Long id){
-
-        Postre postre=servicioRestaurantDao.consultarPostre( id);
-        return postre;
-    }
-    public Bebida consultarBebida(Long id){
-
-        Bebida bebida=servicioRestaurantDao.consultarBebida( id);
-        return bebida;
-    }
-
-    @Override
-    public Entrada consultarEntrada(Long id){
-
-        Entrada entrada=servicioRestaurantDao.consultarEntrada( id);
-        return entrada;
-    }
-
+    
     @Override
     public Pedido armarPedido(RequestPedido requestPedido,Restaurant restaurant) {
         Pedido pedido=new Pedido();
         for (Long idEntrada:requestPedido.getIdEntradas() ) {
-            Entrada entrada=servicioRestaurantDao.consultarEntrada(idEntrada);
+            Entrada entrada=servicioEntrada.consultarEntrada(idEntrada);
             pedido.agregarUnItemMenu(entrada);
         }
         for (Long idComida:requestPedido.getIdConmidas() ) {
-            Comida comida=servicioRestaurantDao.consultarComida(idComida);
+            Comida comida=servicioComida.consultarComida(idComida);
             pedido.agregarUnItemMenu(comida);
         }
 
         for (Long idPostre:requestPedido.getIdPostres() ) {
-            Postre postre=servicioRestaurantDao.consultarPostre(idPostre);
+            Postre postre=servicioPostre.consultarPostre(idPostre);
             pedido.agregarUnItemMenu(postre);
         }
         for (Long idBebida:requestPedido.getIdBebidas()) {
-            Bebida bebida=servicioRestaurantDao.consultarBebida(idBebida);
+            Bebida bebida=servicioBebida.consultarBebida(idBebida);
             pedido.agregarUnItemMenu(bebida);
         }
         pedido.setTotal(requestPedido.getTotal());
@@ -122,10 +99,18 @@ public class ServicioRestaurantImpl implements ServicioRestaurant{
         pedido.setRestaurant(restaurant);
         return pedido;
     }
-
-
-
-
+    
+    @Override
+    public List<ItemMenu> mostrarPedido(Pedido pedido) {
+    	List<ItemMenu> listaPedido = new ArrayList();
+    	listaPedido.addAll(pedido.getEntradas());
+    	listaPedido.addAll(pedido.getComidas());
+    	listaPedido.addAll(pedido.getBebidas());
+    	listaPedido.addAll(pedido.getPostres());
+    	
+    	return listaPedido;
+    }
+    
    @Override
    public List<Restaurant> buscarRestaurants(String searchText) {
         List<Restaurant> listaResto = servicioRestaurantDao.buscarRestaurants(searchText);

@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import ar.edu.unlam.tallerweb1.modelo.Entrada;
 import ar.edu.unlam.tallerweb1.modelo.ItemMenu;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioBebida;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioEntrada;
@@ -35,6 +36,13 @@ public class ServicioEntradaImpl implements ServicioEntrada{
         List<ItemMenu> entradas = servicioPedidoDao.getPedidosPorIdUsuario(usuarioId);
 
         return entradas;
+    }
+    
+    @Override
+    public Entrada consultarEntrada(Long id){
+
+        Entrada entrada=servicioEntradaDao.consultarEntrada( id);
+        return entrada;
     }
 
 

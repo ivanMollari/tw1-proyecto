@@ -30,6 +30,12 @@ public class RepositorioComidaImpl implements RepositorioComida {
                 .list();
     }
     
+    @Override
+    public Comida consultarComida(Long id){
+        final Session session = sessionFactory.getCurrentSession();
+        return session.get(Comida.class,id);
+    }
+    
 
     
 

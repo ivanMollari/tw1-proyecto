@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.modelo.ItemMenu;
+import ar.edu.unlam.tallerweb1.modelo.Postre;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComida;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPedido;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPostre;
@@ -34,5 +35,12 @@ public class ServicioPostreImpl implements ServicioPostre {
         List<ItemMenu> postres = servicioPedidoDao.getPedidosPorIdUsuario(usuarioId);
 
         return postres;
+    }
+    
+    @Override
+    public Postre consultarPostre(Long id){
+
+        Postre postre=servicioPostreDao.consultarPostre( id);
+        return postre;
     }
 }

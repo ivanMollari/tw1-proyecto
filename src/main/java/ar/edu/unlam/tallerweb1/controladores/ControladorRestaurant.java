@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -23,13 +22,11 @@ public class ControladorRestaurant {
 	private ServicioRestaurant servicioRestaurant;
 	private ServicioLogin servicioLogin;
 
-
 	@Autowired
 	public ControladorRestaurant(ServicioRestaurant servicioRestaurant, ServicioLogin servicioLogin) {
 		this.servicioRestaurant = servicioRestaurant;
 		this.servicioLogin = servicioLogin;
 	}
-
 
 	@RequestMapping(path = "/restaurant/{id}", method = RequestMethod.GET)
 	public ModelAndView mostrarRestaurant(@PathVariable(value = "id") Long id) {
@@ -50,13 +47,12 @@ public class ControladorRestaurant {
 		modelo.put("postre", postre);
 		modelo.put("requestPedido", requestPedido);
 
-
 		return new ModelAndView("restaurant", modelo);
 	}
 
 	@RequestMapping(path = "/restaurant/{idResto}/entrada", method = RequestMethod.POST)
 	public ModelAndView listaEntradas(@PathVariable(value = "idResto") Long idResto,
-									  @ModelAttribute("entrada") Entrada entrada, HttpServletRequest request) {
+			@ModelAttribute("entrada") Entrada entrada, HttpServletRequest request) {
 
 		ModelMap modelo = new ModelMap();
 
@@ -70,12 +66,7 @@ public class ControladorRestaurant {
 
 		RequestPedido requestPedido;
 
-		if (request.getSession().getAttribute("requestPedido") == null) {
-			requestPedido = new RequestPedido();
-			request.getSession().setAttribute("requestPedido", requestPedido);
-		} else {
-			requestPedido = (RequestPedido) request.getSession().getAttribute("requestPedido");
-		}
+		requestPedido = obtenerRequestPedido(request);
 
 		requestPedido.armarPedido(entrada, idResto, usuarioBuscado);
 
@@ -92,9 +83,8 @@ public class ControladorRestaurant {
 	}
 
 	@RequestMapping(path = "/restaurant/{idResto}/comida", method = RequestMethod.POST)
-	public ModelAndView listaComidas(@PathVariable(value = "idResto") Long idResto
-			, @ModelAttribute("comida") Comida comida, HttpServletRequest request) {
-
+	public ModelAndView listaComidas(@PathVariable(value = "idResto") Long idResto,
+			@ModelAttribute("comida") Comida comida, HttpServletRequest request) {
 
 		ModelMap modelo = new ModelMap();
 		Entrada entrada = new Entrada();
@@ -107,14 +97,7 @@ public class ControladorRestaurant {
 		Map<String, List<ItemMenu>> ListaItems = servicioRestaurant.consultarMenuCompleto(restaurant.getMenu().getId());
 
 		RequestPedido requestPedido;
-		if (request.getSession().getAttribute("requestPedido") == null) {
-			requestPedido = new RequestPedido();
-			request.getSession().setAttribute("requestPedido", requestPedido);
-
-		} else {
-			requestPedido = (RequestPedido) request.getSession().getAttribute("requestPedido");
-
-		}
+		requestPedido = obtenerRequestPedido(request);
 
 		requestPedido.armarPedido(comida, idResto, usuarioBuscado);
 
@@ -132,7 +115,7 @@ public class ControladorRestaurant {
 
 	@RequestMapping(path = "/restaurant/{idResto}/bebida", method = RequestMethod.POST)
 	public ModelAndView listaBebidas(@PathVariable(value = "idResto") Long idResto,
-									 @ModelAttribute("bebida") Bebida bebida, HttpServletRequest request) {
+			@ModelAttribute("bebida") Bebida bebida, HttpServletRequest request) {
 
 		ModelMap modelo = new ModelMap();
 
@@ -146,12 +129,7 @@ public class ControladorRestaurant {
 
 		RequestPedido requestPedido;
 
-		if (request.getSession().getAttribute("requestPedido") == null) {
-			requestPedido = new RequestPedido();
-			request.getSession().setAttribute("requestPedido", requestPedido);
-		} else {
-			requestPedido = (RequestPedido) request.getSession().getAttribute("requestPedido");
-		}
+		requestPedido = obtenerRequestPedido(request);
 
 		requestPedido.armarPedido(bebida, idResto, usuarioBuscado);
 
@@ -167,10 +145,9 @@ public class ControladorRestaurant {
 		return new ModelAndView("restaurant", modelo);
 	}
 
-
 	@RequestMapping(path = "/restaurant/{idResto}/postre", method = RequestMethod.POST)
 	public ModelAndView listaPostres(@PathVariable(value = "idResto") Long idResto,
-									 @ModelAttribute("postre") Postre postre, HttpServletRequest request) {
+			@ModelAttribute("postre") Postre postre, HttpServletRequest request) {
 
 		ModelMap modelo = new ModelMap();
 
@@ -183,13 +160,7 @@ public class ControladorRestaurant {
 
 		RequestPedido requestPedido;
 
-		if (request.getSession().getAttribute("requestPedido") == null) {
-			requestPedido = new RequestPedido();
-			request.getSession().setAttribute("requestPedido", requestPedido);
-		} else {
-			requestPedido = (RequestPedido) request.getSession().getAttribute("requestPedido");
-		}
-
+		requestPedido = obtenerRequestPedido(request);
 
 		requestPedido.armarPedido(postre, idResto, usuarioBuscado);
 
@@ -205,37 +176,27 @@ public class ControladorRestaurant {
 		return new ModelAndView("restaurant", modelo);
 	}
 
-
 	@RequestMapping(path = "/restaurant/{idResto}/pedido", method = RequestMethod.POST)
-	public ModelAndView hacerPedido(@PathVariable(value = "idResto") Long id, @ModelAttribute("requestPedido") RequestPedido requestPedido, HttpServletRequest request) {
+	public ModelAndView hacerPedido(@PathVariable(value = "idResto") Long id,
+			@ModelAttribute("requestPedido") RequestPedido requestPedido, HttpServletRequest request) {
 
 		ModelMap modelo = new ModelMap();
 		Restaurant restaurant = servicioRestaurant.consultarRestaurant(id);
 		requestPedido.setUsuario(servicioLogin.buscarUsuario((Long) request.getSession().getAttribute("idUsuario")));
-		//pedido.agregarComidas(obtenerComidas(requestPedido.getIdConmidas()));
-		//pedido.agregarEntrasdas(obtenerComidas(requestPedido.getIdEntradas()));
+
 		Pedido pedido = servicioRestaurant.armarPedido(requestPedido, restaurant);
+		List<ItemMenu> listaPedido = servicioRestaurant.mostrarPedido(pedido);
 
 		servicioRestaurant.crearPedido(pedido);
 		modelo.put("pedido", pedido);
+		modelo.put("total", requestPedido.getTotal());
+		modelo.put("restaurantNombre", restaurant.getNombre());
+		modelo.put("listaPedido", listaPedido);
 
 		return new ModelAndView("pedidoRespuesta", modelo);
 
 	}
 
-
-	private List<ItemMenu> obtenerComidas(List<Long> ids) {
-		List<ItemMenu> comidas = new LinkedList<>();
-		ItemMenu comida;
-
-		for (Long idEntrada : ids) {
-			comida = servicioRestaurant.consultarEntrada(idEntrada);
-			comidas.add(comida);
-
-
-		}
-		return comidas;
-	}
 	@RequestMapping(path = "/restaurant/buscar", method = RequestMethod.GET)
 	public ModelAndView buscarRestaurants(@RequestParam String searchText) {
 		ModelMap modelo = new ModelMap();
@@ -243,11 +204,25 @@ public class ControladorRestaurant {
 		List<Restaurant> listaResto = servicioRestaurant.buscarRestaurants(searchText);
 		modelo.put("listaResto", listaResto);
 
-
 		return new ModelAndView("buscarResto", modelo);
 	}
+	
+	/*@RequestMapping(path= "/mis-pedidos")
+	public ModelAndView mostrarPedidosUsuario(HttpServletRequest request) {
+		
+	}*/
 
+	private RequestPedido obtenerRequestPedido(HttpServletRequest request) {
+		RequestPedido requestPedido;
+		if (request.getSession().getAttribute("requestPedido") == null) {
+			requestPedido = new RequestPedido();
+			request.getSession().setAttribute("requestPedido", requestPedido);
+
+		} else {
+			requestPedido = (RequestPedido) request.getSession().getAttribute("requestPedido");
+
+		}
+		return requestPedido;
+	}
 
 }
-
-

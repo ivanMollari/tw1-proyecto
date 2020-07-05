@@ -18,79 +18,50 @@ import java.io.Serializable;
 import java.util.List;
 
 @Repository("repositorioRestaurant")
-public class RepositorioRestaurantImpl implements RepositorioRestaurant{
+public class RepositorioRestaurantImpl implements RepositorioRestaurant {
 
-    private SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 
-
-    @Autowired
-    public RepositorioRestaurantImpl(SessionFactory sessionFactory){
-        this.sessionFactory = sessionFactory;
-    }
-
-
-    @Override
-    public Restaurant consultarRestaurant(Long id){
-        final Session session = sessionFactory.getCurrentSession();
-
-
-        return session.get(Restaurant.class, id);
-    }
-
-
-    @Override
-   public  void crearPedido(Pedido pedido){
-        final Session session = sessionFactory.getCurrentSession();
-         session.save(pedido);
-    }
-
-    @Override
-    public Comida consultarComida(Long id){
-        final Session session = sessionFactory.getCurrentSession();
-        return session.get(Comida.class,id);
-    }
-
-    @Override
-    public Entrada consultarEntrada(Long id){
-        final Session session = sessionFactory.getCurrentSession();
-        return session.get(Entrada.class,id);
-    }
-
-    @Override
-    public Bebida consultarBebida(Long id){
-        final Session session = sessionFactory.getCurrentSession();
-        return session.get(Bebida.class,id);
-    }
-
-    @Override
-    public Postre consultarPostre(Long id){
-        final Session session = sessionFactory.getCurrentSession();
-        return session.get(Postre.class,id);
-    }
-
-	@Override
-	public List<Restaurant> consultarListaRestos(){
-	    final Session session = sessionFactory.getCurrentSession();
-
-	    Criteria criteria = session.createCriteria(Restaurant.class);
-	           criteria.add(Restrictions.isNotNull("id"));
-		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-
-	    List<Restaurant> listaRestaurantes = criteria.list();
-	    return listaRestaurantes;
+	@Autowired
+	public RepositorioRestaurantImpl(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 
+	@Override
+	public Restaurant consultarRestaurant(Long id) {
+		final Session session = sessionFactory.getCurrentSession();
+
+		return session.get(Restaurant.class, id);
+	}
 
 	@Override
-    public List<Restaurant> buscarRestaurants(String searchText){
-        final Session session = sessionFactory.getCurrentSession();
+	public void crearPedido(Pedido pedido) {
+		final Session session = sessionFactory.getCurrentSession();
+		session.save(pedido);
+	}
 
-        Criteria criteria = session.createCriteria(Restaurant.class);
-        criteria.add(Restrictions.like("nombre", "%"+searchText+"%"));
-        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+	@Override
+	public List<Restaurant> consultarListaRestos() {
+		final Session session = sessionFactory.getCurrentSession();
 
-        List<Restaurant> listaRestaurantes = criteria.list();
-        return listaRestaurantes;
-    }
+		Criteria criteria = session.createCriteria(Restaurant.class);
+		criteria.add(Restrictions.isNotNull("id"));
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+
+		List<Restaurant> listaRestaurantes = criteria.list();
+		return listaRestaurantes;
+	}
+
+	@Override
+	public List<Restaurant> buscarRestaurants(String searchText) {
+		final Session session = sessionFactory.getCurrentSession();
+
+		Criteria criteria = session.createCriteria(Restaurant.class);
+		criteria.add(Restrictions.like("nombre", "%" + searchText + "%"));
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+
+		List<Restaurant> listaRestaurantes = criteria.list();
+		return listaRestaurantes;
+	}
 
 }

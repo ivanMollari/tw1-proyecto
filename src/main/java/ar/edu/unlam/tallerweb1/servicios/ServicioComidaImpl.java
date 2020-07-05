@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import ar.edu.unlam.tallerweb1.modelo.Comida;
 import ar.edu.unlam.tallerweb1.modelo.ItemMenu;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComida;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPedido;
@@ -12,27 +13,34 @@ import java.util.List;
 
 @Service("servicioComida")
 @Transactional
-public class ServicioComidaImpl implements ServicioComida{
-    private RepositorioComida servicioComidaDao;
-    private RepositorioPedido servicioPedidoDao;
+public class ServicioComidaImpl implements ServicioComida {
+	private RepositorioComida servicioComidaDao;
+	private RepositorioPedido servicioPedidoDao;
 
-    @Autowired
-    public ServicioComidaImpl(RepositorioComida servicioComidaDao,RepositorioPedido servicioPedidoDao){
-        this.servicioComidaDao = servicioComidaDao;
-        this.servicioPedidoDao = servicioPedidoDao;
-    }
+	@Autowired
+	public ServicioComidaImpl(RepositorioComida servicioComidaDao, RepositorioPedido servicioPedidoDao) {
+		this.servicioComidaDao = servicioComidaDao;
+		this.servicioPedidoDao = servicioPedidoDao;
+	}
 
+	@Override
+	public List<ItemMenu> getComidasByMenuId(Long menuId) {
+		List<ItemMenu> comidas = servicioComidaDao.getComidasByMenuId(menuId);
+
+		return comidas;
+	}
+
+	@Override
+	public List<ItemMenu> getComidasDeUnPedidoPorUsuarioId(Long usuarioId) {
+		List<ItemMenu> comidas = servicioPedidoDao.getPedidosPorIdUsuario(usuarioId);
+
+		return comidas;
+	}
+	
     @Override
-    public List<ItemMenu> getComidasByMenuId(Long menuId){
-        List<ItemMenu> comidas = servicioComidaDao.getComidasByMenuId(menuId);
+    public Comida consultarComida(Long id) {
 
-        return comidas;
-    }
-    
-    @Override
-    public List<ItemMenu> getComidasDeUnPedidoPorUsuarioId(Long usuarioId){
-        List<ItemMenu> comidas = servicioPedidoDao.getPedidosPorIdUsuario(usuarioId);
-
-        return comidas;
+        Comida comida=servicioComidaDao.consultarComida( id);
+        return comida;
     }
 }

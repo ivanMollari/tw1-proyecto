@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import ar.edu.unlam.tallerweb1.modelo.Bebida;
 import ar.edu.unlam.tallerweb1.modelo.ItemMenu;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioBebida;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComida;
@@ -13,29 +14,35 @@ import java.util.List;
 
 @Service("servicioBebida")
 @Transactional
-public class ServicioBebidaImpl implements ServicioBebida{
-    private RepositorioBebida servicioBebidaDao;
-    private RepositorioPedido servicioPedidoDao;
+public class ServicioBebidaImpl implements ServicioBebida {
+	private RepositorioBebida servicioBebidaDao;
+	private RepositorioPedido servicioPedidoDao;
 
-    @Autowired
-    public ServicioBebidaImpl(RepositorioBebida servicioBebidaDao,RepositorioPedido servicioPedidoDao){
-        this.servicioBebidaDao = servicioBebidaDao;
-        this.servicioPedidoDao = servicioPedidoDao;
-    }
+	@Autowired
+	public ServicioBebidaImpl(RepositorioBebida servicioBebidaDao, RepositorioPedido servicioPedidoDao) {
+		this.servicioBebidaDao = servicioBebidaDao;
+		this.servicioPedidoDao = servicioPedidoDao;
+	}
 
-    @Override
-    public List<ItemMenu> getBebidasByMenuId(Long menuId){
-        List<ItemMenu> comidas = servicioBebidaDao.getBebidasByMenuId(menuId);
+	@Override
+	public List<ItemMenu> getBebidasByMenuId(Long menuId) {
+		List<ItemMenu> comidas = servicioBebidaDao.getBebidasByMenuId(menuId);
 
-        return comidas;
-    }
-    
-    @Override
-    public List<ItemMenu> getBebidasDeUnPedidoPorUsuarioId(Long usuarioId){
-        List<ItemMenu> bebidas = servicioPedidoDao.getPedidosPorIdUsuario(usuarioId);
+		return comidas;
+	}
 
-        return bebidas;
-    }
-    
-   
+	@Override
+	public List<ItemMenu> getBebidasDeUnPedidoPorUsuarioId(Long usuarioId) {
+		List<ItemMenu> bebidas = servicioPedidoDao.getPedidosPorIdUsuario(usuarioId);
+
+		return bebidas;
+	}
+
+	@Override
+	public Bebida consultarBebida(Long id) {
+
+		Bebida bebida = servicioBebidaDao.consultarBebida(id);
+		return bebida;
+	}
+
 }

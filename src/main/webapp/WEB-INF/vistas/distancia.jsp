@@ -102,35 +102,35 @@
 		</div>
 		<div class="col-lg-4 form-mapa">
 
-			<h2 class="titulo-form">CAMBIAR UBICACIÓN</h2>
+			<p class="titulo-form">CAMBIAR UBICACIÓN</p>
 
 				   <form method="POST" action="mapa/modificar-ubicacion" >
 					<hr class="colorgraph"><br>
-						<div class="form-group col-md-10 ">
-							<h4>Cambie su ubucación</h4>
+						<div class=" col-md-10 ">
+							<p class="ct-fm">Cambie su ubucación</p>
 						</div>
-						<div class="form-group col-md-10 ">
+						<div class=" col-md-10 input-fm">
 							<input path="ubicacion" type="text" name="ubicacion" class="form-control" placeholder="Escriba la ubicacion" id="ubicacion"/>
 						</div>
-						<div class="form-group col-md-10 ">		
+						<div class=" col-md-10 ">		
 					        <input path="latitud" type="hidden" name="latitud" class="form-control" placeholder="Escriba la latitud" id="latitud"/>
 					   </div> 
-					   <div class="form-group col-md-10 ">    
+					   <div class=" col-md-10 ">    
 					        <input path="longitud" type="hidden" name="longitud" placeholder="Escriba la longitud" class="form-control" id="longitud"/>
 					   </div>
-						<div class="form-group col-md-6 ">
-							<input id="submit" type="button" value="Cambiar"class="btn btn-lg btn-block fn-n">
+						<div class=" col-md-6 ">
+							<input id="submit" type="button" value="Cambiar"class="btn btn-lg btn-block btn-warning">
 						</div>
 
-					   <div class="form-group col-md-10"> 
-							<h4>Escriba el radio en metros</h4>
+					   <div class=" col-md-10"> 
+							<p class="ct-fm">Escriba el radio en metros</p>
 						</div>	
-					   <div class="form-group col-md-10">    
+					   <div class="col-md-10 input-fm">    
 					        <input path="radioEnM" type="text" name="radioEnM" placeholder="Escriba los metros para saber la distancia" class="form-control" />
 					   </div>
 
-					   <div class="form-group col-md-10">     
-					        <input type="submit" value="Enviar" class="btn btn-lg btn-block fn-n">
+					   <div class=" col-md-10">     
+					        <input type="submit" value="Enviar" class="btn btn-lg btn-block btn-warning">
 					   </div>
 				  </form> 
 

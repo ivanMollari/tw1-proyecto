@@ -27,5 +27,11 @@ public class RepositorioPostreImpl implements RepositorioPostre{
                 .add(Restrictions.eq("menu.id", menuId))
                 .setFetchMode("menu", FetchMode.EAGER)
                 .list();
-    };
+    }
+    
+    @Override
+    public Postre consultarPostre(Long id){
+        final Session session = sessionFactory.getCurrentSession();
+        return session.get(Postre.class,id);
+    }
 }

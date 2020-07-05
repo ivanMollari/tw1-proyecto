@@ -29,5 +29,11 @@ public class RepositorioEntradaImpl implements RepositorioEntrada{
                 .list();
     }
     
+    @Override
+    public Entrada consultarEntrada(Long id){
+        final Session session = sessionFactory.getCurrentSession();
+        return session.get(Entrada.class,id);
+    }
+    
 
 }

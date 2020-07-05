@@ -27,5 +27,11 @@ public class RepositorioBebidaImpl implements RepositorioBebida {
                 .add(Restrictions.eq("menu.id", menuId))
                 .setFetchMode("menu", FetchMode.EAGER)
                 .list();
-    };
+    }
+    
+    @Override
+    public Bebida consultarBebida(Long id){
+        final Session session = sessionFactory.getCurrentSession();
+        return session.get(Bebida.class,id);
+    }
 }

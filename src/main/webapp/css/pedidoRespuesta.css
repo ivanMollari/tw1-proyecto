@@ -3,36 +3,62 @@
 	padding: 0;
 }
 .tc{
+	background-color: #fff;
 	color:#222222;
+	font-size: 1.4em;
+	margin-bottom: 5px;
 	
 }
 .pedido{
 	padding: 20px;
 	border-radius:20px;
+	
 }
-.img-estilo{
+/*.img-estilo{
 
-	background-image: url("../images/comidaPedido.jpg");
+	background-image: url("../img/comida8.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	opacity: 0.7;
+}*/
+body{
+	background-image: url("../images/fondoPedido.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+
 }
 .titulo-imagen{
-	text-align: center;
-	color: black;
-	font-size: 10em;
+	/*text-align: center;*/
+	background-color: #222222;
+	color: #fff;
+	font-size: 7em;
+	font-family: serif;
 }
 .info-pedido{
-	font-size: 4em;
+	background-color: #222222;
+	color: #fff;
+	font-size: 3em;
+	margin-bottom: 2.5em;
+	border-radius: 0.3em;
 }
 .btn-pedido{
 	margin-top: 1em;
 	margin-right: 1em;
+	
 }
 .ct-lista{
 	margin-bottom: 10em;
+	
 }
 .text-color{
-	color: grey;
+	background-color: #fff;
+	margin-bottom: 5px;
+	/*color: #3E3E3E;*/
+	color:#222222;
+	font-size: 1.4em;
+	
+}
+.fm-color{
+	background-color: #222222;
 }
 

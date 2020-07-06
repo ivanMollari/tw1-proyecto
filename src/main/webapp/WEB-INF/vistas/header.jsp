@@ -10,8 +10,8 @@
 			      <a class="navbar-brand" href="#">DELI FAST</a>
 			    </div>
 			    <ul class="nav navbar-nav">
-			      <li class="li-nav"><a href="/proyecto_limpio_spring_war_exploded/mapa" style="color:white; text-decoration: none">Restaurantes Cercanos</a></li>
-			      <li class="li-nav"><a href="#">Mis pedidos</a></li>
+			      <li class="li-nav"><a href="${context}/mapa" style="color:white; text-decoration: none">Restaurantes Cercanos</a></li>
+			      <li class="li-nav"><a href="${context}/mis-pedidos">Mis pedidos</a></li>
 			      
 			    </ul>
 			    <form class="navbar-form navbar-right" id="buscar" method="get" action="${context}/restaurant/buscar">

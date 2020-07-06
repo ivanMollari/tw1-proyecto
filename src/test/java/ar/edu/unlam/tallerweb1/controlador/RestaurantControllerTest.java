@@ -5,6 +5,7 @@ import ar.edu.unlam.tallerweb1.modelo.Menu;
 import ar.edu.unlam.tallerweb1.modelo.Pedido;
 import ar.edu.unlam.tallerweb1.modelo.Restaurant;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.servicios.ServicioPedido;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRestaurant;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRestaurantImpl;
 import org.junit.Test;
@@ -20,8 +21,9 @@ import static org.mockito.Mockito.when;
 public class RestaurantControllerTest {
 
     ServicioRestaurant servicioRestaurant= Mockito.mock(ServicioRestaurantImpl.class);
+    ServicioPedido servicioPedido= Mockito.mock(ServicioPedido.class);
     ServicioLogin servicioLogin = Mockito.mock(ServicioLogin.class);
-    ControladorRestaurant instancia=new ControladorRestaurant(servicioRestaurant,servicioLogin);
+    ControladorRestaurant instancia=new ControladorRestaurant(servicioRestaurant,servicioLogin,servicioPedido);
 
     @Test
     public void consultarRestaurant() {

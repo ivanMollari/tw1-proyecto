@@ -20,7 +20,9 @@
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
-	
+ 	<c:forEach var="listaPedido" items="${listita}" >
+		${listaPedido}
+	</c:forEach>
 <jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

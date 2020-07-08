@@ -134,6 +134,25 @@ public class RestaurantTest extends SpringTest {
 
     }
     
+    @Test
+    @Transactional @Rollback
+    public void testBuscarRestoPorId() {
+        //given:
+    	Restaurant resto = new Restaurant();
+    	Menu menu = new Menu();
+    	resto.setMenu(menu);
+    	resto.setNombre("La Farola");
+        final Session session = session();
+        //when:
+        session.save(resto);
+        Restaurant restoBuscado = instancia.consultarRestaurant(resto.getId());
+
+        //then:
+        assertThat(restoBuscado).isNotNull();
+
+    }
+    
+    
 
 }
 

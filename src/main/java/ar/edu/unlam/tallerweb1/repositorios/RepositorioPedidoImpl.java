@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import ar.edu.unlam.tallerweb1.modelo.Comida;
 import ar.edu.unlam.tallerweb1.modelo.ItemMenu;
 import ar.edu.unlam.tallerweb1.modelo.Pedido;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 @Repository("repositorioPedido")
 public class RepositorioPedidoImpl implements RepositorioPedido{
@@ -34,9 +35,12 @@ public class RepositorioPedidoImpl implements RepositorioPedido{
     }
     
     @Override
-    public void agregaPedido(Pedido pedido) {
+    public List<Pedido> buscarPedidosUsuario(Usuario usuario) {
     	final Session session = sessionFactory.getCurrentSession();
-    	session.persist(pedido);
+    	return (List<Pedido>) session.createCriteria(Pedido.class)
+    			.add(Restrictions.eq("usuario.id",usuario.getId()))
+                .list();
     }
+    
 	
 }

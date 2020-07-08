@@ -33,7 +33,7 @@
 <div class="col-lg-8">
 
 	<div class="col-lg-8 pedido col align-self-center fm-color">
-	  <p class="text-color text-center">¡¡¡Gracias por realizar su pedido en DELI FAST!!!</p>
+	  <p class="text-color text-center">¡Gracias por realizar su pedido en DELI FAST!</p>
 	    <c:forEach var="pedido" items="${listaPedido}">
 	       <li class="list-group-item list-group-item-success">
 	          ${pedido.nombre}

@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.controladores;
 import ar.edu.unlam.tallerweb1.modelo.*;
 import ar.edu.unlam.tallerweb1.modelo.dto.RequestPedido;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.servicios.ServicioPedido;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRestaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -21,11 +23,13 @@ public class ControladorRestaurant {
 
 	private ServicioRestaurant servicioRestaurant;
 	private ServicioLogin servicioLogin;
+	private ServicioPedido servicioPedido;
 
 	@Autowired
-	public ControladorRestaurant(ServicioRestaurant servicioRestaurant, ServicioLogin servicioLogin) {
+	public ControladorRestaurant(ServicioRestaurant servicioRestaurant, ServicioLogin servicioLogin,ServicioPedido servicioPedido) {
 		this.servicioRestaurant = servicioRestaurant;
 		this.servicioLogin = servicioLogin;
+		this.servicioPedido = servicioPedido;
 	}
 
 	@RequestMapping(path = "/restaurant/{id}", method = RequestMethod.GET)
@@ -207,10 +211,22 @@ public class ControladorRestaurant {
 		return new ModelAndView("buscarResto", modelo);
 	}
 	
-	/*@RequestMapping(path= "/mis-pedidos")
+	@RequestMapping(path= "/mis-pedidos")
 	public ModelAndView mostrarPedidosUsuario(HttpServletRequest request) {
+		Usuario usuarioBuscado = servicioLogin.buscarUsuario((Long) request.getSession().getAttribute("idUsuario"));
+		List<Pedido> listita = servicioPedido.mostrarPedidosUsuario(usuarioBuscado);
+		List<List<ItemMenu>> listaPedido = new ArrayList<List<ItemMenu>>();
+		ModelMap modelo = new ModelMap();
 		
-	}*/
+		for(Pedido aux: listita) {
+			List<ItemMenu> pedido = servicioRestaurant.mostrarPedido(aux);
+			listaPedido.add(pedido);
+		}
+		
+		modelo.put("listita",listaPedido);
+		
+		return new ModelAndView("prueba",modelo);
+	}
 
 	private RequestPedido obtenerRequestPedido(HttpServletRequest request) {
 		RequestPedido requestPedido;

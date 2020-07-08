@@ -36,8 +36,24 @@ public class RepositorioUsuarioTest extends SpringTest {
 	private RepositorioUsuarioImpl sut;
 	
 
+	@Test 
+	@Transactional @Rollback
+	public void testQueBuscaUsuarioPorId() {
+		
+		Usuario jose = new Usuario();
+		jose.setEmail("pepe@gmail.com");
+		jose.setPassword("1234");
+		final Session session = session();
+		session.save(jose);
+		
+		final Usuario buscarUsuario = sut.buscarUsuario(jose.getId());
+		
+		
+		assertThat(buscarUsuario.getId()).isNotNull();
+	}
 	
-
+	
+	
 	
 	@Test 
 	@Transactional @Rollback

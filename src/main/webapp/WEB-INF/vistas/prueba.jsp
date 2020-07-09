@@ -20,9 +20,38 @@
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
- 	<c:forEach var="listaPedido" items="${listita}" >
-		${listaPedido}
-	</c:forEach>
+
+
+
+<div class="container ct-lista">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-8">
+
+        <div class="col-lg-8 pedido col align-self-center fm-color">
+            <p class="text-color text-center">Pedidos</p>
+
+                <c:forEach var="listaPedido" items="${listita}" >
+                    <div style="margin: 10px;">
+                        <c:forEach var="itemMenu" items="${listaPedido}">
+
+                            <li class="list-group-item list-group-item-success">
+                                    ${itemMenu.nombre}
+                                <span class="badge"><i class="fas fa-check-circle"></i></span>
+                            </li>
+
+                        </c:forEach>
+                    </div>
+
+
+
+                </c:forEach>
+
+        </div>
+        <div class="col align-self-end"></div>
+    </div>
+</div>
+
+
 <jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

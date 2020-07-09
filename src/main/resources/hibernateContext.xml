@@ -35,6 +35,8 @@
 				<!--update: aplica cambios realizados-->
 				<!--none: no modifica nunca el esquema de datos-->
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
+					<prop key="hibernate.enable_lazy_load_no_trans">true</prop>
+
     </props>
 </property>
 <!--Se configura qué paquetes debe escanear hibernate en busca de clases persistibles, es decir-->

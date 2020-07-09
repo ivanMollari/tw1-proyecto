@@ -39,9 +39,8 @@ public class RepositorioPedidoImpl implements RepositorioPedido{
     	final Session session = sessionFactory.getCurrentSession();
     	return (List<Pedido>) session.createCriteria(Pedido.class)
     			.add(Restrictions.eq("usuario.id",usuario.getId()))
-                .setFetchMode("id", FetchMode.EAGER)
-                .setFetchMode("entrada",FetchMode.EAGER )
                 .list();
     }
+    
 	
 }

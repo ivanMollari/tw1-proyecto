@@ -22,7 +22,7 @@
 
 <div class="container">
 	<h1 class="text-center info-pedido">
-		Tu pedido a ${restaurantNombre} ha sido realizado
+		Tu pedido a ${restaurant.nombre} ha sido realizado
 	</h1>
 </div>
 <div class="container">
@@ -42,8 +42,8 @@
 	    </c:forEach>
 	    <h3 class="tc">Total a pagar:</h3>
 	    <li class="list-group-item list-group-item-success">$ ${total}</li>
-	    <a href="${context}/restaurant/${idRestaurant}" class="btn btn-warning btn-lg btn-pedido btn-block">Realizar otro pedido</a>
-	    <a href="${context}/restaurant/${idRestaurant}" class="btn btn-warning btn-lg btn-pedido btn-block">Ir a la página principal</a>
+	    <a href="${context}/restaurant/${restaurant.id}" class="btn btn-warning btn-lg btn-pedido btn-block">Realizar otro pedido</a>
+	    <a href="${context}/restaurant/${restaurant.id}" class="btn btn-warning btn-lg btn-pedido btn-block">Ir a la página principal</a>
     </div>
 	<div class="col align-self-end"></div>
 </div>

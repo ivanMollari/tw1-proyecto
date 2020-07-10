@@ -36,7 +36,7 @@
 						<button class="btn btn-lg  btn-block login " Type="Submit"/>Login</button>
 					</div>
 					<div class="form-group pb-5">
-						<a  haref ="" class="btn btn-lg  btn-block registrarse " />Registrarse</a>
+						<a  haref ="${context}/registrarUsuario" class="btn btn-lg  btn-block registrarse " />Registrarse</a>
 					</div>
 				</form:form>
 

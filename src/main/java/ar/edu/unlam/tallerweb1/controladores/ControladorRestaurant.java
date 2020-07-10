@@ -194,7 +194,7 @@ public class ControladorRestaurant {
 		servicioRestaurant.crearPedido(pedido);
 		modelo.put("pedido", pedido);
 		modelo.put("total", requestPedido.getTotal());
-		modelo.put("restaurantNombre", restaurant.getNombre());
+		modelo.put("restaurant", restaurant);
 		modelo.put("listaPedido", listaPedido);
 
 		return new ModelAndView("pedidoRespuesta", modelo);

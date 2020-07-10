@@ -109,6 +109,27 @@ public class RepositorioUsuarioTest extends SpringTest {
 		
 	}
 	
+	@Test 
+	@Transactional @Rollback
+	public void testQueAgregaUsuario() {
+		
+		Usuario usuario1 = new Usuario();
+		
+		usuario1.setEmail("juan@hotmail.com");
+		usuario1.setPassword("1234juan");
+		usuario1.setRol("usuario");
+		final Session session = session();
+		session.save(usuario1);
+		
+		sut.agregarUsuario(usuario1);
+		
+		final Usuario buscarUsuario = sut.consultarUsuario(usuario1);
+		
+		assertThat(buscarUsuario).isNotNull();
+		assertThat(buscarUsuario.getEmail()).isEqualTo("juan@hotmail.com");
+		
+	}
+	
 
 
 

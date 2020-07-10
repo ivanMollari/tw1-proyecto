@@ -71,6 +71,24 @@ public class ControladorLogin {
 	// Escucha la url /, y redirige a la URL /login, es lo mismo que si se invoca la url /login directamente.
 	@RequestMapping(path = "/", method = RequestMethod.GET)
 	public ModelAndView inicio() {
+		return new ModelAndView("redirect:/home");
+	}
+	
+	@RequestMapping(path="/registrarUsuario")
+	public ModelAndView registro() {
+		ModelMap model = new ModelMap();
+		Usuario usuario = new Usuario();
+		model.put("usuario", usuario);
+		return new ModelAndView("registrarUsuario",model);
+	}
+	
+	@RequestMapping(path= "/guardar-registro", method = RequestMethod.POST)
+	public ModelAndView guardarRegistro(@ModelAttribute("usuario") Usuario usuario) { 
+		ModelMap model = new ModelMap();
+
+			usuario.setRol("usuario");
+			servicioLogin.agregarUsuario(usuario);
 		return new ModelAndView("redirect:/login");
+
 	}
 }

@@ -8,4 +8,6 @@ public interface ServicioLogin {
 	Usuario consultarUsuario(Usuario usuario);
 
 	Usuario buscarUsuario(Long idUsuario);
+
+	void agregarUsuario(Usuario usuario);
 }

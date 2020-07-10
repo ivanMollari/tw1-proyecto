@@ -1,0 +1,73 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.c{
+	margin: 0;
+}
+
+.img-h{
+	background-image: url("../images/comidaPedido.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	margin-bottom: 3em;
+}
+.tb{
+	background-color:#222222;
+	color:#fff;
+}
+.contenedor-texto-intro{
+	margin-top:3em;
+	margin-bottom:3em;
+}
+.lh{
+	font-size: 1em;
+	color:#222222;	
+}
+.titulo-texto-b{
+	color:#222222;
+	text-align:center;
+}
+.contendor-texto-b{
+	margin-bottom:5em;
+}
+.texto-b{
+	color:#222222;
+	text-align:center;
+	background-color: #f0ad4e;
+	margin-top: 1em;
+	padding: 2em;
+}
+.contenedor-img-txt{
+	margin-bottom:6em;
+	background-color: antiquewhite;
+	padding: 4em;
+}
+.contenedor-img{
+	margin-rigth:1em;
+}
+.texto-img{
+    font-size: 1em;
+    margin: 2em;
+    margin-top: 5.5em;
+    margin-left: 38em;
+    padding: 3em;
+    background-color: #f0ad4e;
+}
+.reg-res{
+	background-image: url("../images/registrarResto.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.contenedor-texto-reg{
+	margin-top:20em;
+}
+.btn-center{
+	margin-left: 13em;
+	padding:10em;
+	font-size: 4em;
+}
+.contenedor-registrarResto{
+	margin-bottom: 5em;
+}

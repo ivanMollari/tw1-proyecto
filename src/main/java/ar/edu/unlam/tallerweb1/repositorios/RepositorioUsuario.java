@@ -10,6 +10,10 @@ public interface RepositorioUsuario {
 	Usuario buscarUsuario(Long id);
 
 	void modificarUsuario(Usuario usuario);
+
+	void agregarUsuario(Usuario usuario);
+
+	
 	
 	
 }

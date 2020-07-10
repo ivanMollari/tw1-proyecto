@@ -64,7 +64,7 @@
                                     <form:hidden path="id"  id="entradaId" value="${entrada.id}"/>
                                     <form:hidden path="nombre"  id="nombre" value="${entrada.nombre}" />
                                     <form:hidden path="precio"  id="precio" value="${entrada.precio}" />
-                                    <input id="add" type="submit" value="Agregar"class="btn  btn-success ">
+                                    <input id="add" type="submit" value="Agregar"class="btn  btn-warning ">
                                 </form:form>
                             </li>
                         </c:forEach>
@@ -82,7 +82,7 @@
                                     <form:hidden path="id"  id="nombre" value="${comida.id}" />
 	                                <form:hidden path="nombre"  id="nombre" value="${comida.nombre}" />
 	                                <form:hidden path="precio"  id="precio" value="${comida.precio}" />
-                                    <input id="add" type="submit" value="Agregar"class="btn  btn-success ">
+                                    <input id="add" type="submit" value="Agregar"class="btn  btn-warning ">
                                  </form:form>
                                 </li>
                                 
@@ -101,7 +101,7 @@
                                     <form:hidden path="id"  id="bebidaId" value="${bebida.id}" />
 	                                <form:hidden path="nombre"  id="nombre" value="${bebida.nombre}" />
 	                                <form:hidden path="precio"  id="precio" value="${bebida.precio}" />
-                                    <input id="add" type="submit" value="Agregar"class="btn  btn-success ">
+                                    <input id="add" type="submit" value="Agregar"class="btn  btn-warning ">
                                 </form:form>
                                 </li>
                         </c:forEach>
@@ -119,7 +119,7 @@
                                     <form:hidden path="id"  id="postreId" value="${postre.id}" />
 	                                <form:hidden path="nombre"  id="nombre" value="${postre.nombre}" />
 	                                <form:hidden path="precio"  id="precio" value="${postre.precio}" />
-                                    <input id="add" type="submit" value="Agregar"class="btn  btn-success ">
+                                    <input id="add" type="submit" value="Agregar"class="btn  btn-warning ">
                                  </form:form>
                                 </li>
                                 
@@ -160,7 +160,7 @@
                 </c:forEach>
 				<form:hidden name="total" path="total" value="${total}"/>
 
-                <input id="enviar" type="submit" value="Enviar"class="btn  btn-succes">
+                <input id="enviar" type="submit" value="Enviar"class="btn  btn-warning">
             </form:form>
 
 			</div>

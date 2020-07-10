@@ -258,12 +258,14 @@ public class RestaurantControllerTest {
 		assertThat(modelAndView.getModel().get("pedido")).isEqualTo(pedido);
 		assertThat(modelAndView.getModel()).containsKey("total");
 		assertThat(modelAndView.getModel().get("total")).isEqualTo(requestPedido.getTotal());
-		assertThat(modelAndView.getModel()).containsKey("restaurantNombre");
-		assertThat(modelAndView.getModel().get("restaurantNombre")).isEqualTo(resto.getNombre());
+		assertThat(modelAndView.getModel()).containsKey("restaurant");
+		assertThat(modelAndView.getModel().get("restaurant")).isEqualTo(resto);
 		assertThat(modelAndView.getModel()).containsKey("listaPedido");
 		assertThat(modelAndView.getModel().get("listaPedido")).isEqualTo(listaPedido);	
 		
     }
+    
+
     
     @Test
     public void testQueBuscaRestoPorNombre() {

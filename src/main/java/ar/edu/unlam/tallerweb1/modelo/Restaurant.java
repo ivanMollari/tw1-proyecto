@@ -11,12 +11,21 @@ import java.util.List;
 
 public class Restaurant{
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-
 	private Long id;
 	@Column (nullable = false)
 	private String nombre;
 	private  Double latitudResto;
 	private Double longitudResto;
+	private String img;
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
 	private Integer cantMesas;
 
 	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)

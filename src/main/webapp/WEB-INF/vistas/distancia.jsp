@@ -30,10 +30,10 @@
 					 lat = rta.coords.latitude;
 					 lng = rta.coords.longitude;
 					
-					var gLatLng = new google.maps.LatLng(lat,lng);
-					
 					document.getElementById("latitud").value = lat;
 					document.getElementById("longitud").value = lng;
+					
+					var gLatLng = new google.maps.LatLng(lat,lng);
 					
 					map = new google.maps.Map(document.getElementById('map'), {
 						center: gLatLng,
@@ -96,7 +96,6 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="container">
-		<h1>Bienvenido ${usuario}</h1>
 		<div class="col-lg-8">
 			<div id="map"></div>
 		</div>
@@ -126,7 +125,7 @@
 							<p class="ct-fm">Escriba el radio en metros</p>
 						</div>	
 					   <div class="col-md-10 input-fm">    
-					        <input path="radioEnM" type="text" name="radioEnM" placeholder="Escriba los metros para saber la distancia" class="form-control" />
+					        <input path="radioEnM" type="text" name="radioEnM" placeholder="Escriba los metros para saber la distancia" class="form-control" required="required"/>
 					   </div>
 
 					   <div class=" col-md-10">     

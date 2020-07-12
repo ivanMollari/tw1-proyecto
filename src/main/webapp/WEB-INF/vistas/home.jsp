@@ -23,12 +23,10 @@
 			<div class="col-lg-2">
 				<img src="${context}/images/logoSP3.png" width="100" height="100" class="pull-left"/>
 			</div>
-			<div class="col-lg-8"></div>
-			<div class="col-lg-1">
-				<a href="${context}/registrarUsuario" class="lh">Registrate</a>
-			</div>
-			<div class="col-lg-1">
-				<a href="${context}/login" class="lh">Ingresa</a>
+			<div class="col-lg-7"></div>
+			<div class="col-lg-3">
+			<div class="col-lg-2"><i class="fas fa-user"></i></div>
+			<div class="col-lg-8"><p>${usuario}</p></div>
 			</div>
 			
 		</div>
@@ -37,16 +35,19 @@
 		</div>
 		</section>
 		<section class="container contenedor-texto-intro">
-			<h2 class="titulo-texto-b">Lorem</h2>
+			<h2 class="titulo-texto-b">Delivery que satisface tus sentidos</h2>
 			<div class="contenedor-texto-b">
-				<p class="texto-b">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-				Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-				when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-				It has survived not only five centuries, but also the leap into electronic typesetting,
-				 remaining essentially unchanged. It was popularised in the 1960s with the release of 
-				 Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing 
-				 software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+				<p class="texto-b">Amamos la comida tanto como vos y por eso queremos llevar a tu mesa,
+				 tu comida favorita directamente desde la cocina de los mejores restaurantes.
+				  ¿La mejor parte? ¡Te la llevamos donde estés!
+				Ingresá tu dirección, elegí el restaurante, seleccioná tu comida favorita y listo. 
+				¡Pedir delivery de comida nunca había sido tan sencillo, con Deli Fast lo único difícil será decidir qué comer!</p>
 			 </div>
+		</section>
+		<section calss="container">
+			<h2 class="titulo-texto-b">¡Comenza a buscar los restaurantes mas cercanos a tu ubicación!</h2>
+			<p class="text-center">Para poder acceder a los restaurantes cercanos a tu ubicación,
+			 hace click en  <a  href ="${context}/mapa" class="btn btn-warning" />Buscar</a></p>
 		</section>
 		<section class="container contenedor-registrarResto">
 			<img src="${context}/images/registrarResto3.jpg" width="450" height="450" class="pull-left"/>
@@ -60,14 +61,11 @@
 				<img src="${context}/images/fondito.jpg" width="450" height="450" class="pull-left"/>
 			</div>
 			<div class="texto-img">
-				<h1>Titulo del texto de la foto</h1>
-				<p>Nota que los atributos width y height redimensionan 
-				la imagen al vuelo, esto es, la imagen tendrá unas dimensiones concretas y 
-				se descargará siempre a máxima resolución. Con estos atributos redimensionas la imagen 
-				al tamaño de ancho y alto indicado, pero la imagen realmente tiene su propio tamaño. 
-				Puedes omitir estos atributos siempre que quieras, ya que no son obligatorios, 
-				pero se consideran una buena práctica para evitar los molestos cambios repentinos 
-				de posición o tamaño en una página.</p>
+				<h1>Convierte a los usuarios que visitan tu sitio web en comensales habituales</h1>
+				<p>Nuestro sistema de pedidos online ayudará a transformar tu página web en una máquina de hacer dinero.
+				No importa cuánto crezca tu negocio, siempre podrás recibir pedidos ilimitados sin costos.
+				Potencia tu negocio con nuestro sistema de comandas para restaurantes gratis y nunca tendrás que preocuparte 
+				por comisiones.</p>
 			</div>
 		</section>
 

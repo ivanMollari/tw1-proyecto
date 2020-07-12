@@ -31,7 +31,10 @@ body{
 	color:black;
 }
 .error-login{
-	color: white;
+	color: crimson;
+	font-size:1vw;
+	background-color:black;
 }
+
 
 

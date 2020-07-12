@@ -98,7 +98,7 @@ public class RestaurantTest extends SpringTest {
     	assertThat(buscado).isNull();
    	
     }
- @Test
+    @Test
     @Transactional @Rollback
     public void testConsultarRestaurant() {
        //given:

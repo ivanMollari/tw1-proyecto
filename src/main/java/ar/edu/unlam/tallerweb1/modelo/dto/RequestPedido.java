@@ -4,6 +4,7 @@ package ar.edu.unlam.tallerweb1.modelo.dto;
 import ar.edu.unlam.tallerweb1.modelo.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class RequestPedido {

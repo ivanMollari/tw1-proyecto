@@ -24,7 +24,7 @@
 <body>
 	<div class = "container">
 		
-			<div id="loginbox" style="margin-top:20em;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 formulario">
+			<div id="loginbox" style="margin-top:10em;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 formulario">
 				
 					
 					<h1 class="text-center cr-fuente pt-3">REGISTRARSE</h1>
@@ -34,16 +34,16 @@
 
 
 					<div class="form-group pt-3"> 
-						<form:input path="email" id="email" type="email" class="form-control" placeholder="Ingrese su mail" />
+						<form:input path="email" id="email" type="email" class="form-control" placeholder="Ingrese su mail" required="required" />
 					</div>
 					<div class="form-group pb-3"> 	
-						<form:input path="password" type="password" id="password" class="form-control" placeholder="Ingrese su clave"/>     		  
+						<form:input path="password" type="password" id="password" class="form-control" placeholder="Ingrese su clave" required="required"/>     		  
 					</div>
 					<div class="form-group pb-5">
 						<button class="btn btn-lg  btn-block login " Type="Submit"/>Registrarse</button>
 					</div>
 					<div class="form-group pb-5">
-						<a  haref ="${context}/login" class="btn btn-lg  btn-block registrarse " />Login</a>
+						<a  href ="${context}/login" class="btn btn-lg  btn-block registrarse " />Login</a>
 					</div>
 				</form:form>
 
@@ -51,7 +51,8 @@
 				<c:if test="${not empty error}">
 			        <h4 class="error-login"><span>${error}</span></h4>
 			        <br>
-		        </c:if>	
+		        </c:if>
+		        
 			</div>
 		</div>
 </body>

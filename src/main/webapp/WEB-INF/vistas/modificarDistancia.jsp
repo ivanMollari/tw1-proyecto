@@ -139,7 +139,7 @@
 							<p class="ct-fm">Escriba el radio en metros</p>
 						</div>	
 					   <div class="col-md-10 input-fm">    
-					        <input path="radioEnM" type="text" name="radioEnM" placeholder="Escriba los metros para saber la distancia" class="form-control" />
+					        <input path="radioEnM" type="text" name="radioEnM" placeholder="Escriba los metros para saber la distancia" class="form-control" required="required" />
 
 					   </div>
 
@@ -150,9 +150,6 @@
 					   ${mensaje}
 				  </form> 
 				  
-				  <c:if test= "${empty radioEnM}">
-					   <p>${error}</p>
-				  </c:if>
 			</div>
 
 			</div>

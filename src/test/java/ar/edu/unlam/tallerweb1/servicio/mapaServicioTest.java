@@ -61,7 +61,8 @@ public class mapaServicioTest {
             assertThat(servicioMapa.sacarDistancia(laFarola,jose)).isEqualTo(25);
         } catch (ResultadoNegativoException e) {
             e.getMessage();
-        }
+        }  
+        
     }
 
     @Test
@@ -115,8 +116,12 @@ public class mapaServicioTest {
             assertThat(servicioMapa.sacarDistancia(noi,jose)).isEqualTo(97);
             assertThat(servicioMapa.mostrarRestosMasCercanos(jose, 100)).isEqualTo(listitaCercanos);
             assertThat(servicioMapa.mostrarRestosMasCercanos(jose, 100).size()).isEqualTo(2);
+            assertThat(servicioMapa.mostrarRestosMasCercanos(jose, 100).contains(laFarola)).isTrue();
+            assertThat(servicioMapa.mostrarRestosMasCercanos(jose, 100).contains(noi)).isTrue();
+            assertThat(servicioMapa.mostrarRestosMasCercanos(jose, 100).contains(tioDue)).isFalse();
         } catch (ResultadoNegativoException e) {
             e.getMessage();
         }
+        
     }
 }

@@ -33,7 +33,7 @@ public class ControladorRestaurant {
 	}
 
 	@RequestMapping(path = "/restaurant/{id}", method = RequestMethod.GET)
-	public ModelAndView mostrarRestaurant(@PathVariable(value = "id") Long id) {
+	public ModelAndView mostrarRestaurant(@PathVariable(value = "id") Long id, HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		Entrada entrada = new Entrada();
 		Comida comida = new Comida();
@@ -41,6 +41,7 @@ public class ControladorRestaurant {
 		Postre postre = new Postre();
 		RequestPedido requestPedido = new RequestPedido();
 		Restaurant restaurant = servicioRestaurant.consultarRestaurant(id);
+		Usuario usuarioBuscado = servicioLogin.buscarUsuario((Long) request.getSession().getAttribute("idUsuario"));
 		Map<String, List<ItemMenu>> ListaItems = servicioRestaurant.consultarMenuCompleto(restaurant.getMenu().getId());
 		modelo.put("menu", restaurant.getMenu());
 		modelo.put("restaurant", restaurant);
@@ -50,7 +51,8 @@ public class ControladorRestaurant {
 		modelo.put("bebida", bebida);
 		modelo.put("postre", postre);
 		modelo.put("requestPedido", requestPedido);
-
+		modelo.put("usuario",usuarioBuscado.getEmail());
+		
 		return new ModelAndView("restaurant", modelo);
 	}
 
@@ -83,8 +85,10 @@ public class ControladorRestaurant {
 		modelo.put("bebida", bebida);
 		modelo.put("postre", postre);
 		modelo.put("total", requestPedido.getTotal());
+		modelo.put("usuario",usuarioBuscado.getEmail());
 		return new ModelAndView("restaurant", modelo);
 	}
+	
 
 	@RequestMapping(path = "/restaurant/{idResto}/comida", method = RequestMethod.POST)
 	public ModelAndView listaComidas(@PathVariable(value = "idResto") Long idResto,
@@ -114,6 +118,7 @@ public class ControladorRestaurant {
 		modelo.put("bebida", bebida);
 		modelo.put("postre", postre);
 		modelo.put("total", requestPedido.getTotal());
+		modelo.put("usuario",usuarioBuscado.getEmail());
 		return new ModelAndView("restaurant", modelo);
 	}
 
@@ -146,6 +151,7 @@ public class ControladorRestaurant {
 		modelo.put("entrada", entrada);
 		modelo.put("postre", postre);
 		modelo.put("total", requestPedido.getTotal());
+		modelo.put("usuario",usuarioBuscado.getEmail());
 		return new ModelAndView("restaurant", modelo);
 	}
 
@@ -177,6 +183,7 @@ public class ControladorRestaurant {
 		modelo.put("entrada", entrada);
 		modelo.put("bebida", bebida);
 		modelo.put("total", requestPedido.getTotal());
+		modelo.put("usuario",usuarioBuscado.getEmail());
 		return new ModelAndView("restaurant", modelo);
 	}
 
@@ -186,6 +193,7 @@ public class ControladorRestaurant {
 
 		ModelMap modelo = new ModelMap();
 		Restaurant restaurant = servicioRestaurant.consultarRestaurant(id);
+		Usuario usuarioBuscado = servicioLogin.buscarUsuario((Long) request.getSession().getAttribute("idUsuario"));
 		requestPedido.setUsuario(servicioLogin.buscarUsuario((Long) request.getSession().getAttribute("idUsuario")));
 
 		Pedido pedido = servicioRestaurant.armarPedido(requestPedido, restaurant);
@@ -196,38 +204,31 @@ public class ControladorRestaurant {
 		modelo.put("total", requestPedido.getTotal());
 		modelo.put("restaurant", restaurant);
 		modelo.put("listaPedido", listaPedido);
-
+		modelo.put("usuario",usuarioBuscado.getEmail());
 		return new ModelAndView("pedidoRespuesta", modelo);
 
 	}
 
 	@RequestMapping(path = "/restaurant/buscar", method = RequestMethod.GET)
-	public ModelAndView buscarRestaurants(@RequestParam String searchText) {
+	public ModelAndView buscarRestaurants(@RequestParam String searchText,HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
-
+		Usuario usuarioBuscado = servicioLogin.buscarUsuario((Long) request.getSession().getAttribute("idUsuario"));
 		List<Restaurant> listaResto = servicioRestaurant.buscarRestaurants(searchText);
 		modelo.put("listaResto", listaResto);
-
+		modelo.put("usuario",usuarioBuscado.getEmail());
 		return new ModelAndView("buscarResto", modelo);
 	}
 
 	@RequestMapping(path = "/mis-pedidos")
 	public ModelAndView mostrarPedidosUsuario(HttpServletRequest request) {
 		Usuario usuarioBuscado = servicioLogin.buscarUsuario((Long) request.getSession().getAttribute("idUsuario"));
-		List<Pedido> listita = servicioPedido.mostrarPedidosUsuario(usuarioBuscado);
-		List<List<ItemMenu>> listaPedido = new ArrayList<List<ItemMenu>>();
+		List<Pedido> lista = servicioPedido.mostrarPedidosUsuario(usuarioBuscado);
 		ModelMap modelo = new ModelMap();
-		Map<Restaurant, List<ItemMenu>> restoItems = new HashMap<>();
 
-		for (Pedido aux : listita) {
-			List<ItemMenu> pedido = servicioRestaurant.mostrarPedido(aux);
-			restoItems.put(aux.getRestaurant(), pedido);
-			listaPedido.add(pedido);
-		}
-
-		modelo.put("listita1", listaPedido);
-		modelo.put("listita2", listita);
+		modelo.put("listita", lista);
+		modelo.put("usuario",usuarioBuscado.getEmail());
 		return new ModelAndView("misPedidos", modelo);
+
 	}
 
 	private RequestPedido obtenerRequestPedido(HttpServletRequest request) {

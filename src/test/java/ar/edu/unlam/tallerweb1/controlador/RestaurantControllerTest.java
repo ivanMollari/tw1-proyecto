@@ -43,15 +43,21 @@ public class RestaurantControllerTest {
     public void consultarRestaurant() {
 
         //given:
+    	HttpServletRequest requestMock=mock(HttpServletRequest.class);
+    	HttpSession sessionMock = mock(HttpSession.class);
         Restaurant restaurant=new Restaurant();
         restaurant.setId(1L);
         Menu menu=new Menu();
         menu.setDescripcion("soy una descripcion");
         restaurant.setMenu(menu);
+        Usuario pepe = mock(Usuario.class);
+        
         when( servicioRestaurant.consultarRestaurant(restaurant.getId())).thenReturn(restaurant);
+    	when(requestMock.getSession()).thenReturn(sessionMock);
+    	when(servicioLogin.buscarUsuario((Long)requestMock.getSession().getAttribute("idUsuario"))).thenReturn(pepe);
 
         //when:
-        ModelAndView resultado=instancia.mostrarRestaurant(1L);
+        ModelAndView resultado=instancia.mostrarRestaurant(1L,requestMock);
 
         //then:
         assertThat(resultado).isNotNull();
@@ -59,15 +65,20 @@ public class RestaurantControllerTest {
     
     @Test
     public void testmuestraVistaRestaurant() {
+    	HttpServletRequest requestMock=mock(HttpServletRequest.class);
+    	HttpSession sessionMock = mock(HttpSession.class);
     	Restaurant resto = new Restaurant();
     	Menu menu = new Menu();
     	resto.setMenu(menu);
     	resto.setNombre("La Farola");
+    	Usuario pepe = mock(Usuario.class);
     	Map<String, List<ItemMenu>> menuCompleto =mock(Map.class);
     	when( servicioRestaurant.consultarRestaurant(resto.getId())).thenReturn(resto);
     	when(servicioRestaurant.consultarMenuCompleto(resto.getMenu().getId())).thenReturn(menuCompleto);
+    	when(requestMock.getSession()).thenReturn(sessionMock);
+    	when(servicioLogin.buscarUsuario((Long)requestMock.getSession().getAttribute("idUsuario"))).thenReturn(pepe);
     	
-    	ModelAndView modelAndView = instancia.mostrarRestaurant(resto.getId());
+    	ModelAndView modelAndView = instancia.mostrarRestaurant(resto.getId(),requestMock);
     	
     	assertThat(modelAndView).isNotNull();
     	assertThat(modelAndView.getViewName()).isEqualTo("restaurant");
@@ -271,10 +282,15 @@ public class RestaurantControllerTest {
     public void testQueBuscaRestoPorNombre() {
     	List<Restaurant> listaRestos = new ArrayList();
     	Restaurant resto = new Restaurant();
+    	HttpServletRequest requestMock=mock(HttpServletRequest.class);
+    	HttpSession sessionMock = mock(HttpSession.class);
+    	Usuario pepe = mock(Usuario.class);
     	
     	when(servicioRestaurant.buscarRestaurants(resto.getNombre())).thenReturn(listaRestos);
+    	when(requestMock.getSession()).thenReturn(sessionMock);
+		when(servicioLogin.buscarUsuario((Long)requestMock.getSession().getAttribute("idUsuario"))).thenReturn(pepe);
     	
-    	ModelAndView modelAndView = instancia.buscarRestaurants(resto.getNombre());
+    	ModelAndView modelAndView = instancia.buscarRestaurants(resto.getNombre(),requestMock);
     	
     	assertThat(modelAndView).isNotNull();
     	assertThat(modelAndView.getViewName()).isEqualTo("buscarResto");

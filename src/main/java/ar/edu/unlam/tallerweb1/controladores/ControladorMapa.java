@@ -76,6 +76,7 @@ public class ControladorMapa{
      	model.put("listado", listaRestosCercanos);
      	model.put("radioEnM", radioEnM);
      	model.put("direccion", ubicacion);
+     	model.put("usuario",usuarioBuscado.getEmail());
  		
  		return new ModelAndView("modificarDistancia", model);
  	}

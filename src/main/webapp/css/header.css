@@ -3,6 +3,7 @@ header {
     /*background: #142850;*/
     background: #1A1021;
     color: white;
+    margin-bottom:6em;
 }
 .li-nav:hover{
 	background:black;

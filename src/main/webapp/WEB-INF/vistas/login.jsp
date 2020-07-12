@@ -15,7 +15,7 @@
 		
 		<div class = "container">
 		
-			<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 formulario">
+			<div id="loginbox" style="margin-top:10em;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 formulario">
 				<%--Definicion de un form asociado a la accion /validar-login por POST. Se indica ademas que el model attribute se--%>
 				<%--debe referenciar con el nombre usuario, spring mapea los elementos de la vista con los atributos de dicho objeto--%>
 					<%--para eso debe coincidir el valor del elemento path de cada input con el nombre de un atributo del objeto --%>
@@ -36,7 +36,7 @@
 						<button class="btn btn-lg  btn-block login " Type="Submit"/>Login</button>
 					</div>
 					<div class="form-group pb-5">
-						<a  haref ="${context}/registrarUsuario" class="btn btn-lg  btn-block registrarse " />Registrarse</a>
+						<a  href ="${context}/registrarUsuario" class="btn btn-lg  btn-block registrarse " />Registrarse</a>
 					</div>
 				</form:form>
 

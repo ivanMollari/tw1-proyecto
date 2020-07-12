@@ -43,7 +43,7 @@
 	    <h3 class="tc">Total a pagar:</h3>
 	    <li class="list-group-item list-group-item-success">$ ${total}</li>
 	    <a href="${context}/restaurant/${restaurant.id}" class="btn btn-warning btn-lg btn-pedido btn-block">Realizar otro pedido</a>
-	    <a href="${context}/restaurant/${restaurant.id}" class="btn btn-warning btn-lg btn-pedido btn-block">Ir a la página principal</a>
+	    <a href="${context}/mapa" class="btn btn-warning btn-lg btn-pedido btn-block">Ir a la página principal</a>
     </div>
 	<div class="col align-self-end"></div>
 </div>

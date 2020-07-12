@@ -31,8 +31,8 @@
         <div class="col-lg-8 pedido col align-self-center fm-color">
             <p class="text-color text-center">Pedidos</p>
 
-                <c:forEach var="pedido" items="${listita2}" >
-                    <div style="margin: 20px;">
+                <c:forEach var="pedido" items="${listita}" >
+                    <div style="margin: 10px;">
                         <section>
                             <article>
                                 <h3>${pedido.restaurant.nombre}</h3>

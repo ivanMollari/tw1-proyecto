@@ -19,7 +19,6 @@
 	<script type="application/javascript" src=" ${context}/js/jquery-1.11.3.min.js"></script>
 	
 	<script>
-		// var iconBase ='https://maps.google.com/mapfiles/kml/shapes/';
 			var map;
 			
 			function initMap() {
@@ -109,10 +108,11 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	<div class="container">
+	<div class="container color-container">
 		
 		<div class="col-lg-8">
 			<div id="map"></div>
+			
 		</div>
 			<div class="col-lg-4 form-mapa">
 			<p class="titulo-form">CAMBIAR UBICACIÓN</p>
@@ -153,9 +153,11 @@
 			</div>
 
 			</div>
-			<div class="container">
+			<div class="container color-container-lista">
 			<div class="col-lg-8">
-				<h2>Lista de los restos cercanos a usted</h2>
+			
+				<h2 class="titulo-lista">Lista de los restaurantes cercanos</h2>
+				
 					<c:forEach var="restaurant" items="${listado}">
 				
 						<a href="${context}/restaurant/${restaurant.id}" class="list-group-item list-restos">

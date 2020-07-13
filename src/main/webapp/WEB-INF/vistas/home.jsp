@@ -52,8 +52,11 @@
 		<section class="container contenedor-registrarResto">
 			<img src="${context}/images/registrarResto3.jpg" width="450" height="450" class="pull-left"/>
 			<div class="contenedor-texto-reg" >
-				<h2>Hace que tu restaurante forme parte</h2>
-				<input id="add" type="submit" value="Registrar"class="btn  btn-warning btn-center">
+				<h2>Busca a tu restaurante favorito</h2>
+				<form class="navbar-form " id="buscar" method="get" action="${context}/restaurant/buscar">
+				 <input type="text" class="form-control" placeholder="Buscar" name="searchText">
+				<input id="add" type="submit" value="Buscar"class="btn  btn-warning btn-center">
+				</form>
 			</div>
 		</section>
 		<section class="container contenedor-img-txt">
@@ -61,11 +64,11 @@
 				<img src="${context}/images/fondito.jpg" width="450" height="450" class="pull-left"/>
 			</div>
 			<div class="texto-img">
-				<h1>Convierte a los usuarios que visitan tu sitio web en comensales habituales</h1>
-				<p>Nuestro sistema de pedidos online ayudará a transformar tu página web en una máquina de hacer dinero.
-				No importa cuánto crezca tu negocio, siempre podrás recibir pedidos ilimitados sin costos.
-				Potencia tu negocio con nuestro sistema de comandas para restaurantes gratis y nunca tendrás que preocuparte 
-				por comisiones.</p>
+				<h1>¿Cuál aplicación debo usar para pedir comida?</h1>
+				<p>Con una rutina cada vez más ocupada, a veces hay poco tiempo para pensar en el menú de la semana 
+				o el plato del día. ¡Rappi reúne los mejores restaurantes de tu ciudad!
+				 Encuentra desde platos rápidos hasta alternativas saludables.
+				  Recibe tu pedido rápidamente y ten la seguridad de nuestra garantía de calidad en la entrega.</p>
 			</div>
 		</section>
 

@@ -24,21 +24,21 @@
 
 
 
-<div class="container ct-lista">
-    <div class="col-lg-3"></div>
-    <div class="col-lg-8">
-
-        <div class="col-lg-8 pedido col align-self-center fm-color">
+<section class="container ct-lista">
+    
+    <div class="col-lg-8 align-self-center contenedor-color container">
+		<div clas="col-lg-2"></div>
+        <div class="col-lg-10 pedido col align-self-center fm-color">
             <p class="text-color text-center">Pedidos</p>
 
                 <c:forEach var="pedido" items="${listita}" >
                     <div style="margin: 10px;">
                         <section>
                             <article>
-                                <h3>${pedido.restaurant.nombre}</h3>
+                                <h3 class="titulo-resto">${pedido.restaurant.nombre}</h3>
                                 <c:forEach var="entradas" items="${pedido.entradas}">
 
-                                    <li class="list-group-item list-group-item-success">
+                                    <li class="list-group-item list-group-item-warning">
                                             ${entradas.nombre}
 
                                         <span class="badge"><i class="fas fa-check-circle"></i></span>
@@ -48,7 +48,7 @@
 
                                 <c:forEach var="comidas" items="${pedido.comidas}">
 
-                                    <li class="list-group-item list-group-item-success">
+                                    <li class="list-group-item list-group-item-warning">
                                             ${comidas.nombre}
 
                                         <span class="badge"><i class="fas fa-check-circle"></i></span>
@@ -58,7 +58,7 @@
 
                                 <c:forEach var="bebidas" items="${pedido.bebidas}">
 
-                                    <li class="list-group-item list-group-item-success">
+                                    <li class="list-group-item list-group-item-warning">
                                             ${bebidas.nombre}
 
                                         <span class="badge"><i class="fas fa-check-circle"></i></span>
@@ -68,21 +68,18 @@
 
                                 <c:forEach var="postres" items="${pedido.postres}">
 
-                                    <li class="list-group-item list-group-item-success">
+                                    <li class="list-group-item list-group-item-warning">
                                             ${postres.nombre}
 
                                         <span class="badge"><i class="fas fa-check-circle"></i></span>
                                     </li>
 
                                 </c:forEach>
-
-                            </article>
-                            <article>
-                                <div><img src="${context}/${pedido.restaurant.img}" alt="restaurant"></div>
+							<div><h4 class="precio bg-warning">Total:$  ${pedido.total}</h4></div>
                             </article>
                         </section>
 
-                    <div><p>total: ${pedido.total}</p></div>
+                    
 
                     </div>
 
@@ -94,7 +91,8 @@
         </div>
         <div class="col align-self-end"></div>
     </div>
-</div>
+   
+</section>
 
 
 <jsp:include page="footer.jsp"></jsp:include>

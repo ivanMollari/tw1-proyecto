@@ -8,6 +8,8 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioPostreImpl;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPostreImpl;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.mockito.stubbing.OngoingStubbing;
+import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,5 +48,18 @@ public class PostreServicioTest {
 
         //then: The list should be size 2
         assertThat(resultado.size()).isEqualTo(2);
+    }
+    
+    @Test
+    public void consultarPostre() {
+    	Postre postre= new Postre();
+    	postre.setId(1L);
+    	
+    	when((repositorio.consultarPostre(postre.getId()))).thenReturn(postre);
+    	
+    	Postre helado = instancia.consultarPostre(postre.getId());
+    	
+    	assertThat(helado).isNotNull();
+    	assertThat(helado.getId()).isEqualTo(1L);
     }
 }

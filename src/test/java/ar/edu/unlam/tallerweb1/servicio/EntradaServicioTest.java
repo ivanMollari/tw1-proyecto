@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.servicio;
 import ar.edu.unlam.tallerweb1.modelo.Entrada;
 import ar.edu.unlam.tallerweb1.modelo.ItemMenu;
 import ar.edu.unlam.tallerweb1.modelo.Menu;
+import ar.edu.unlam.tallerweb1.modelo.Postre;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioEntradaImpl;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPedidoImpl;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEntradaImpl;
@@ -46,5 +47,18 @@ public class EntradaServicioTest {
 
         //then: The list should be size 2
         assertThat(resultado.size()).isEqualTo(2);
+    }
+    
+    @Test
+    public void consultarEntrada() {
+    	Entrada entrada= new Entrada();
+    	entrada.setId(1L);
+    	
+    	when((repositorio.consultarEntrada(entrada.getId()))).thenReturn(entrada);
+    	
+    	Entrada rabas = instancia.consultarEntrada(entrada.getId());
+    	
+    	assertThat(rabas).isNotNull();
+    	assertThat(rabas.getId()).isEqualTo(1L);
     }
 }

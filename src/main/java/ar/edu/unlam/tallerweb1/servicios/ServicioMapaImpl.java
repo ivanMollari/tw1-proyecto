@@ -41,7 +41,6 @@ public class ServicioMapaImpl implements ServicioMapa{
 
 
 	public Integer sacarDistancia(Restaurant resto, Usuario usuario) throws ResultadoNegativoException {
-
 		Double distancia = 0.0;
 		Integer resultado;
 
@@ -54,7 +53,7 @@ public class ServicioMapaImpl implements ServicioMapa{
 				+ Math.cos(radianes * usuario.getLatitud()) * Math.cos(radianes * resto.getLatitudResto())
 						* Math.pow((Math.sin(radianes * diferenciaLongitud / 2)), 2);
 		distancia = 2 * radioTierra * Math.asin(Math.sqrt(calculoDentroDeLaRaiz));
-		
+
 		if(distancia > 0) {
 			resultado= (int) (distancia*1000);
 		}
@@ -73,7 +72,7 @@ public class ServicioMapaImpl implements ServicioMapa{
 		for (Restaurant restaurant : this.traerLista()) {
 			if ( this.sacarDistancia(restaurant, usuario) <= radioEnKm) {
 				listaRestaurantCercano.add(restaurant);
-			}	
+			}
 		}
 
 		return listaRestaurantCercano;

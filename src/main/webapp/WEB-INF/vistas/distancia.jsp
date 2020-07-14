@@ -95,7 +95,7 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	<div class="container">
+	<div class="container color-container">
 		<div class="col-lg-8">
 			<div id="map"></div>
 		</div>

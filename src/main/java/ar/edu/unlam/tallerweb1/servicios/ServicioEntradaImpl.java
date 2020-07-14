@@ -16,12 +16,10 @@ import java.util.List;
 @Transactional
 public class ServicioEntradaImpl implements ServicioEntrada{
     private RepositorioEntrada servicioEntradaDao;
-    private RepositorioPedido servicioPedidoDao;
 
     @Autowired
     public ServicioEntradaImpl(RepositorioEntrada servicioEntradaDao,RepositorioPedido servicioPedido){
         this.servicioEntradaDao = servicioEntradaDao;
-        this.servicioPedidoDao = servicioPedidoDao;
     }
 
     @Override
@@ -29,14 +27,7 @@ public class ServicioEntradaImpl implements ServicioEntrada{
         List<ItemMenu> comidas = servicioEntradaDao.getEntradasByMenuId(menuId);
 
         return comidas;
-    }
-    
-    @Override
-    public List<ItemMenu> getEntradasDeUnPedidoPorUsuarioId(Long usuarioId){
-        List<ItemMenu> entradas = servicioPedidoDao.getPedidosPorIdUsuario(usuarioId);
-
-        return entradas;
-    }
+    }   
     
     @Override
     public Entrada consultarEntrada(Long id){

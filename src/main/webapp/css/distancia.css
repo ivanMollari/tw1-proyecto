@@ -1,3 +1,8 @@
+.color-container{
+	padding:2em;
+	background-color:currentColor;
+	margin-bottom:0;
+}
 #map {
     height: 41.5em;
     margin-bottom:2em;
@@ -27,7 +32,13 @@
 	border-radius:20px;
 }
 .list-restos{
-	text-align: center;
-	border-color:orange;
-	border:1em solid;	
+	text-align: center;	
+}
+.titulo-lista{
+	color:white;
+}
+.color-container-lista{
+	margin-top: 2em;
+	padding: 2em;
+	background-color: currentColor;
 }

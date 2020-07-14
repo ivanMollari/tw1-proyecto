@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.servicio;
 import ar.edu.unlam.tallerweb1.modelo.Bebida;
 import ar.edu.unlam.tallerweb1.modelo.ItemMenu;
 import ar.edu.unlam.tallerweb1.modelo.Menu;
+import ar.edu.unlam.tallerweb1.modelo.Postre;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioBebidaImpl;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPedidoImpl;
 import ar.edu.unlam.tallerweb1.servicios.ServicioBebidaImpl;
@@ -46,5 +47,18 @@ public class BebidaServicioTest {
 
         //then: The list should be size 2
         assertThat(resultado.size()).isEqualTo(2);
+    }
+    
+    @Test
+    public void consultarBebida() {
+    	Bebida bebida= new Bebida();
+    	bebida.setId(1L);
+    	
+    	when((repositorio.consultarBebida(bebida.getId()))).thenReturn(bebida);
+    	
+    	Bebida fanta = instancia.consultarBebida(bebida.getId());
+    	
+    	assertThat(fanta).isNotNull();
+    	assertThat(fanta.getId()).isEqualTo(1L);
     }
 }

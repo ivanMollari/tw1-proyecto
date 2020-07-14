@@ -28,6 +28,15 @@ public class Restaurant{
 
 	private Integer cantMesas;
 
+	@Transient
+	private Integer distancia;
+
+	@Transient
+	public Integer getDistancia(){ return distancia; }
+
+	@Transient
+	public void setDistancia(Integer distancia){ this.distancia = distancia; }
+
 	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="menu_id", referencedColumnName="id")
 	private Menu menu;
@@ -76,4 +85,6 @@ public class Restaurant{
 	public void setLongitudResto(Double longitudResto) {
 		this.longitudResto = longitudResto;
 	}
+
+
 }

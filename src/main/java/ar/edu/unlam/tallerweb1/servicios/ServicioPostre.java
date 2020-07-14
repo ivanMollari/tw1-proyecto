@@ -8,7 +8,6 @@ import java.util.List;
 public interface ServicioPostre {
     List<ItemMenu> getPostresByMenuId(Long menuId);
 
-	List<ItemMenu> getPostresDeUnPedidoPorUsuarioId(Long usuarioId);
 
 	Postre consultarPostre(Long id);
 }

@@ -4,7 +4,7 @@ section{
     justify-content: space-between;
 }
 article{
-    width: 50%;
+    width: 100%;
 }
 article div{
     width: 100%;
@@ -14,5 +14,45 @@ article img{
     width: 100%;
 }
 article h3{
-    background-color: mediumseagreen;
+	padding:0.5em ;
+    /*background-color: #222222;*/
+    color:white;
 }
+body{
+	background-image: url("../images/fondoMisPedidos2.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+
+}
+.text-color{
+	background-color: #222222;
+	color: #fff;
+	font-size: 7em;
+	font-family: serif;
+}
+.titulo-resto{
+	margin:0;
+	background-color:#222222;
+}
+.contenedor-color{
+	padding-left:6.8em;
+	padding-top:6.8em;
+	padding-bottom:6.8em;
+	background-color:darkslategray;
+}
+.pedido{
+	background-color:white;
+	margin: 1em;
+	padding:0.5em;
+}
+.precio{
+	font-size:1em;
+	padding:0.8em;
+	background-color:#222222;
+	color:white;
+	margin:0;	
+}
+.contenedor-img{
+	margin-top:0.5em;
+}
+

@@ -147,7 +147,7 @@ public class RestaurantServicioTest {
 		for(Entrada aux : pedidito.getEntradas()) {
 			assertThat(aux.getId()).isEqualTo(entrada.getId());
 		}
-		
+
 		assertThat(pedidito).isNotNull();
 		assertThat(pedidito.getComidas().size()).isEqualTo(2);
 		assertThat(pedidito.getComidas().contains(comida)).isTrue();

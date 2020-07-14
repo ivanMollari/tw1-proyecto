@@ -8,7 +8,6 @@ import java.util.List;
 public interface ServicioComida {
     List<ItemMenu> getComidasByMenuId(Long menuId);
 
-	List<ItemMenu> getComidasDeUnPedidoPorUsuarioId(Long usuarioId);
 
 	Comida consultarComida(Long id);
 }

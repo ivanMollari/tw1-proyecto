@@ -8,7 +8,6 @@ import java.util.List;
 public interface ServicioEntrada {
     List<ItemMenu> getEntradasByMenuId(Long menuId);
 
-	List<ItemMenu> getEntradasDeUnPedidoPorUsuarioId(Long usuarioId);
 
 	Entrada consultarEntrada(Long id);
 }

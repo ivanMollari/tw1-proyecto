@@ -30,12 +30,6 @@ public class ServicioPostreImpl implements ServicioPostre {
         return comidas;
     }
     
-    @Override
-    public List<ItemMenu> getPostresDeUnPedidoPorUsuarioId(Long usuarioId){
-        List<ItemMenu> postres = servicioPedidoDao.getPedidosPorIdUsuario(usuarioId);
-
-        return postres;
-    }
     
     @Override
     public Postre consultarPostre(Long id){

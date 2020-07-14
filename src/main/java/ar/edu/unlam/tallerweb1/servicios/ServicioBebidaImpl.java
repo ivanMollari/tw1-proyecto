@@ -31,12 +31,6 @@ public class ServicioBebidaImpl implements ServicioBebida {
 		return comidas;
 	}
 
-	@Override
-	public List<ItemMenu> getBebidasDeUnPedidoPorUsuarioId(Long usuarioId) {
-		List<ItemMenu> bebidas = servicioPedidoDao.getPedidosPorIdUsuario(usuarioId);
-
-		return bebidas;
-	}
 
 	@Override
 	public Bebida consultarBebida(Long id) {

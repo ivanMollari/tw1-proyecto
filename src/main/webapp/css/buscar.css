@@ -1,0 +1,10 @@
+.restaurant a{
+    text-underline: none;
+    color: #f17d0a;
+    font-size: 24px;
+}
+
+.listado {
+    border: 2px solid #f17d0a;
+    margin-bottom: 150px !important;
+}

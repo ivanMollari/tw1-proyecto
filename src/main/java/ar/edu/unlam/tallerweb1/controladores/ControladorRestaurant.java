@@ -1,8 +1,10 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import ar.edu.unlam.tallerweb1.exception.ResultadoNegativoException;
 import ar.edu.unlam.tallerweb1.modelo.*;
 import ar.edu.unlam.tallerweb1.modelo.dto.RequestPedido;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.servicios.ServicioMapa;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPedido;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRestaurant;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +26,14 @@ public class ControladorRestaurant {
 	private ServicioRestaurant servicioRestaurant;
 	private ServicioLogin servicioLogin;
 	private ServicioPedido servicioPedido;
+	private ServicioMapa servicioMapa;
 
 	@Autowired
-	public ControladorRestaurant(ServicioRestaurant servicioRestaurant, ServicioLogin servicioLogin, ServicioPedido servicioPedido) {
+	public ControladorRestaurant(ServicioRestaurant servicioRestaurant, ServicioLogin servicioLogin, ServicioPedido servicioPedido, ServicioMapa servicioMapa) {
 		this.servicioRestaurant = servicioRestaurant;
 		this.servicioLogin = servicioLogin;
 		this.servicioPedido = servicioPedido;
+		this.servicioMapa = servicioMapa;
 	}
 
 	@RequestMapping(path = "/restaurant/{id}", method = RequestMethod.GET)
@@ -52,7 +56,7 @@ public class ControladorRestaurant {
 		modelo.put("postre", postre);
 		modelo.put("requestPedido", requestPedido);
 		modelo.put("usuario",usuarioBuscado.getEmail());
-		
+
 		return new ModelAndView("restaurant", modelo);
 	}
 
@@ -88,7 +92,7 @@ public class ControladorRestaurant {
 		modelo.put("usuario",usuarioBuscado.getEmail());
 		return new ModelAndView("restaurant", modelo);
 	}
-	
+
 
 	@RequestMapping(path = "/restaurant/{idResto}/comida", method = RequestMethod.POST)
 	public ModelAndView listaComidas(@PathVariable(value = "idResto") Long idResto,
@@ -214,6 +218,15 @@ public class ControladorRestaurant {
 		ModelMap modelo = new ModelMap();
 		Usuario usuarioBuscado = servicioLogin.buscarUsuario((Long) request.getSession().getAttribute("idUsuario"));
 		List<Restaurant> listaResto = servicioRestaurant.buscarRestaurants(searchText);
+
+		for (int i = 0; i < listaResto.size(); i++) {
+			try{
+				Integer distancia = servicioMapa.sacarDistancia(listaResto.get(i), usuarioBuscado);
+				listaResto.get(i).setDistancia(distancia);
+			} catch (ResultadoNegativoException error) {
+
+			}
+		}
 		modelo.put("listaResto", listaResto);
 		modelo.put("usuario",usuarioBuscado.getEmail());
 		return new ModelAndView("buscarResto", modelo);

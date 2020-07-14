@@ -1,7 +1,7 @@
 footer {
     background-color: #222222;
     width: 100%;
-    margin-top: 6em;
+    margin-top: 100px;
     color: white;
 }
 ul{
@@ -12,7 +12,7 @@ ul{
 .color{
 	color: #9d9d7e;
 	padding:2px;
-		
+
 }
 .color:hover{
 	color:white;

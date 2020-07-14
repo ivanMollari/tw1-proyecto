@@ -296,6 +296,31 @@ public class RestaurantControllerTest {
     	assertThat(modelAndView.getModel().get("listaResto")).isEqualTo(listaRestos);
     }
 
+	@Test
+	public void testListarMisPedidosPorUsuario() {
+    	Usuario usuario=new Usuario();
+    	usuario.setEmail("usuariotest@gmail.com");
+		List<Pedido> listaPedidos = new ArrayList();
+		Pedido pedido=new Pedido();
+		pedido.setComidas(new ArrayList<Comida>());
+		Pedido pedido2=new Pedido();
+		pedido2.setBebidas(new ArrayList<Bebida>());
+		listaPedidos.add(pedido);
+		listaPedidos.add(pedido2);
+		HttpServletRequest requestMock=mock(HttpServletRequest.class);
+		HttpSession sessionMock = mock(HttpSession.class);
+		when(servicioLogin.buscarUsuario(anyLong())).thenReturn(usuario);
+		when(requestMock.getSession()).thenReturn(sessionMock);
+		when(servicioPedido.mostrarPedidosUsuario(any())).thenReturn(listaPedidos);
+
+		ModelAndView modelAndView = instancia.mostrarPedidosUsuario(requestMock);
+
+		assertThat(modelAndView).isNotNull();
+		assertThat(modelAndView.getViewName()).isEqualTo("misPedidos");
+		assertThat(modelAndView.getModel()).containsKey("listita");
+		assertThat(modelAndView.getModel().get("listita")).isEqualTo(listaPedidos);
+	}
+
     /*
     public  void realizarPedido(){
         //given

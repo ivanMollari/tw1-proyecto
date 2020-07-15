@@ -17,6 +17,7 @@ import ar.edu.unlam.tallerweb1.modelo.Restaurant;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioMapa;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 
 @Controller
@@ -24,11 +25,13 @@ public class ControladorMapa {
 
 	private ServicioMapa servicioMapa;
 	private ServicioLogin servicioLogin;
+	private ServicioUsuario servicioUsuario;
 
 	@Autowired
-	public ControladorMapa(ServicioMapa servicioMapa, ServicioLogin servicioLogin) {
+	public ControladorMapa(ServicioMapa servicioMapa, ServicioLogin servicioLogin, ServicioUsuario servicioUsuario) {
 		this.servicioMapa = servicioMapa;
 		this.servicioLogin = servicioLogin;
+		this.servicioUsuario = servicioUsuario;
 	}
 
 	@RequestMapping(path = "/mapa", method = RequestMethod.GET)
@@ -50,6 +53,7 @@ public class ControladorMapa {
 		Usuario usuarioBuscado = servicioLogin.buscarUsuario((Long) request.getSession().getAttribute("idUsuario"));
 		usuarioBuscado.setLatitud(latitud);
 		usuarioBuscado.setLongitud(longitud);
+		servicioUsuario.modificarUsuario(usuarioBuscado);
 		try {
 			listaRestosCercanos = servicioMapa.mostrarRestosMasCercanos(usuarioBuscado, radioEnM);
 

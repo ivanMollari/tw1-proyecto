@@ -54,7 +54,7 @@
 			<div class="contenedor-texto-reg" >
 				<h2>Busca a tu restaurante favorito</h2>
 				<form class="navbar-form " id="buscar" method="get" action="${context}/restaurant/buscar">
-				 <input type="text" class="form-control" placeholder="Buscar" name="searchText">
+				 <input type="text" class="form-control" placeholder="Buscar" name="searchText" required="required">
 				<input id="add" type="submit" value="Buscar"class="btn  btn-warning btn-center">
 				</form>
 			</div>

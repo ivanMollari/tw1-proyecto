@@ -19,7 +19,7 @@
 			    <div class="input-group"><i class="fas fa-user"></i></div>
 			    <div class="input-group">${usuario}</div>
 			      <div class="input-group">
-			        <input type="text" class="form-control" placeholder="Buscar" name="searchText">
+			        <input type="text" class="form-control" placeholder="Buscar" name="searchText" required="required">
 			        <div class="input-group-btn">
 			          <button class="btn btn-default btn-warning" type="submit">
 			            <i class="glyphicon glyphicon-search"></i>

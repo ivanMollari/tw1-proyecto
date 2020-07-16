@@ -41,7 +41,7 @@
                 </c:forEach>
             </c:when>
             <c:otherwise>
-                <p>No se encontraron restaurantes para la busqueda</p>
+                <p class="ct-contenido">No se encontraron restaurantes para la busqueda</p>
             </c:otherwise>
         </c:choose>
     </div>

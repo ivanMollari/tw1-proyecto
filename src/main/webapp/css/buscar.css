@@ -3,8 +3,23 @@
     color: #f17d0a;
     font-size: 24px;
 }
+.titulo-lista{
+	padding-top:1em;
+	padding-bottom:1em;
+	color:white;
+}
+
+.container-lista{
+margin-bottom: 31em;	
+background-color: currentColor;
+}
 
 .listado {
     border: 2px solid #f17d0a;
-    margin-bottom: 150px !important;
+    margin-bottom: 3em !important;
+}
+.ct-contenido{
+	color:white;
+	font-size:1em;
+	padding:0.5em;
 }

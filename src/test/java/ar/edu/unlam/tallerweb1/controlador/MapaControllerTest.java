@@ -28,7 +28,8 @@ public class MapaControllerTest {
 	
 	ServicioMapa servicioMapa = Mockito.mock(ServicioMapa.class);
 	ServicioLogin servicioLogin = Mockito.mock(ServicioLogin.class);
-	ControladorMapa controladorMapa= new ControladorMapa(servicioMapa,servicioLogin);
+	ServicioUsuario servicioUsuario = Mockito.mock(ServicioUsuario.class);
+	ControladorMapa controladorMapa= new ControladorMapa(servicioMapa,servicioLogin,servicioUsuario);
 	
 	@Test
 	public void testQuePruebaElMetodoDeMostrarMapa() {

@@ -16,8 +16,8 @@
 </head>
 <body>
 <jsp:include page="header.jsp" />
-<div class="container">
-    <h2>Busqueda de restaurants que coinciden con: ${param.searchText}</h2>
+<div class="container container-lista">
+    <h2 class="titulo-lista">Busqueda de restaurants que coinciden con: ${param.searchText}</h2>
     <div class="list-group listado">
         <c:choose>
             <c:when test="${listaResto.size() != 0}">
@@ -41,7 +41,7 @@
                 </c:forEach>
             </c:when>
             <c:otherwise>
-                <p>No se encontraron restaurantes para la busqueda</p>
+                <p class="ct-contenido">No se encontraron restaurantes para la busqueda</p>
             </c:otherwise>
         </c:choose>
     </div>

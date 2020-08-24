@@ -77,23 +77,30 @@ public class ServicioRestaurantImpl implements ServicioRestaurant{
     @Override
     public Pedido armarPedido(RequestPedido requestPedido,Restaurant restaurant) {
         Pedido pedido=new Pedido();
+        Double sumaTiempo=0.0;
         for (Long idEntrada:requestPedido.getIdEntradas() ) {
             Entrada entrada=servicioEntrada.consultarEntrada(idEntrada);
             pedido.agregarUnItemMenu(entrada);
+            sumaTiempo+=entrada.getTiempoPreparacion();
         }
         for (Long idComida:requestPedido.getIdConmidas() ) {
             Comida comida=servicioComida.consultarComida(idComida);
             pedido.agregarUnItemMenu(comida);
+            sumaTiempo+=comida.getTiempoPreparacion();
         }
 
         for (Long idPostre:requestPedido.getIdPostres() ) {
             Postre postre=servicioPostre.consultarPostre(idPostre);
             pedido.agregarUnItemMenu(postre);
+            sumaTiempo+=postre.getTiempoPreparacion();
         }
         for (Long idBebida:requestPedido.getIdBebidas()) {
             Bebida bebida=servicioBebida.consultarBebida(idBebida);
             pedido.agregarUnItemMenu(bebida);
+            sumaTiempo+=bebida.getTiempoPreparacion();
         }
+
+        pedido.setTiempoTotal(sumaTiempo.intValue());
         pedido.setTotal(requestPedido.getTotal());
         pedido.setUsuario(requestPedido.getUsuario());
         pedido.setRestaurant(restaurant);

@@ -209,6 +209,8 @@ public class ControladorRestaurant {
 		modelo.put("restaurant", restaurant);
 		modelo.put("listaPedido", listaPedido);
 		modelo.put("usuario",usuarioBuscado.getEmail());
+		requestPedido = new RequestPedido();
+		request.getSession().setAttribute("requestPedido", requestPedido);
 		return new ModelAndView("pedidoRespuesta", modelo);
 
 	}

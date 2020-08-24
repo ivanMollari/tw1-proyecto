@@ -17,7 +17,7 @@
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 <div class="img-estilo">
-	<h1 class="text-center titulo-imagen ">¡Que disfrutes tu comida!</h1>		
+	<h1 class="text-center titulo-imagen ">Que disfrutes tu comida</h1>
 </div>
 
 <div class="container">
@@ -33,7 +33,7 @@
 <div class="col-lg-8">
 
 	<div class="col-lg-8 pedido col align-self-center fm-color">
-	  <p class="text-color text-center">¡Gracias por realizar su pedido en DELI FAST!</p>
+	  <p class="text-color text-center">Gracias por realizar su pedido en DELI FAST</p>
 	    <c:forEach var="pedido" items="${listaPedido}">
 	       <li class="list-group-item list-group-item-success">
 	          ${pedido.nombre}
@@ -42,8 +42,9 @@
 	    </c:forEach>
 	    <h3 class="tc">Total a pagar:</h3>
 	    <li class="list-group-item list-group-item-success">$ ${total}</li>
+		<h3 style="color: darkorange">Su pedido demorara ${pedido.getTiempoTotal()} minutos </h3>
 	    <a href="${context}/restaurant/${restaurant.id}" class="btn btn-warning btn-lg btn-pedido btn-block">Realizar otro pedido</a>
-	    <a href="${context}/mapa" class="btn btn-warning btn-lg btn-pedido btn-block">Ir a la página principal</a>
+	    <a href="${context}/mapa" class="btn btn-warning btn-lg btn-pedido btn-block">Ir a la pagina principal</a>
     </div>
 	<div class="col align-self-end"></div>
 </div>

@@ -25,6 +25,7 @@ public class ServicioPedidoImpl implements ServicioPedido {
 	public List<Pedido> mostrarPedidosUsuario(Usuario usuario){
 		return servicioPedidoDao.buscarPedidosUsuario(usuario);
 	}
-	
+
+
 	
 }

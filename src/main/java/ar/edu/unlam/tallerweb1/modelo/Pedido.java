@@ -40,10 +40,20 @@ public class Pedido {
     @ManyToOne
     @JoinColumn(name="restaurant_id")
     Restaurant restaurant;
-    
 
-    
-    
+
+    @Transient
+    private Integer tiempoTotal;
+
+
+    public Integer getTiempoTotal() {
+        return tiempoTotal;
+    }
+
+    public void setTiempoTotal(Integer tiempoTotal) {
+        this.tiempoTotal = tiempoTotal;
+    }
+
 
     public Restaurant getRestaurant() {
         return restaurant;
